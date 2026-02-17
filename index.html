@@ -22,283 +22,130 @@
     --radius: 16px;
     --shadow: 0 8px 32px rgba(0,0,0,0.4);
   }
-
   * { box-sizing: border-box; margin: 0; padding: 0; }
-
-  body {
-    font-family: 'Nunito Sans', sans-serif;
-    background: var(--bg);
-    color: var(--text);
-    min-height: 100vh;
-    background-image:
-      radial-gradient(ellipse at 15% 10%, rgba(108,99,255,0.15) 0%, transparent 55%),
-      radial-gradient(ellipse at 85% 85%, rgba(255,101,132,0.1) 0%, transparent 50%);
-  }
-
-  header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 18px 32px;
-    border-bottom: 1px solid var(--border);
-    background: rgba(15,17,23,0.85);
-    backdrop-filter: blur(12px);
-    position: sticky;
-    top: 0;
-    z-index: 100;
-  }
-
-  .logo {
-    font-family: 'Nunito', sans-serif;
-    font-weight: 900;
-    font-size: 1.5rem;
-    background: linear-gradient(135deg, #6c63ff, #ff6584);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
-
+  body { font-family: 'Nunito Sans', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; background-image: radial-gradient(ellipse at 15% 10%, rgba(108,99,255,0.15) 0%, transparent 55%), radial-gradient(ellipse at 85% 85%, rgba(255,101,132,0.1) 0%, transparent 50%); }
+  header { display: flex; align-items: center; justify-content: space-between; padding: 18px 32px; border-bottom: 1px solid var(--border); background: rgba(15,17,23,0.85); backdrop-filter: blur(12px); position: sticky; top: 0; z-index: 100; }
+  .logo { font-family: 'Nunito', sans-serif; font-weight: 900; font-size: 1.5rem; background: linear-gradient(135deg, #6c63ff, #ff6584); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
   .header-actions { display: flex; gap: 10px; align-items: center; }
-
-  .btn {
-    font-family: 'Nunito', sans-serif;
-    font-weight: 700;
-    font-size: 0.9rem;
-    padding: 10px 20px;
-    border-radius: 50px;
-    border: none;
-    cursor: pointer;
-    transition: all 0.2s ease;
-    display: inline-flex;
-    align-items: center;
-    gap: 7px;
-  }
-
+  .btn { font-family: 'Nunito', sans-serif; font-weight: 700; font-size: 0.9rem; padding: 10px 20px; border-radius: 50px; border: none; cursor: pointer; transition: all 0.2s ease; display: inline-flex; align-items: center; gap: 7px; }
   .btn:active { transform: scale(0.97); }
-
   .btn-primary { background: var(--accent); color: #fff; }
   .btn-primary:hover { background: var(--accent-hover); transform: translateY(-1px); box-shadow: 0 4px 16px rgba(108,99,255,0.4); }
-
   .btn-green { background: var(--green); color: #0f1117; }
   .btn-green:hover { background: var(--green-hover); transform: translateY(-1px); box-shadow: 0 4px 16px rgba(67,217,160,0.35); }
-
   .btn-ghost { background: transparent; color: var(--muted); border: 1.5px solid var(--border); }
   .btn-ghost:hover { color: var(--text); border-color: var(--muted); }
-
   .btn-danger { background: rgba(255,101,132,0.15); color: var(--red); border: 1.5px solid rgba(255,101,132,0.3); }
   .btn-danger:hover { background: rgba(255,101,132,0.25); }
-
   .btn-sm { padding: 7px 14px; font-size: 0.8rem; }
-
-  .staff-badge {
-    background: linear-gradient(135deg, rgba(108,99,255,0.2), rgba(255,101,132,0.2));
-    border: 1.5px solid rgba(108,99,255,0.4);
-    color: var(--accent);
-    padding: 6px 14px;
-    border-radius: 50px;
-    font-family: 'Nunito', sans-serif;
-    font-weight: 700;
-    font-size: 0.8rem;
-  }
-
+  .staff-badge { background: linear-gradient(135deg, rgba(108,99,255,0.2), rgba(255,101,132,0.2)); border: 1.5px solid rgba(108,99,255,0.4); color: var(--accent); padding: 6px 14px; border-radius: 50px; font-family: 'Nunito', sans-serif; font-weight: 700; font-size: 0.8rem; }
   main { max-width: 960px; margin: 0 auto; padding: 40px 24px; }
-
   .page { display: none; }
   .page.active { display: block; }
-
   .home-header { text-align: center; margin-bottom: 40px; }
-  .home-header h1 {
-    font-family: 'Nunito', sans-serif;
-    font-weight: 900;
-    font-size: 2.8rem;
-    margin-bottom: 10px;
-    background: linear-gradient(135deg, #e8eaf6, #8b90b8);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
+  .home-header h1 { font-family: 'Nunito', sans-serif; font-weight: 900; font-size: 2.8rem; margin-bottom: 10px; background: linear-gradient(135deg, #e8eaf6, #8b90b8); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
   .home-header p { color: var(--muted); font-size: 1rem; }
-
-  .trivia-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 20px;
-  }
-
-  .trivia-card {
-    background: var(--surface);
-    border: 1.5px solid var(--border);
-    border-radius: var(--radius);
-    padding: 24px;
-    transition: all 0.25s ease;
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-  }
-
+  .trivia-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; }
+  .trivia-card { background: var(--surface); border: 1.5px solid var(--border); border-radius: var(--radius); padding: 24px; transition: all 0.25s ease; display: flex; flex-direction: column; gap: 12px; }
   .trivia-card:hover { border-color: rgba(108,99,255,0.4); transform: translateY(-3px); box-shadow: var(--shadow); }
-
   .trivia-card h3 { font-family: 'Nunito', sans-serif; font-weight: 800; font-size: 1.15rem; }
   .trivia-card .desc { color: var(--muted); font-size: 0.88rem; line-height: 1.5; flex: 1; }
   .trivia-card .meta { font-size: 0.8rem; color: var(--muted); }
   .trivia-card .card-actions { display: flex; gap: 8px; flex-wrap: wrap; }
-
   .empty-state { text-align: center; padding: 80px 20px; color: var(--muted); grid-column: 1 / -1; }
   .empty-state h3 { font-family: 'Nunito', sans-serif; font-weight: 800; margin-bottom: 8px; color: var(--text); font-size: 1.2rem; }
-
   .loading-state { text-align: center; padding: 80px 20px; color: var(--muted); grid-column: 1 / -1; }
-  .spinner {
-    width: 36px; height: 36px;
-    border: 3px solid var(--border);
-    border-top-color: var(--accent);
-    border-radius: 50%;
-    animation: spin 0.7s linear infinite;
-    margin: 0 auto 16px;
-  }
+  .spinner { width: 36px; height: 36px; border: 3px solid var(--border); border-top-color: var(--accent); border-radius: 50%; animation: spin 0.7s linear infinite; margin: 0 auto 16px; }
   @keyframes spin { to { transform: rotate(360deg); } }
 
-  .modal-overlay {
-    display: none;
-    position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,0.7);
-    backdrop-filter: blur(6px);
-    z-index: 200;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
-  }
+  /* MODALS */
+  .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.7); backdrop-filter: blur(6px); z-index: 200; align-items: center; justify-content: center; padding: 20px; }
   .modal-overlay.open { display: flex; }
-
-  .modal {
-    background: var(--surface);
-    border: 1.5px solid var(--border);
-    border-radius: var(--radius);
-    width: 100%;
-    max-width: 540px;
-    max-height: 90vh;
-    overflow-y: auto;
-    padding: 32px;
-    box-shadow: var(--shadow);
-    animation: slideUp 0.25s ease;
-  }
-
-  @keyframes slideUp {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-
+  .modal { background: var(--surface); border: 1.5px solid var(--border); border-radius: var(--radius); width: 100%; max-width: 540px; max-height: 90vh; overflow-y: auto; padding: 32px; box-shadow: var(--shadow); animation: slideUp 0.25s ease; }
+  @keyframes slideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
   .modal-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 24px; }
   .modal-header h2 { font-family: 'Nunito', sans-serif; font-weight: 800; font-size: 1.3rem; }
-
-  .close-btn {
-    background: var(--surface2); border: none; color: var(--muted);
-    width: 32px; height: 32px; border-radius: 50%; cursor: pointer;
-    font-size: 1rem; display: flex; align-items: center; justify-content: center; transition: all 0.2s;
-  }
+  .close-btn { background: var(--surface2); border: none; color: var(--muted); width: 32px; height: 32px; border-radius: 50%; cursor: pointer; font-size: 1rem; display: flex; align-items: center; justify-content: center; transition: all 0.2s; }
   .close-btn:hover { color: var(--text); background: var(--border); }
-
   .form-group { margin-bottom: 18px; }
   .form-group label { display: block; font-weight: 700; font-size: 0.82rem; color: var(--muted); margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px; }
   .form-group label span { color: var(--red); margin-left: 3px; }
-
-  input[type="text"], input[type="password"], textarea {
-    width: 100%;
-    background: var(--surface2);
-    border: 1.5px solid var(--border);
-    border-radius: 12px;
-    padding: 12px 16px;
-    color: var(--text);
-    font-family: 'Nunito Sans', sans-serif;
-    font-size: 0.95rem;
-    transition: border-color 0.2s;
-    outline: none;
-  }
+  input[type="text"], input[type="password"], textarea { width: 100%; background: var(--surface2); border: 1.5px solid var(--border); border-radius: 12px; padding: 12px 16px; color: var(--text); font-family: 'Nunito Sans', sans-serif; font-size: 0.95rem; transition: border-color 0.2s; outline: none; }
   input:focus, textarea:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(108,99,255,0.15); }
   textarea { resize: vertical; min-height: 80px; }
-
   .error-msg { color: var(--red); font-size: 0.82rem; margin-top: 6px; display: none; }
   .error-msg.show { display: block; }
 
-  .questions-section { margin-top: 8px; }
-  .questions-section h3 { font-family: 'Nunito', sans-serif; font-weight: 800; font-size: 0.85rem; margin-bottom: 12px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.5px; }
+  /* TABS */
+  .tab-row { display: flex; gap: 4px; margin-bottom: 24px; background: var(--surface2); border-radius: 10px; padding: 4px; }
+  .tab-btn { flex: 1; padding: 9px; border: none; border-radius: 7px; cursor: pointer; font-family: 'Nunito', sans-serif; font-weight: 700; font-size: 0.85rem; background: transparent; color: var(--muted); transition: all 0.2s; }
+  .tab-btn.active { background: var(--surface); color: var(--text); box-shadow: 0 2px 8px rgba(0,0,0,0.2); }
+  .tab-content { display: none; }
+  .tab-content.active { display: block; }
 
+  /* QUESTION BUILDER */
+  .questions-section { margin-top: 8px; }
+  .questions-section > h3 { font-family: 'Nunito', sans-serif; font-weight: 800; font-size: 0.85rem; margin-bottom: 12px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.5px; }
   .question-card { background: var(--surface2); border: 1.5px solid var(--border); border-radius: 12px; padding: 18px; margin-bottom: 14px; }
   .question-card .q-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
   .question-card .q-num { font-family: 'Nunito', sans-serif; font-weight: 800; font-size: 0.82rem; color: var(--accent); text-transform: uppercase; letter-spacing: 0.5px; }
+  .opts-hint { font-size: 0.75rem; color: var(--muted); margin-bottom: 8px; line-height: 1.4; }
+  .option-row { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
+  .option-row input[type="text"] { flex: 1; padding: 9px 12px; font-size: 0.88rem; }
+  .correct-toggle { width: 34px; height: 34px; border-radius: 8px; border: 1.5px solid var(--border); background: var(--surface); cursor: pointer; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 0.9rem; color: var(--muted); transition: all 0.2s; }
+  .correct-toggle.active { border-color: var(--green); background: rgba(67,217,160,0.15); color: var(--green); }
+  .correct-toggle:hover { border-color: var(--green); color: var(--green); }
+  .remove-opt-btn { width: 30px; height: 30px; border-radius: 6px; border: none; background: transparent; color: var(--muted); cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 1rem; transition: all 0.2s; flex-shrink: 0; }
+  .remove-opt-btn:hover { color: var(--red); background: rgba(255,101,132,0.1); }
 
-  .options-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 12px; }
-  .option-item { display: flex; flex-direction: column; gap: 6px; }
-  .option-item label { font-size: 0.78rem; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: 0.5px; }
-  .option-item input { padding: 9px 12px; font-size: 0.88rem; }
-
-  .correct-answer-row { margin-top: 12px; }
-  .correct-answer-row label { font-size: 0.78rem; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: 0.5px; display: block; margin-bottom: 8px; }
-
-  .radio-group { display: flex; gap: 8px; flex-wrap: wrap; }
-  .radio-option {
-    display: flex; align-items: center; gap: 6px;
-    background: var(--surface); border: 1.5px solid var(--border);
-    border-radius: 8px; padding: 7px 12px; cursor: pointer;
-    font-size: 0.85rem; font-weight: 600; transition: all 0.2s;
-    font-family: 'Nunito', sans-serif;
-  }
-  .radio-option input[type="radio"] { display: none; }
-  .radio-option.selected { border-color: var(--green); background: rgba(67,217,160,0.1); color: var(--green); }
+  /* IMPORT */
+  .import-zone { border: 2px dashed var(--border); border-radius: 12px; padding: 32px 20px; text-align: center; cursor: pointer; transition: all 0.2s; position: relative; }
+  .import-zone:hover, .import-zone.drag-over { border-color: var(--accent); background: rgba(108,99,255,0.06); }
+  .import-zone input[type="file"] { position: absolute; inset: 0; opacity: 0; cursor: pointer; width: 100%; height: 100%; }
+  .import-zone h4 { font-family: 'Nunito', sans-serif; font-weight: 800; margin-bottom: 6px; font-size: 1rem; }
+  .import-zone p { font-size: 0.82rem; color: var(--muted); }
+  .import-preview { background: var(--surface2); border: 1.5px solid var(--border); border-radius: 12px; padding: 14px; margin-top: 14px; font-size: 0.85rem; max-height: 180px; overflow-y: auto; }
+  .preview-item { padding: 6px 0; border-bottom: 1px solid var(--border); color: var(--muted); }
+  .preview-item:last-child { border-bottom: none; }
+  .preview-item strong { color: var(--text); }
+  .format-hint { background: var(--surface2); border: 1.5px solid var(--border); border-radius: 12px; padding: 16px; margin-top: 14px; font-size: 0.82rem; color: var(--muted); line-height: 1.8; }
+  .format-hint code { background: rgba(108,99,255,0.15); color: #a78bfa; padding: 1px 6px; border-radius: 4px; font-family: monospace; font-size: 0.8rem; }
 
   .modal-footer { display: flex; justify-content: flex-end; gap: 10px; margin-top: 24px; padding-top: 20px; border-top: 1px solid var(--border); }
+  .divider { height: 1px; background: var(--border); margin: 20px 0; }
 
+  /* QUIZ */
   .quiz-container { max-width: 640px; margin: 0 auto; }
   .quiz-top-bar { margin-bottom: 32px; }
   .quiz-top-bar h2 { font-family: 'Nunito', sans-serif; font-weight: 900; font-size: 2rem; margin-bottom: 6px; }
   .quiz-top-bar p { color: var(--muted); }
-
   .progress-bar-wrap { background: var(--surface2); border-radius: 50px; height: 6px; margin: 20px 0; overflow: hidden; }
   .progress-bar { background: linear-gradient(90deg, var(--accent), #a78bfa); height: 100%; border-radius: 50px; transition: width 0.4s ease; }
-
   .question-num { font-size: 0.85rem; color: var(--muted); font-weight: 700; margin-bottom: 16px; text-transform: uppercase; letter-spacing: 0.5px; }
-  .question-text { font-family: 'Nunito', sans-serif; font-weight: 800; font-size: 1.4rem; line-height: 1.4; margin-bottom: 28px; }
-
+  .question-text { font-family: 'Nunito', sans-serif; font-weight: 800; font-size: 1.4rem; line-height: 1.4; margin-bottom: 10px; }
+  .multi-hint { font-size: 0.82rem; color: var(--yellow); margin-bottom: 20px; font-weight: 600; }
   .options-list { display: flex; flex-direction: column; gap: 12px; }
-  .option-btn {
-    background: var(--surface); border: 1.5px solid var(--border);
-    border-radius: 14px; padding: 16px 20px; color: var(--text);
-    font-family: 'Nunito', sans-serif; font-weight: 700; font-size: 1rem;
-    cursor: pointer; text-align: left; transition: all 0.2s;
-    display: flex; align-items: center; gap: 14px;
-  }
+  .option-btn { background: var(--surface); border: 1.5px solid var(--border); border-radius: 14px; padding: 16px 20px; color: var(--text); font-family: 'Nunito', sans-serif; font-weight: 700; font-size: 1rem; cursor: pointer; text-align: left; transition: all 0.2s; display: flex; align-items: center; gap: 14px; }
   .option-btn:hover { border-color: var(--accent); background: rgba(108,99,255,0.08); transform: translateX(4px); }
   .option-btn.selected { border-color: var(--accent); background: rgba(108,99,255,0.15); }
-
-  .option-letter {
-    width: 34px; height: 34px; border-radius: 50%; background: var(--surface2);
-    display: flex; align-items: center; justify-content: center;
-    font-size: 0.85rem; font-weight: 800; flex-shrink: 0; transition: all 0.2s;
-  }
+  .option-letter { width: 34px; height: 34px; border-radius: 50%; background: var(--surface2); display: flex; align-items: center; justify-content: center; font-size: 0.85rem; font-weight: 800; flex-shrink: 0; transition: all 0.2s; }
   .option-btn.selected .option-letter { background: var(--accent); color: #fff; }
-
   .quiz-nav { display: flex; justify-content: space-between; align-items: center; margin-top: 32px; }
 
+  /* SUBMITTED */
   .submitted-state { text-align: center; padding: 80px 20px; max-width: 440px; margin: 0 auto; }
-  .submitted-state .check-icon {
-    width: 72px; height: 72px; background: rgba(67,217,160,0.15); border: 2px solid var(--green);
-    border-radius: 50%; display: flex; align-items: center; justify-content: center;
-    margin: 0 auto 24px; font-size: 1.8rem; color: var(--green);
-    animation: pop 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  }
+  .submitted-state .check-icon { width: 72px; height: 72px; background: rgba(67,217,160,0.15); border: 2px solid var(--green); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 24px; font-size: 1.8rem; color: var(--green); animation: pop 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
   @keyframes pop { from { transform: scale(0.5); opacity: 0; } to { transform: scale(1); opacity: 1; } }
   .submitted-state h2 { font-family: 'Nunito', sans-serif; font-weight: 900; font-size: 2rem; margin-bottom: 12px; }
   .submitted-state p { color: var(--muted); line-height: 1.6; }
 
+  /* REVIEW */
   .review-modal { max-width: 700px; }
-
   .response-card { background: var(--surface2); border: 1.5px solid var(--border); border-radius: 12px; padding: 18px; margin-bottom: 12px; }
   .response-card .r-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 14px; }
   .response-card .r-name { font-family: 'Nunito', sans-serif; font-weight: 800; font-size: 1rem; }
   .response-card .r-time { font-size: 0.78rem; color: var(--muted); margin-top: 3px; }
-
   .score-badge { background: rgba(67,217,160,0.15); border: 1.5px solid rgba(67,217,160,0.3); color: var(--green); padding: 5px 12px; border-radius: 50px; font-family: 'Nunito', sans-serif; font-weight: 800; font-size: 0.85rem; white-space: nowrap; }
-
   .response-details { display: flex; flex-direction: column; gap: 8px; }
   .answer-row { display: flex; align-items: flex-start; gap: 10px; font-size: 0.85rem; }
   .answer-row .mark { font-weight: 800; flex-shrink: 0; width: 16px; }
@@ -306,29 +153,19 @@
   .answer-row .mark.wrong { color: var(--red); }
   .answer-row .q-text { color: var(--muted); flex: 1; }
   .answer-row .a-text { font-weight: 700; }
-
   .no-responses { text-align: center; color: var(--muted); padding: 40px; font-size: 0.9rem; }
 
+  /* NAME PAGE */
   .name-input-page { max-width: 400px; margin: 80px auto; text-align: center; }
   .name-input-page h2 { font-family: 'Nunito', sans-serif; font-weight: 900; font-size: 1.8rem; margin-bottom: 10px; }
   .name-input-page p { color: var(--muted); margin-bottom: 28px; }
   .name-input-page input { text-align: center; font-size: 1.1rem; padding: 14px 20px; margin-bottom: 16px; }
 
-  .divider { height: 1px; background: var(--border); margin: 20px 0; }
-
   ::-webkit-scrollbar { width: 6px; }
   ::-webkit-scrollbar-track { background: var(--bg); }
   ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
-
   @keyframes shake { 0%,100%{transform:translateX(0)} 25%{transform:translateX(-8px)} 75%{transform:translateX(8px)} }
-
-  .toast {
-    position: fixed; bottom: 28px; left: 50%; transform: translateX(-50%) translateY(80px);
-    background: var(--surface); border: 1.5px solid var(--border); border-radius: 50px;
-    padding: 12px 24px; font-family: 'Nunito', sans-serif; font-weight: 700; font-size: 0.9rem;
-    box-shadow: var(--shadow); z-index: 999; transition: transform 0.3s ease;
-    pointer-events: none;
-  }
+  .toast { position: fixed; bottom: 28px; left: 50%; transform: translateX(-50%) translateY(80px); background: var(--surface); border: 1.5px solid var(--border); border-radius: 50px; padding: 12px 24px; font-family: 'Nunito', sans-serif; font-weight: 700; font-size: 0.9rem; box-shadow: var(--shadow); z-index: 999; transition: transform 0.3s ease; pointer-events: none; }
   .toast.show { transform: translateX(-50%) translateY(0); }
   .toast.success { border-color: rgba(67,217,160,0.4); color: var(--green); }
   .toast.error { border-color: rgba(255,101,132,0.4); color: var(--red); }
@@ -353,10 +190,7 @@
       <p>Pick a quiz and test your knowledge</p>
     </div>
     <div class="trivia-grid" id="triviaGrid">
-      <div class="loading-state" style="grid-column:1/-1">
-        <div class="spinner"></div>
-        <p>Loading trivia...</p>
-      </div>
+      <div class="loading-state" style="grid-column:1/-1"><div class="spinner"></div><p>Loading trivia...</p></div>
     </div>
   </div>
 
@@ -379,11 +213,10 @@
         <h2 id="quizTitle"></h2>
         <p id="quizDesc" style="display:none"></p>
       </div>
-      <div class="progress-bar-wrap">
-        <div class="progress-bar" id="progressBar"></div>
-      </div>
+      <div class="progress-bar-wrap"><div class="progress-bar" id="progressBar"></div></div>
       <div class="question-num" id="questionNum"></div>
       <div class="question-text" id="questionText"></div>
+      <div class="multi-hint" id="multiHint" style="display:none">Select all that apply</div>
       <div class="options-list" id="optionsList"></div>
       <div class="quiz-nav">
         <button class="btn btn-ghost" onclick="showPage('homePage')">Quit</button>
@@ -426,29 +259,76 @@
   </div>
 </div>
 
-<!-- CREATE TRIVIA MODAL -->
+<!-- CREATE MODAL -->
 <div class="modal-overlay" id="createModal">
-  <div class="modal" style="max-width:600px">
+  <div class="modal" style="max-width:640px">
     <div class="modal-header">
       <h2>New Trivia</h2>
       <button class="close-btn" onclick="closeModal('createModal')">&#10005;</button>
     </div>
-    <div class="form-group">
-      <label>Title <span>*</span></label>
-      <input type="text" id="newTitle" placeholder="e.g. Geography Quiz" />
-      <div class="error-msg" id="titleError">Title is required.</div>
+
+    <div class="tab-row">
+      <button class="tab-btn active" id="tabBtnManual" onclick="switchTab('manual')">Build Manually</button>
+      <button class="tab-btn" id="tabBtnImport" onclick="switchTab('import')">Import from File</button>
     </div>
-    <div class="form-group">
-      <label>Description</label>
-      <textarea id="newDesc" placeholder="Optional description..."></textarea>
+
+    <!-- MANUAL TAB -->
+    <div class="tab-content active" id="tab-manual">
+      <div class="form-group">
+        <label>Title <span>*</span></label>
+        <input type="text" id="newTitle" placeholder="e.g. Geography Quiz" />
+        <div class="error-msg" id="titleError">Title is required.</div>
+      </div>
+      <div class="form-group">
+        <label>Description</label>
+        <textarea id="newDesc" placeholder="Optional description..."></textarea>
+      </div>
+      <div class="divider"></div>
+      <div class="questions-section">
+        <h3>Questions</h3>
+        <div id="questionsContainer"></div>
+        <div class="error-msg" id="questionsError" style="margin-bottom:12px">Fill in all fields and mark at least one correct answer per question.</div>
+        <button class="btn btn-ghost btn-sm" onclick="addQuestion()">+ Add Question</button>
+      </div>
     </div>
-    <div class="divider"></div>
-    <div class="questions-section">
-      <h3>Questions</h3>
-      <div id="questionsContainer"></div>
-      <div class="error-msg" id="questionsError" style="margin-bottom:12px">Please fill in all question fields and select a correct answer for each.</div>
-      <button class="btn btn-ghost btn-sm" onclick="addQuestion()">+ Add Question</button>
+
+    <!-- IMPORT TAB -->
+    <div class="tab-content" id="tab-import">
+      <div class="form-group">
+        <label>Title <span>*</span></label>
+        <input type="text" id="importTitle" placeholder="e.g. Science Quiz" />
+        <div class="error-msg" id="importTitleError">Title is required.</div>
+      </div>
+      <div class="form-group">
+        <label>Description</label>
+        <textarea id="importDesc" placeholder="Optional description..."></textarea>
+      </div>
+      <div class="form-group">
+        <label>Upload File</label>
+        <div class="import-zone" id="importZone">
+          <input type="file" id="importFile" accept=".txt,.csv,.json" onchange="handleFileImport(event)" />
+          <h4>Drop file here or click to browse</h4>
+          <p>Supports .txt, .csv, and .json</p>
+        </div>
+        <div id="importPreview" style="display:none">
+          <div class="import-preview" id="importPreviewContent"></div>
+          <p style="font-size:0.8rem;color:var(--green);margin-top:8px;font-weight:700" id="importCount"></p>
+        </div>
+        <div class="error-msg" id="importFileError" style="margin-top:8px">Could not read the file. Check the format below.</div>
+      </div>
+      <div class="format-hint">
+        <strong style="color:var(--text);display:block;margin-bottom:8px">File format guide</strong>
+        <strong style="color:var(--text)">.txt / .csv</strong> &mdash; separate questions with a blank line. Start correct answers with <code>*</code>. Multiple <code>*</code> lines = multiple correct answers.<br><br>
+        <code>What is 2 + 2?</code><br>
+        <code>*4</code><br>
+        <code>3</code><br>
+        <code>5</code><br>
+        <code>6</code><br><br>
+        <strong style="color:var(--text)">.json</strong> &mdash; array of objects with <code>text</code>, <code>options</code>, and <code>correct</code> (array of 0-based indexes):<br>
+        <code>[{"text":"Q?","options":["A","B","C"],"correct":[0,2]}]</code>
+      </div>
     </div>
+
     <div class="modal-footer">
       <button class="btn btn-ghost" onclick="closeModal('createModal')">Cancel</button>
       <button class="btn btn-primary" id="saveTriviaBtn" onclick="saveTrivia()">Save Trivia</button>
@@ -469,19 +349,10 @@
 
 <div class="toast" id="toast"></div>
 
-<!-- Firebase -->
 <script type="module">
   import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-  import {
-    getFirestore, collection, getDocs, addDoc, deleteDoc, doc,
-    onSnapshot, query, orderBy, serverTimestamp
-  } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+  import { getFirestore, collection, getDocs, addDoc, deleteDoc, doc, onSnapshot, query, orderBy, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
-  // =====================
-  //   FIREBASE CONFIG
-  //   Replace the values below with your own Firebase project config.
-  //   Instructions at the bottom of this file.
-  // =====================
   const firebaseConfig = {
     apiKey: "AIzaSyDXbNsdAs0Yt1bH6avEyrKfb4uMK-j_UP0",
     authDomain: "yes-yes-trivia.firebaseapp.com",
@@ -494,32 +365,21 @@
   const app = initializeApp(firebaseConfig);
   const db = getFirestore(app);
 
-  // =====================
-  //   AUTH
-  // =====================
-  const STAFF_USER = 'blaize';
-  const STAFF_PASS = 'blazesmpstafftrivia';
+  // AUTH
+  const STAFF_USER = 'blaize', STAFF_PASS = 'blazesmpstafftrivia';
   let isStaff = sessionStorage.getItem('staffLoggedIn') === '1';
 
   window.doLogin = function() {
     const u = document.getElementById('loginUser').value.trim();
     const p = document.getElementById('loginPass').value;
     if (u === STAFF_USER && p === STAFF_PASS) {
-      isStaff = true;
-      sessionStorage.setItem('staffLoggedIn', '1');
-      closeModal('loginModal');
-      updateAuthUI();
-      renderHome();
-    } else {
-      document.getElementById('loginError').classList.add('show');
-    }
+      isStaff = true; sessionStorage.setItem('staffLoggedIn', '1');
+      closeModal('loginModal'); updateAuthUI(); renderHome();
+    } else { document.getElementById('loginError').classList.add('show'); }
   };
 
   window.logout = function() {
-    isStaff = false;
-    sessionStorage.removeItem('staffLoggedIn');
-    updateAuthUI();
-    renderHome();
+    isStaff = false; sessionStorage.removeItem('staffLoggedIn'); updateAuthUI(); renderHome();
   };
 
   function updateAuthUI() {
@@ -529,25 +389,27 @@
     document.getElementById('logoutBtn').style.display = isStaff ? 'flex' : 'none';
   }
 
-  // =====================
-  //   PAGES
-  // =====================
   window.showPage = function(id) {
     document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
     document.getElementById(id).classList.add('active');
   };
 
-  // =====================
-  //   LIVE TRIVIA LISTENER
-  // =====================
-  let triviaCache = [];
+  // TABS
+  window.switchTab = function(tab) {
+    document.getElementById('tabBtnManual').classList.toggle('active', tab === 'manual');
+    document.getElementById('tabBtnImport').classList.toggle('active', tab === 'import');
+    document.getElementById('tab-manual').classList.toggle('active', tab === 'manual');
+    document.getElementById('tab-import').classList.toggle('active', tab === 'import');
+  };
 
+  // TRIVIA LISTENER
+  let triviaCache = [];
   function listenTrivia() {
     const q = query(collection(db, 'trivias'), orderBy('createdAt', 'desc'));
-    onSnapshot(q, (snapshot) => {
-      triviaCache = snapshot.docs.map(d => ({ id: d.id, ...d.data() }));
+    onSnapshot(q, snap => {
+      triviaCache = snap.docs.map(d => ({ id: d.id, ...d.data() }));
       renderHome();
-    }, (err) => {
+    }, err => {
       console.error(err);
       document.getElementById('triviaGrid').innerHTML = `<div class="empty-state" style="grid-column:1/-1"><h3>Could not connect</h3><p>Check your Firebase config.</p></div>`;
     });
@@ -556,39 +418,18 @@
   function renderHome() {
     const grid = document.getElementById('triviaGrid');
     grid.innerHTML = '';
-
-    if (!triviaCache || triviaCache.length === 0) {
-      grid.innerHTML = `
-        <div class="empty-state">
-          <h3>No trivia yet</h3>
-          <p>${isStaff ? 'Click "Add Trivia" to create the first one.' : 'Check back soon!'}</p>
-        </div>`;
+    if (!triviaCache.length) {
+      grid.innerHTML = `<div class="empty-state"><h3>No trivia yet</h3><p>${isStaff ? 'Click "Add Trivia" to create the first one.' : 'Check back soon!'}</p></div>`;
       return;
     }
-
     triviaCache.forEach(t => {
       const card = document.createElement('div');
       card.className = 'trivia-card';
-      const desc = t.description
-        ? `<div class="desc">${escHtml(t.description)}</div>`
-        : `<div class="desc" style="font-style:italic;opacity:0.45">N/A</div>`;
+      const desc = t.description ? `<div class="desc">${escHtml(t.description)}</div>` : `<div class="desc" style="font-style:italic;opacity:0.45">N/A</div>`;
       const qCount = t.questions ? t.questions.length : 0;
-
       let actions = `<button class="btn btn-green btn-sm" onclick="beginQuiz('${t.id}')">Start</button>`;
-      if (isStaff) {
-        actions = `
-          <button class="btn btn-green btn-sm" onclick="beginQuiz('${t.id}')">Start</button>
-          <button class="btn btn-ghost btn-sm" onclick="openReview('${t.id}')">Review</button>
-          <button class="btn btn-danger btn-sm" onclick="deleteTrivia('${t.id}')">Delete</button>
-        `;
-      }
-
-      card.innerHTML = `
-        <h3>${escHtml(t.title)}</h3>
-        ${desc}
-        <div class="meta">${qCount} question${qCount !== 1 ? 's' : ''}</div>
-        <div class="card-actions">${actions}</div>
-      `;
+      if (isStaff) actions = `<button class="btn btn-green btn-sm" onclick="beginQuiz('${t.id}')">Start</button><button class="btn btn-ghost btn-sm" onclick="openReview('${t.id}')">Review</button><button class="btn btn-danger btn-sm" onclick="deleteTrivia('${t.id}')">Delete</button>`;
+      card.innerHTML = `<h3>${escHtml(t.title)}</h3>${desc}<div class="meta">${qCount} question${qCount!==1?'s':''}</div><div class="card-actions">${actions}</div>`;
       grid.appendChild(card);
     });
   }
@@ -596,130 +437,185 @@
   window.deleteTrivia = async function(id) {
     if (!confirm('Delete this trivia and all its responses?')) return;
     try {
-      // delete responses
       const rSnap = await getDocs(collection(db, 'responses'));
-      const toDelete = rSnap.docs.filter(d => d.data().triviaId === id);
-      await Promise.all(toDelete.map(d => deleteDoc(doc(db, 'responses', d.id))));
-      // delete trivia
+      await Promise.all(rSnap.docs.filter(d => d.data().triviaId === id).map(d => deleteDoc(doc(db, 'responses', d.id))));
       await deleteDoc(doc(db, 'trivias', id));
       showToast('Trivia deleted.', 'success');
-    } catch(e) {
-      showToast('Error deleting trivia.', 'error');
-    }
+    } catch(e) { showToast('Error deleting trivia.', 'error'); }
   };
 
-  // =====================
-  //   CREATE TRIVIA
-  // =====================
+  // QUESTION BUILDER
   let questionCount = 0;
 
   window.openCreateModal = function() {
     questionCount = 0;
-    document.getElementById('newTitle').value = '';
-    document.getElementById('newDesc').value = '';
+    ['newTitle','newDesc','importTitle','importDesc'].forEach(id => document.getElementById(id).value = '');
     document.getElementById('questionsContainer').innerHTML = '';
-    document.getElementById('titleError').classList.remove('show');
-    document.getElementById('questionsError').classList.remove('show');
+    document.getElementById('importPreview').style.display = 'none';
+    ['titleError','questionsError','importTitleError','importFileError'].forEach(id => document.getElementById(id).classList.remove('show'));
+    importedQuestions = null;
+    switchTab('manual');
     document.getElementById('createModal').classList.add('open');
     addQuestion();
   };
 
   window.addQuestion = function() {
     questionCount++;
-    const qNum = questionCount;
-    const id = 'q_' + qNum;
-    const container = document.getElementById('questionsContainer');
+    const id = 'q_' + questionCount;
     const div = document.createElement('div');
-    div.className = 'question-card';
-    div.id = id;
+    div.className = 'question-card'; div.id = id;
     div.innerHTML = `
       <div class="q-header">
-        <span class="q-num">Question ${qNum}</span>
+        <span class="q-num">Question ${questionCount}</span>
         <button class="btn btn-danger btn-sm" onclick="removeQuestion('${id}')">Remove</button>
       </div>
-      <input type="text" placeholder="Question text..." id="${id}_text" />
-      <div class="options-grid">
-        <div class="option-item"><label>Option 1</label><input type="text" placeholder="Option 1" id="${id}_opt1" /></div>
-        <div class="option-item"><label>Option 2</label><input type="text" placeholder="Option 2" id="${id}_opt2" /></div>
-        <div class="option-item"><label>Option 3</label><input type="text" placeholder="Option 3" id="${id}_opt3" /></div>
-        <div class="option-item"><label>Option 4</label><input type="text" placeholder="Option 4" id="${id}_opt4" /></div>
+      <input type="text" placeholder="Question text..." id="${id}_text" style="margin-bottom:10px" />
+      <div class="opts-hint">Tick the green checkmark to mark correct answers. You can have more than one.</div>
+      <div id="${id}_opts">
+        ${[1,2,3,4].map(n => optRowHTML(id, n)).join('')}
       </div>
-      <div class="correct-answer-row">
-        <label>Correct Answer</label>
-        <div class="radio-group" id="${id}_radio">
-          ${[1,2,3,4].map(n => `
-            <label class="radio-option" id="${id}_r${n}" onclick="selectCorrect('${id}',${n})">
-              <input type="radio" name="${id}_correct" value="${n}" />Option ${n}
-            </label>`).join('')}
-        </div>
-      </div>
+      <button class="btn btn-ghost btn-sm" style="margin-top:6px" onclick="addOption('${id}')">+ Add Option</button>
     `;
-    container.appendChild(div);
+    document.getElementById('questionsContainer').appendChild(div);
   };
 
-  window.removeQuestion = function(id) {
-    const el = document.getElementById(id);
-    if (el) el.remove();
+  function optRowHTML(qId, n) {
+    return `<div class="option-row" id="${qId}_row_${n}"><input type="text" placeholder="Option ${n}" id="${qId}_opt_${n}" /><button class="correct-toggle" id="${qId}_chk_${n}" onclick="toggleCorrect('${qId}',${n})" title="Mark correct">&#10003;</button><button class="remove-opt-btn" onclick="removeOption('${qId}',${n})" title="Remove">&#10005;</button></div>`;
+  }
+
+  window.addOption = function(qId) {
+    const opts = document.getElementById(`${qId}_opts`);
+    const n = opts.querySelectorAll('.option-row').length + 1;
+    opts.insertAdjacentHTML('beforeend', optRowHTML(qId, n));
   };
 
-  window.selectCorrect = function(qId, num) {
-    for (let i = 1; i <= 4; i++) {
-      const el = document.getElementById(`${qId}_r${i}`);
-      if (el) el.classList.toggle('selected', i === num);
-    }
+  window.removeOption = function(qId, n) {
+    const opts = document.getElementById(`${qId}_opts`);
+    if (opts.querySelectorAll('.option-row').length <= 2) { showToast('Need at least 2 options.', 'error'); return; }
+    document.getElementById(`${qId}_row_${n}`)?.remove();
   };
 
-  window.saveTrivia = async function() {
+  window.toggleCorrect = function(qId, n) {
+    document.getElementById(`${qId}_chk_${n}`)?.classList.toggle('active');
+  };
+
+  window.removeQuestion = function(id) { document.getElementById(id)?.remove(); };
+
+  function getQuestionsFromBuilder() {
+    const cards = document.querySelectorAll('#questionsContainer .question-card');
     let valid = true;
-    const title = document.getElementById('newTitle').value.trim();
-    if (!title) { document.getElementById('titleError').classList.add('show'); valid = false; }
-    else { document.getElementById('titleError').classList.remove('show'); }
-
-    const qCards = document.querySelectorAll('#questionsContainer .question-card');
-    if (qCards.length === 0) { valid = false; }
-
     const questions = [];
-    qCards.forEach(card => {
+    cards.forEach(card => {
       const qId = card.id;
       const text = document.getElementById(`${qId}_text`).value.trim();
-      const opts = [1,2,3,4].map(n => document.getElementById(`${qId}_opt${n}`).value.trim());
-      const correctEl = card.querySelector(`input[name="${qId}_correct"]:checked`);
-      const correct = correctEl ? parseInt(correctEl.value) - 1 : null;
-      if (!text || opts.some(o => !o) || correct === null) { valid = false; }
-      else { questions.push({ text, options: opts, correct }); }
-    });
-
-    if (!valid) { document.getElementById('questionsError').classList.add('show'); return; }
-    document.getElementById('questionsError').classList.remove('show');
-
-    const btn = document.getElementById('saveTriviaBtn');
-    btn.textContent = 'Saving...';
-    btn.disabled = true;
-
-    try {
-      await addDoc(collection(db, 'trivias'), {
-        title,
-        description: document.getElementById('newDesc').value.trim(),
-        questions,
-        createdAt: serverTimestamp()
+      const rows = card.querySelectorAll('.option-row');
+      const options = [], correct = [];
+      rows.forEach((row) => {
+        const inp = row.querySelector('input[type="text"]');
+        const chk = row.querySelector('.correct-toggle');
+        const val = inp?.value.trim();
+        if (val) { if (chk?.classList.contains('active')) correct.push(options.length); options.push(val); }
       });
-      closeModal('createModal');
-      showToast('Trivia saved and live!', 'success');
-    } catch(e) {
-      showToast('Error saving trivia.', 'error');
-    } finally {
-      btn.textContent = 'Save Trivia';
-      btn.disabled = false;
-    }
+      if (!text || options.length < 2 || correct.length === 0) valid = false;
+      else questions.push({ text, options, correct });
+    });
+    return { questions, valid, count: cards.length };
+  }
+
+  // FILE IMPORT
+  let importedQuestions = null;
+
+  window.handleFileImport = function(e) {
+    const file = e.target.files[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = ev => {
+      try {
+        const content = ev.target.result;
+        const parsed = file.name.endsWith('.json') ? parseJSON(content) : parseTXT(content);
+        if (!parsed || !parsed.length) throw new Error('empty');
+        importedQuestions = parsed;
+        showImportPreview(parsed);
+        document.getElementById('importFileError').classList.remove('show');
+      } catch(err) {
+        importedQuestions = null;
+        document.getElementById('importPreview').style.display = 'none';
+        document.getElementById('importFileError').classList.add('show');
+      }
+    };
+    reader.readAsText(file);
   };
 
-  // =====================
-  //   QUIZ LOGIC
-  // =====================
-  let currentTrivia = null;
-  let currentQuestion = 0;
-  let answers = [];
-  let playerName = '';
+  function parseTXT(content) {
+    return content.split(/\n\s*\n/).map(b => b.trim()).filter(Boolean).map(block => {
+      const lines = block.split('\n').map(l => l.trim()).filter(Boolean);
+      if (lines.length < 3) return null;
+      const text = lines[0], options = [], correct = [];
+      for (let i = 1; i < lines.length; i++) {
+        const l = lines[i];
+        if (l.startsWith('*')) { correct.push(options.length); options.push(l.slice(1).trim()); }
+        else options.push(l);
+      }
+      return (!text || options.length < 2 || !correct.length) ? null : { text, options, correct };
+    }).filter(Boolean);
+  }
+
+  function parseJSON(content) {
+    const data = JSON.parse(content);
+    if (!Array.isArray(data)) throw new Error('not array');
+    return data.map(item => (!item.text || !Array.isArray(item.options) || !Array.isArray(item.correct)) ? null : { text: item.text, options: item.options, correct: item.correct }).filter(Boolean);
+  }
+
+  function showImportPreview(qs) {
+    document.getElementById('importPreviewContent').innerHTML = qs.slice(0,8).map((q,i) =>
+      `<div class="preview-item"><strong>Q${i+1}:</strong> ${escHtml(q.text)} <span style="color:var(--green)">&#10003; ${escHtml(q.correct.map(c => q.options[c]).join(', '))}</span></div>`
+    ).join('') + (qs.length > 8 ? `<div class="preview-item">...and ${qs.length - 8} more</div>` : '');
+    document.getElementById('importCount').textContent = `${qs.length} question${qs.length!==1?'s':''} ready to import`;
+    document.getElementById('importPreview').style.display = 'block';
+  }
+
+  // drag and drop
+  const iz = document.getElementById('importZone');
+  iz.addEventListener('dragover', e => { e.preventDefault(); iz.classList.add('drag-over'); });
+  iz.addEventListener('dragleave', () => iz.classList.remove('drag-over'));
+  iz.addEventListener('drop', e => {
+    e.preventDefault(); iz.classList.remove('drag-over');
+    const file = e.dataTransfer.files[0];
+    if (file) { const dt = new DataTransfer(); dt.items.add(file); document.getElementById('importFile').files = dt.files; handleFileImport({ target: { files: [file] } }); }
+  });
+
+  // SAVE
+  window.saveTrivia = async function() {
+    const isImport = document.getElementById('tab-import').classList.contains('active');
+    let title, description, questions, valid = true;
+
+    if (!isImport) {
+      title = document.getElementById('newTitle').value.trim();
+      description = document.getElementById('newDesc').value.trim();
+      if (!title) { document.getElementById('titleError').classList.add('show'); valid = false; } else document.getElementById('titleError').classList.remove('show');
+      const r = getQuestionsFromBuilder();
+      questions = r.questions;
+      if (!r.count || !r.valid) { document.getElementById('questionsError').classList.add('show'); valid = false; } else document.getElementById('questionsError').classList.remove('show');
+    } else {
+      title = document.getElementById('importTitle').value.trim();
+      description = document.getElementById('importDesc').value.trim();
+      if (!title) { document.getElementById('importTitleError').classList.add('show'); valid = false; } else document.getElementById('importTitleError').classList.remove('show');
+      if (!importedQuestions?.length) { document.getElementById('importFileError').classList.add('show'); valid = false; } else document.getElementById('importFileError').classList.remove('show');
+      questions = importedQuestions;
+    }
+
+    if (!valid) return;
+    const btn = document.getElementById('saveTriviaBtn');
+    btn.textContent = 'Saving...'; btn.disabled = true;
+    try {
+      await addDoc(collection(db, 'trivias'), { title, description, questions, createdAt: serverTimestamp() });
+      closeModal('createModal'); showToast('Trivia saved and live!', 'success');
+    } catch(e) { showToast('Error saving trivia.', 'error'); }
+    finally { btn.textContent = 'Save Trivia'; btn.disabled = false; }
+  };
+
+  // QUIZ
+  let currentTrivia = null, currentQuestion = 0, answers = [], playerName = '';
 
   window.beginQuiz = function(id) {
     currentTrivia = triviaCache.find(t => t.id === id);
@@ -734,212 +630,133 @@
     const name = document.getElementById('playerNameInput').value.trim();
     if (!name) { document.getElementById('nameError').classList.add('show'); return; }
     document.getElementById('nameError').classList.remove('show');
-    playerName = name;
-    currentQuestion = 0;
-    answers = new Array(currentTrivia.questions.length).fill(null);
-    renderQuestion();
-    showPage('quizPage');
+    playerName = name; currentQuestion = 0;
+    answers = currentTrivia.questions.map(() => []);
+    renderQuestion(); showPage('quizPage');
   };
 
   function renderQuestion() {
     const q = currentTrivia.questions[currentQuestion];
     const total = currentTrivia.questions.length;
+    const isMulti = q.correct && q.correct.length > 1;
     document.getElementById('progressBar').style.width = (currentQuestion / total * 100) + '%';
     document.getElementById('questionNum').textContent = `Question ${currentQuestion + 1} of ${total}`;
     document.getElementById('quizTitle').textContent = currentTrivia.title;
-
     const descEl = document.getElementById('quizDesc');
-    if (currentTrivia.description) { descEl.textContent = currentTrivia.description; descEl.style.display = 'block'; }
-    else { descEl.style.display = 'none'; }
-
+    if (currentTrivia.description) { descEl.textContent = currentTrivia.description; descEl.style.display = 'block'; } else descEl.style.display = 'none';
     document.getElementById('questionText').textContent = q.text;
+    document.getElementById('multiHint').style.display = isMulti ? 'block' : 'none';
 
     const optList = document.getElementById('optionsList');
     optList.innerHTML = '';
-    const letters = ['A','B','C','D'];
+    const letters = 'ABCDEFGHIJ'.split('');
+    const cur = answers[currentQuestion] || [];
     q.options.forEach((opt, i) => {
       const btn = document.createElement('button');
-      btn.className = 'option-btn' + (answers[currentQuestion] === i ? ' selected' : '');
-      btn.innerHTML = `<span class="option-letter">${letters[i]}</span>${escHtml(opt)}`;
-      btn.onclick = () => selectAnswer(i);
+      btn.className = 'option-btn' + (cur.includes(i) ? ' selected' : '');
+      btn.innerHTML = `<span class="option-letter">${letters[i] || i+1}</span>${escHtml(opt)}`;
+      btn.onclick = () => toggleAnswer(i, isMulti);
       optList.appendChild(btn);
     });
-
-    const nextBtn = document.getElementById('nextBtn');
-    nextBtn.textContent = currentQuestion === total - 1 ? 'Submit' : 'Next';
+    document.getElementById('nextBtn').textContent = currentQuestion === total - 1 ? 'Submit' : 'Next';
   }
 
-  function selectAnswer(idx) {
-    answers[currentQuestion] = idx;
+  function toggleAnswer(idx, isMulti) {
+    if (!answers[currentQuestion]) answers[currentQuestion] = [];
+    if (isMulti) {
+      const pos = answers[currentQuestion].indexOf(idx);
+      if (pos === -1) answers[currentQuestion].push(idx); else answers[currentQuestion].splice(pos, 1);
+    } else { answers[currentQuestion] = [idx]; }
+    const letters = 'ABCDEFGHIJ'.split('');
     document.querySelectorAll('.option-btn').forEach((btn, i) => {
-      btn.classList.toggle('selected', i === idx);
+      btn.classList.toggle('selected', answers[currentQuestion].includes(i));
+      btn.querySelector('.option-letter').textContent = letters[i] || i+1;
     });
   }
 
   window.nextQuestion = function() {
-    if (answers[currentQuestion] === null) {
+    if (!answers[currentQuestion] || !answers[currentQuestion].length) {
       const ol = document.getElementById('optionsList');
       ol.style.animation = 'none'; ol.offsetHeight; ol.style.animation = 'shake 0.3s ease';
       return;
     }
-    const total = currentTrivia.questions.length;
-    if (currentQuestion < total - 1) { currentQuestion++; renderQuestion(); }
-    else { submitQuiz(); }
+    if (currentQuestion < currentTrivia.questions.length - 1) { currentQuestion++; renderQuestion(); }
+    else submitQuiz();
   };
 
   async function submitQuiz() {
-    const score = answers.reduce((acc, ans, i) => acc + (ans === currentTrivia.questions[i].correct ? 1 : 0), 0);
+    let score = 0;
+    currentTrivia.questions.forEach((q, i) => {
+      const chosen = [...(answers[i] || [])].sort().join(',');
+      const correct = [...(q.correct || [])].sort().join(',');
+      if (chosen === correct) score++;
+    });
     try {
-      await addDoc(collection(db, 'responses'), {
-        triviaId: currentTrivia.id,
-        triviaTitle: currentTrivia.title,
-        playerName,
-        answers,
-        score,
-        total: currentTrivia.questions.length,
-        submittedAt: serverTimestamp()
-      });
-    } catch(e) {
-      console.error('Error saving response:', e);
-    }
+      await addDoc(collection(db, 'responses'), { triviaId: currentTrivia.id, triviaTitle: currentTrivia.title, playerName, answers, score, total: currentTrivia.questions.length, submittedAt: serverTimestamp() });
+    } catch(e) { console.error(e); }
     showPage('submittedPage');
   }
 
-  // =====================
-  //   REVIEW
-  // =====================
+  // REVIEW
   window.openReview = async function(triviaId) {
     const trivia = triviaCache.find(t => t.id === triviaId);
     if (!trivia) return;
-    document.getElementById('reviewTitle').textContent = trivia.title + ' — Responses';
+    document.getElementById('reviewTitle').textContent = trivia.title + ' \u2014 Responses';
     document.getElementById('reviewContent').innerHTML = '<div class="no-responses"><div class="spinner" style="margin:0 auto 10px"></div>Loading...</div>';
     document.getElementById('reviewModal').classList.add('open');
-
     try {
       const snap = await getDocs(collection(db, 'responses'));
-      const responses = snap.docs
-        .map(d => ({ id: d.id, ...d.data() }))
+      const responses = snap.docs.map(d => ({ id: d.id, ...d.data() }))
         .filter(r => r.triviaId === triviaId)
-        .sort((a, b) => (b.submittedAt?.seconds || 0) - (a.submittedAt?.seconds || 0));
-
+        .sort((a, b) => (b.submittedAt?.seconds||0) - (a.submittedAt?.seconds||0));
       const content = document.getElementById('reviewContent');
-      if (responses.length === 0) {
-        content.innerHTML = '<div class="no-responses">No responses yet.</div>';
-        return;
-      }
-
+      if (!responses.length) { content.innerHTML = '<div class="no-responses">No responses yet.</div>'; return; }
       content.innerHTML = responses.map(r => {
-        const details = (r.answers || []).map((ans, i) => {
-          const q = trivia.questions[i];
-          if (!q) return '';
-          const isCorrect = ans === q.correct;
-          const chosenText = ans !== null && ans !== undefined ? q.options[ans] : 'No answer';
-          return `
-            <div class="answer-row">
-              <span class="mark ${isCorrect ? 'correct' : 'wrong'}">${isCorrect ? '+' : '-'}</span>
-              <span class="q-text">${escHtml(q.text)}</span>
-              <span class="a-text">${escHtml(chosenText)}</span>
-            </div>`;
+        const details = (r.answers||[]).map((ans, i) => {
+          const q = trivia.questions[i]; if (!q) return '';
+          const chosen = Array.isArray(ans) ? ans : (ans!=null ? [ans] : []);
+          const correct = q.correct || [];
+          const isCorrect = [...chosen].sort().join(',') === [...correct].sort().join(',');
+          const chosenText = chosen.length ? chosen.map(c => q.options[c]).join(', ') : 'No answer';
+          return `<div class="answer-row"><span class="mark ${isCorrect?'correct':'wrong'}">${isCorrect?'+':'-'}</span><span class="q-text">${escHtml(q.text)}</span><span class="a-text">${escHtml(chosenText)}</span></div>`;
         }).join('');
-
-        let timeStr = '';
-        if (r.submittedAt?.seconds) {
-          timeStr = new Date(r.submittedAt.seconds * 1000).toLocaleString();
-        }
-
-        return `
-          <div class="response-card">
-            <div class="r-header">
-              <div>
-                <div class="r-name">${escHtml(r.playerName)}</div>
-                ${timeStr ? `<div class="r-time">${timeStr}</div>` : ''}
-              </div>
-              <div style="display:flex;align-items:center;gap:10px">
-                <span class="score-badge">${r.score} / ${r.total}</span>
-                <button class="btn btn-danger btn-sm" onclick="deleteResponse('${r.id}','${triviaId}')">Delete</button>
-              </div>
-            </div>
-            <div class="response-details">${details}</div>
-          </div>`;
+        const timeStr = r.submittedAt?.seconds ? new Date(r.submittedAt.seconds*1000).toLocaleString() : '';
+        return `<div class="response-card"><div class="r-header"><div><div class="r-name">${escHtml(r.playerName)}</div>${timeStr?`<div class="r-time">${timeStr}</div>`:''}</div><div style="display:flex;align-items:center;gap:10px"><span class="score-badge">${r.score} / ${r.total}</span><button class="btn btn-danger btn-sm" onclick="deleteResponse('${r.id}','${triviaId}')">Delete</button></div></div><div class="response-details">${details}</div></div>`;
       }).join('');
-    } catch(e) {
-      document.getElementById('reviewContent').innerHTML = '<div class="no-responses">Error loading responses.</div>';
-    }
+    } catch(e) { document.getElementById('reviewContent').innerHTML = '<div class="no-responses">Error loading responses.</div>'; }
   };
 
   window.deleteResponse = async function(responseId, triviaId) {
     if (!confirm('Delete this response?')) return;
-    try {
-      await deleteDoc(doc(db, 'responses', responseId));
-      showToast('Response deleted.', 'success');
-      openReview(triviaId);
-    } catch(e) {
-      showToast('Error deleting response.', 'error');
-    }
+    try { await deleteDoc(doc(db, 'responses', responseId)); showToast('Response deleted.', 'success'); openReview(triviaId); }
+    catch(e) { showToast('Error deleting response.', 'error'); }
   };
 
-  // =====================
-  //   MODALS
-  // =====================
+  // MODALS
   window.openLoginModal = function() {
-    document.getElementById('loginUser').value = '';
-    document.getElementById('loginPass').value = '';
+    ['loginUser','loginPass'].forEach(id => document.getElementById(id).value = '');
     document.getElementById('loginError').classList.remove('show');
     document.getElementById('loginModal').classList.add('open');
   };
-
-  window.closeModal = function(id) {
-    document.getElementById(id).classList.remove('open');
-  };
-
-  document.querySelectorAll('.modal-overlay').forEach(overlay => {
-    overlay.addEventListener('click', e => { if (e.target === overlay) overlay.classList.remove('open'); });
-  });
-
+  window.closeModal = function(id) { document.getElementById(id).classList.remove('open'); };
+  document.querySelectorAll('.modal-overlay').forEach(o => o.addEventListener('click', e => { if (e.target === o) o.classList.remove('open'); }));
   document.getElementById('loginPass').addEventListener('keydown', e => { if (e.key === 'Enter') doLogin(); });
   document.getElementById('playerNameInput').addEventListener('keydown', e => { if (e.key === 'Enter') startQuizWithName(); });
 
-  // =====================
-  //   TOAST
-  // =====================
-  function showToast(msg, type = '') {
+  // TOAST + UTILS
+  function showToast(msg, type='') {
     const t = document.getElementById('toast');
-    t.textContent = msg;
-    t.className = 'toast ' + type;
-    t.classList.add('show');
+    t.textContent = msg; t.className = 'toast ' + type; t.classList.add('show');
     setTimeout(() => t.classList.remove('show'), 3000);
   }
 
-  // =====================
-  //   UTILS
-  // =====================
   function escHtml(str) {
     if (!str) return '';
     return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
   }
 
-  // =====================
-  //   INIT
-  // =====================
   updateAuthUI();
   listenTrivia();
 </script>
-
-<!--
-==============================================
-  HOW TO SET UP FIREBASE (FREE - 5 MINS)
-==============================================
-
-1. Go to https://console.firebase.google.com
-2. Click "Add project", give it a name, click through the steps
-3. Once inside your project, click the </> (Web) icon to add a web app
-4. Give it a nickname and click "Register app"
-5. Copy the firebaseConfig values shown and paste them into the config at the top of this script
-6. In the left sidebar go to "Firestore Database", click "Create database"
-7. Choose "Start in test mode" (fine for now), pick a region, click Enable
-8. Done — your data is now global and shared across all devices!
-
-==============================================
--->
 </body>
 </html>
