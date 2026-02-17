@@ -37,21 +37,28 @@
   .btn-ghost:hover { color: var(--text); border-color: var(--muted); }
   .btn-danger { background: rgba(255,101,132,0.15); color: var(--red); border: 1.5px solid rgba(255,101,132,0.3); }
   .btn-danger:hover { background: rgba(255,101,132,0.25); }
+  .btn-yellow { background: rgba(255,209,102,0.15); color: var(--yellow); border: 1.5px solid rgba(255,209,102,0.3); }
+  .btn-yellow:hover { background: rgba(255,209,102,0.25); }
   .btn-sm { padding: 7px 14px; font-size: 0.8rem; }
   .staff-badge { background: linear-gradient(135deg, rgba(108,99,255,0.2), rgba(255,101,132,0.2)); border: 1.5px solid rgba(108,99,255,0.4); color: var(--accent); padding: 6px 14px; border-radius: 50px; font-family: 'Nunito', sans-serif; font-weight: 700; font-size: 0.8rem; }
+
   main { max-width: 960px; margin: 0 auto; padding: 40px 24px; }
   .page { display: none; }
   .page.active { display: block; }
+
   .home-header { text-align: center; margin-bottom: 40px; }
   .home-header h1 { font-family: 'Nunito', sans-serif; font-weight: 900; font-size: 2.8rem; margin-bottom: 10px; background: linear-gradient(135deg, #e8eaf6, #8b90b8); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
   .home-header p { color: var(--muted); font-size: 1rem; }
+
   .trivia-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; }
   .trivia-card { background: var(--surface); border: 1.5px solid var(--border); border-radius: var(--radius); padding: 24px; transition: all 0.25s ease; display: flex; flex-direction: column; gap: 12px; }
   .trivia-card:hover { border-color: rgba(108,99,255,0.4); transform: translateY(-3px); box-shadow: var(--shadow); }
   .trivia-card h3 { font-family: 'Nunito', sans-serif; font-weight: 800; font-size: 1.15rem; }
   .trivia-card .desc { color: var(--muted); font-size: 0.88rem; line-height: 1.5; flex: 1; }
-  .trivia-card .meta { font-size: 0.8rem; color: var(--muted); }
+  .trivia-card .meta { font-size: 0.8rem; color: var(--muted); display: flex; gap: 12px; }
   .trivia-card .card-actions { display: flex; gap: 8px; flex-wrap: wrap; }
+  .locked-badge { font-size: 0.75rem; background: rgba(255,209,102,0.12); color: var(--yellow); border: 1px solid rgba(255,209,102,0.25); border-radius: 20px; padding: 3px 10px; font-weight: 700; font-family: 'Nunito', sans-serif; }
+
   .empty-state { text-align: center; padding: 80px 20px; color: var(--muted); grid-column: 1 / -1; }
   .empty-state h3 { font-family: 'Nunito', sans-serif; font-weight: 800; margin-bottom: 8px; color: var(--text); font-size: 1.2rem; }
   .loading-state { text-align: center; padding: 80px 20px; color: var(--muted); grid-column: 1 / -1; }
@@ -67,12 +74,22 @@
   .modal-header h2 { font-family: 'Nunito', sans-serif; font-weight: 800; font-size: 1.3rem; }
   .close-btn { background: var(--surface2); border: none; color: var(--muted); width: 32px; height: 32px; border-radius: 50%; cursor: pointer; font-size: 1rem; display: flex; align-items: center; justify-content: center; transition: all 0.2s; }
   .close-btn:hover { color: var(--text); background: var(--border); }
+
   .form-group { margin-bottom: 18px; }
   .form-group label { display: block; font-weight: 700; font-size: 0.82rem; color: var(--muted); margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px; }
   .form-group label span { color: var(--red); margin-left: 3px; }
-  input[type="text"], input[type="password"], textarea { width: 100%; background: var(--surface2); border: 1.5px solid var(--border); border-radius: 12px; padding: 12px 16px; color: var(--text); font-family: 'Nunito Sans', sans-serif; font-size: 0.95rem; transition: border-color 0.2s; outline: none; }
+  input[type="text"], input[type="password"], input[type="number"], textarea { width: 100%; background: var(--surface2); border: 1.5px solid var(--border); border-radius: 12px; padding: 12px 16px; color: var(--text); font-family: 'Nunito Sans', sans-serif; font-size: 0.95rem; transition: border-color 0.2s; outline: none; }
   input:focus, textarea:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(108,99,255,0.15); }
   textarea { resize: vertical; min-height: 80px; }
+
+  .toggle-row { display: flex; align-items: center; justify-content: space-between; background: var(--surface2); border: 1.5px solid var(--border); border-radius: 12px; padding: 12px 16px; }
+  .toggle-row span { font-size: 0.9rem; font-weight: 600; }
+  .toggle-row small { color: var(--muted); font-size: 0.78rem; display: block; }
+  .toggle { width: 42px; height: 24px; background: var(--border); border-radius: 12px; cursor: pointer; position: relative; transition: background 0.2s; flex-shrink: 0; border: none; }
+  .toggle.on { background: var(--accent); }
+  .toggle::after { content: ''; position: absolute; width: 18px; height: 18px; background: #fff; border-radius: 50%; top: 3px; left: 3px; transition: left 0.2s; }
+  .toggle.on::after { left: 21px; }
+
   .error-msg { color: var(--red); font-size: 0.82rem; margin-top: 6px; display: none; }
   .error-msg.show { display: block; }
 
@@ -125,7 +142,7 @@
   .question-text { font-family: 'Nunito', sans-serif; font-weight: 800; font-size: 1.4rem; line-height: 1.4; margin-bottom: 10px; }
   .multi-hint { font-size: 0.82rem; color: var(--yellow); margin-bottom: 20px; font-weight: 600; }
   .options-list { display: flex; flex-direction: column; gap: 12px; }
-  .option-btn { background: var(--surface); border: 1.5px solid var(--border); border-radius: 14px; padding: 16px 20px; color: var(--text); font-family: 'Nunito', sans-serif; font-weight: 700; font-size: 1rem; cursor: pointer; text-align: left; transition: all 0.2s; display: flex; align-items: center; gap: 14px; }
+  .option-btn { background: var(--surface); border: 1.5px solid var(--border); border-radius: 14px; padding: 16px 20px; color: var(--text); font-family: 'Nunito', sans-serif; font-weight: 700; font-size: 1rem; cursor: pointer; text-align: left; transition: all 0.2s; display: flex; align-items: center; gap: 14px; width: 100%; }
   .option-btn:hover { border-color: var(--accent); background: rgba(108,99,255,0.08); transform: translateX(4px); }
   .option-btn.selected { border-color: var(--accent); background: rgba(108,99,255,0.15); }
   .option-letter { width: 34px; height: 34px; border-radius: 50%; background: var(--surface2); display: flex; align-items: center; justify-content: center; font-size: 0.85rem; font-weight: 800; flex-shrink: 0; transition: all 0.2s; }
@@ -140,7 +157,11 @@
   .submitted-state p { color: var(--muted); line-height: 1.6; }
 
   /* REVIEW */
-  .review-modal { max-width: 700px; }
+  .review-modal-inner { max-width: 720px; }
+  .review-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 20px; }
+  .stat-box { background: var(--surface2); border: 1.5px solid var(--border); border-radius: 12px; padding: 14px; text-align: center; }
+  .stat-box .stat-val { font-family: 'Nunito', sans-serif; font-weight: 900; font-size: 1.6rem; color: var(--text); }
+  .stat-box .stat-label { font-size: 0.75rem; color: var(--muted); margin-top: 2px; text-transform: uppercase; letter-spacing: 0.5px; }
   .response-card { background: var(--surface2); border: 1.5px solid var(--border); border-radius: 12px; padding: 18px; margin-bottom: 12px; }
   .response-card .r-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 14px; }
   .response-card .r-name { font-family: 'Nunito', sans-serif; font-weight: 800; font-size: 1rem; }
@@ -151,15 +172,29 @@
   .answer-row .mark { font-weight: 800; flex-shrink: 0; width: 16px; }
   .answer-row .mark.correct { color: var(--green); }
   .answer-row .mark.wrong { color: var(--red); }
-  .answer-row .q-text { color: var(--muted); flex: 1; }
-  .answer-row .a-text { font-weight: 700; }
+  .answer-row .q-text { color: var(--muted); flex: 1; min-width: 0; }
+  .answer-row .a-text { font-weight: 700; text-align: right; }
   .no-responses { text-align: center; color: var(--muted); padding: 40px; font-size: 0.9rem; }
+
+  /* LEADERBOARD */
+  .leaderboard-row { display: flex; align-items: center; gap: 12px; padding: 12px 0; border-bottom: 1px solid var(--border); }
+  .leaderboard-row:last-child { border-bottom: none; }
+  .lb-rank { font-family: 'Nunito', sans-serif; font-weight: 900; font-size: 1rem; width: 28px; text-align: center; color: var(--muted); }
+  .lb-rank.gold { color: #ffd700; }
+  .lb-rank.silver { color: #c0c0c0; }
+  .lb-rank.bronze { color: #cd7f32; }
+  .lb-name { flex: 1; font-weight: 700; font-family: 'Nunito', sans-serif; }
+  .lb-score { font-size: 0.85rem; color: var(--muted); font-weight: 600; }
+  .lb-pct { font-family: 'Nunito', sans-serif; font-weight: 800; font-size: 0.9rem; color: var(--green); }
 
   /* NAME PAGE */
   .name-input-page { max-width: 400px; margin: 80px auto; text-align: center; }
   .name-input-page h2 { font-family: 'Nunito', sans-serif; font-weight: 900; font-size: 1.8rem; margin-bottom: 10px; }
   .name-input-page p { color: var(--muted); margin-bottom: 28px; }
   .name-input-page input { text-align: center; font-size: 1.1rem; padding: 14px 20px; margin-bottom: 16px; }
+
+  /* PIN ENTRY */
+  .pin-input { text-align: center; font-size: 1.5rem; letter-spacing: 8px; font-family: 'Nunito', sans-serif; font-weight: 800; }
 
   ::-webkit-scrollbar { width: 6px; }
   ::-webkit-scrollbar-track { background: var(--bg); }
@@ -207,6 +242,19 @@
     </div>
   </div>
 
+  <div id="pinPage" class="page">
+    <div class="name-input-page">
+      <h2>This quiz is locked</h2>
+      <p id="pinDesc">Enter the PIN to access this quiz.</p>
+      <input type="text" id="pinInput" class="pin-input" placeholder="0000" maxlength="8" />
+      <div class="error-msg" id="pinError" style="margin-bottom:12px">Incorrect PIN.</div>
+      <br>
+      <button class="btn btn-green" onclick="submitPin()" style="width:100%;justify-content:center;margin-top:8px">Unlock</button>
+      <br>
+      <button class="btn btn-ghost" onclick="showPage('homePage')" style="width:100%;justify-content:center;margin-top:10px">Back</button>
+    </div>
+  </div>
+
   <div id="quizPage" class="page">
     <div class="quiz-container">
       <div class="quiz-top-bar">
@@ -229,7 +277,7 @@
     <div class="submitted-state">
       <div class="check-icon">&#10003;</div>
       <h2>All done!</h2>
-      <p>Your answers have been submitted. Thanks for playing!</p>
+      <p id="submittedMsg">Your answers have been submitted. Thanks for playing!</p>
       <br><br>
       <button class="btn btn-green" onclick="showPage('homePage')" style="margin:0 auto;display:flex">Back to Trivia</button>
     </div>
@@ -266,13 +314,11 @@
       <h2>New Trivia</h2>
       <button class="close-btn" onclick="closeModal('createModal')">&#10005;</button>
     </div>
-
     <div class="tab-row">
       <button class="tab-btn active" id="tabBtnManual" onclick="switchTab('manual')">Build Manually</button>
       <button class="tab-btn" id="tabBtnImport" onclick="switchTab('import')">Import from File</button>
     </div>
 
-    <!-- MANUAL TAB -->
     <div class="tab-content active" id="tab-manual">
       <div class="form-group">
         <label>Title <span>*</span></label>
@@ -283,6 +329,20 @@
         <label>Description</label>
         <textarea id="newDesc" placeholder="Optional description..."></textarea>
       </div>
+      <div class="form-group">
+        <label>PIN Lock (optional)</label>
+        <input type="text" id="newPin" placeholder="Leave blank for no PIN" maxlength="8" />
+        <div style="font-size:0.78rem;color:var(--muted);margin-top:6px">Players will need to enter this PIN before starting.</div>
+      </div>
+      <div class="form-group">
+        <div class="toggle-row">
+          <div>
+            <span>Show score at end</span>
+            <small>Players see their score when they finish</small>
+          </div>
+          <button class="toggle on" id="showScoreToggle" onclick="this.classList.toggle('on')"></button>
+        </div>
+      </div>
       <div class="divider"></div>
       <div class="questions-section">
         <h3>Questions</h3>
@@ -292,7 +352,6 @@
       </div>
     </div>
 
-    <!-- IMPORT TAB -->
     <div class="tab-content" id="tab-import">
       <div class="form-group">
         <label>Title <span>*</span></label>
@@ -302,6 +361,19 @@
       <div class="form-group">
         <label>Description</label>
         <textarea id="importDesc" placeholder="Optional description..."></textarea>
+      </div>
+      <div class="form-group">
+        <label>PIN Lock (optional)</label>
+        <input type="text" id="importPin" placeholder="Leave blank for no PIN" maxlength="8" />
+      </div>
+      <div class="form-group">
+        <div class="toggle-row">
+          <div>
+            <span>Show score at end</span>
+            <small>Players see their score when they finish</small>
+          </div>
+          <button class="toggle on" id="importShowScoreToggle" onclick="this.classList.toggle('on')"></button>
+        </div>
       </div>
       <div class="form-group">
         <label>Upload File</label>
@@ -318,14 +390,12 @@
       </div>
       <div class="format-hint">
         <strong style="color:var(--text);display:block;margin-bottom:8px">File format guide</strong>
-        <strong style="color:var(--text)">.txt / .csv</strong> &mdash; separate questions with a blank line. Start correct answers with <code>*</code>. Multiple <code>*</code> lines = multiple correct answers.<br><br>
+        <strong style="color:var(--text)">.txt / .csv</strong> &mdash; separate questions with a blank line. Start correct answers with <code>*</code>:<br><br>
         <code>What is 2 + 2?</code><br>
         <code>*4</code><br>
         <code>3</code><br>
-        <code>5</code><br>
-        <code>6</code><br><br>
-        <strong style="color:var(--text)">.json</strong> &mdash; array of objects with <code>text</code>, <code>options</code>, and <code>correct</code> (array of 0-based indexes):<br>
-        <code>[{"text":"Q?","options":["A","B","C"],"correct":[0,2]}]</code>
+        <code>5</code><br><br>
+        <strong style="color:var(--text)">.json</strong> &mdash; <code>[{"text":"Q?","options":["A","B"],"correct":[0]}]</code>
       </div>
     </div>
 
@@ -338,12 +408,18 @@
 
 <!-- REVIEW MODAL -->
 <div class="modal-overlay" id="reviewModal">
-  <div class="modal review-modal">
+  <div class="modal review-modal-inner" style="max-width:720px">
     <div class="modal-header">
       <h2 id="reviewTitle">Responses</h2>
       <button class="close-btn" onclick="closeModal('reviewModal')">&#10005;</button>
     </div>
+    <div class="tab-row" id="reviewTabRow">
+      <button class="tab-btn active" id="reviewTabResponses" onclick="switchReviewTab('responses')">Responses</button>
+      <button class="tab-btn" id="reviewTabLeaderboard" onclick="switchReviewTab('leaderboard')">Leaderboard</button>
+    </div>
+    <div id="reviewStats" class="review-stats" style="display:none"></div>
     <div id="reviewContent"></div>
+    <div id="leaderboardContent" style="display:none"></div>
   </div>
 </div>
 
@@ -351,7 +427,7 @@
 
 <script type="module">
   import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-  import { getFirestore, collection, getDocs, addDoc, deleteDoc, doc, onSnapshot, query, orderBy, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+  import { getFirestore, collection, getDocs, addDoc, deleteDoc, doc, onSnapshot, query, orderBy, serverTimestamp, where } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
   const firebaseConfig = {
     apiKey: "AIzaSyDXbNsdAs0Yt1bH6avEyrKfb4uMK-j_UP0",
@@ -365,7 +441,9 @@
   const app = initializeApp(firebaseConfig);
   const db = getFirestore(app);
 
-  // AUTH
+  // =====================
+  //   AUTH
+  // =====================
   const STAFF_USER = 'blaize', STAFF_PASS = 'blazesmpstafftrivia';
   let isStaff = sessionStorage.getItem('staffLoggedIn') === '1';
 
@@ -394,7 +472,9 @@
     document.getElementById(id).classList.add('active');
   };
 
-  // TABS
+  // =====================
+  //   TABS
+  // =====================
   window.switchTab = function(tab) {
     document.getElementById('tabBtnManual').classList.toggle('active', tab === 'manual');
     document.getElementById('tabBtnImport').classList.toggle('active', tab === 'import');
@@ -402,8 +482,19 @@
     document.getElementById('tab-import').classList.toggle('active', tab === 'import');
   };
 
-  // TRIVIA LISTENER
+  window.switchReviewTab = function(tab) {
+    document.getElementById('reviewTabResponses').classList.toggle('active', tab === 'responses');
+    document.getElementById('reviewTabLeaderboard').classList.toggle('active', tab === 'leaderboard');
+    document.getElementById('reviewContent').style.display = tab === 'responses' ? 'block' : 'none';
+    document.getElementById('leaderboardContent').style.display = tab === 'leaderboard' ? 'block' : 'none';
+    document.getElementById('reviewStats').style.display = tab === 'responses' ? 'grid' : 'none';
+  };
+
+  // =====================
+  //   TRIVIA LISTENER
+  // =====================
   let triviaCache = [];
+
   function listenTrivia() {
     const q = query(collection(db, 'trivias'), orderBy('createdAt', 'desc'));
     onSnapshot(q, snap => {
@@ -427,9 +518,19 @@
       card.className = 'trivia-card';
       const desc = t.description ? `<div class="desc">${escHtml(t.description)}</div>` : `<div class="desc" style="font-style:italic;opacity:0.45">N/A</div>`;
       const qCount = t.questions ? t.questions.length : 0;
+      const pinBadge = t.pin ? `<span class="locked-badge">PIN locked</span>` : '';
       let actions = `<button class="btn btn-green btn-sm" onclick="beginQuiz('${t.id}')">Start</button>`;
-      if (isStaff) actions = `<button class="btn btn-green btn-sm" onclick="beginQuiz('${t.id}')">Start</button><button class="btn btn-ghost btn-sm" onclick="openReview('${t.id}')">Review</button><button class="btn btn-danger btn-sm" onclick="deleteTrivia('${t.id}')">Delete</button>`;
-      card.innerHTML = `<h3>${escHtml(t.title)}</h3>${desc}<div class="meta">${qCount} question${qCount!==1?'s':''}</div><div class="card-actions">${actions}</div>`;
+      if (isStaff) {
+        actions = `
+          <button class="btn btn-green btn-sm" onclick="beginQuiz('${t.id}')">Start</button>
+          <button class="btn btn-ghost btn-sm" onclick="openReview('${t.id}')">Review</button>
+          <button class="btn btn-danger btn-sm" onclick="deleteTrivia('${t.id}')">Delete</button>`;
+      }
+      card.innerHTML = `
+        <h3>${escHtml(t.title)}</h3>
+        ${desc}
+        <div class="meta"><span>${qCount} question${qCount!==1?'s':''}</span>${pinBadge}</div>
+        <div class="card-actions">${actions}</div>`;
       grid.appendChild(card);
     });
   }
@@ -437,22 +538,26 @@
   window.deleteTrivia = async function(id) {
     if (!confirm('Delete this trivia and all its responses?')) return;
     try {
-      const rSnap = await getDocs(collection(db, 'responses'));
-      await Promise.all(rSnap.docs.filter(d => d.data().triviaId === id).map(d => deleteDoc(doc(db, 'responses', d.id))));
+      const rSnap = await getDocs(query(collection(db, 'responses'), where('triviaId', '==', id)));
+      await Promise.all(rSnap.docs.map(d => deleteDoc(doc(db, 'responses', d.id))));
       await deleteDoc(doc(db, 'trivias', id));
       showToast('Trivia deleted.', 'success');
-    } catch(e) { showToast('Error deleting trivia.', 'error'); }
+    } catch(e) { console.error(e); showToast('Error deleting trivia.', 'error'); }
   };
 
-  // QUESTION BUILDER
+  // =====================
+  //   QUESTION BUILDER
+  // =====================
   let questionCount = 0;
 
   window.openCreateModal = function() {
     questionCount = 0;
-    ['newTitle','newDesc','importTitle','importDesc'].forEach(id => document.getElementById(id).value = '');
+    ['newTitle','newDesc','newPin','importTitle','importDesc','importPin'].forEach(id => document.getElementById(id).value = '');
     document.getElementById('questionsContainer').innerHTML = '';
     document.getElementById('importPreview').style.display = 'none';
     ['titleError','questionsError','importTitleError','importFileError'].forEach(id => document.getElementById(id).classList.remove('show'));
+    document.getElementById('showScoreToggle').classList.add('on');
+    document.getElementById('importShowScoreToggle').classList.add('on');
     importedQuestions = null;
     switchTab('manual');
     document.getElementById('createModal').classList.add('open');
@@ -470,7 +575,7 @@
         <button class="btn btn-danger btn-sm" onclick="removeQuestion('${id}')">Remove</button>
       </div>
       <input type="text" placeholder="Question text..." id="${id}_text" style="margin-bottom:10px" />
-      <div class="opts-hint">Tick the green checkmark to mark correct answers. You can have more than one.</div>
+      <div class="opts-hint">Tick the checkmark to mark correct answers. You can mark more than one.</div>
       <div id="${id}_opts">
         ${[1,2,3,4].map(n => optRowHTML(id, n)).join('')}
       </div>
@@ -510,19 +615,21 @@
       const text = document.getElementById(`${qId}_text`).value.trim();
       const rows = card.querySelectorAll('.option-row');
       const options = [], correct = [];
-      rows.forEach((row) => {
+      rows.forEach(row => {
         const inp = row.querySelector('input[type="text"]');
         const chk = row.querySelector('.correct-toggle');
         const val = inp?.value.trim();
         if (val) { if (chk?.classList.contains('active')) correct.push(options.length); options.push(val); }
       });
-      if (!text || options.length < 2 || correct.length === 0) valid = false;
+      if (!text || options.length < 2 || !correct.length) valid = false;
       else questions.push({ text, options, correct });
     });
     return { questions, valid, count: cards.length };
   }
 
-  // FILE IMPORT
+  // =====================
+  //   FILE IMPORT
+  // =====================
   let importedQuestions = null;
 
   window.handleFileImport = function(e) {
@@ -574,7 +681,6 @@
     document.getElementById('importPreview').style.display = 'block';
   }
 
-  // drag and drop
   const iz = document.getElementById('importZone');
   iz.addEventListener('dragover', e => { e.preventDefault(); iz.classList.add('drag-over'); });
   iz.addEventListener('dragleave', () => iz.classList.remove('drag-over'));
@@ -584,14 +690,18 @@
     if (file) { const dt = new DataTransfer(); dt.items.add(file); document.getElementById('importFile').files = dt.files; handleFileImport({ target: { files: [file] } }); }
   });
 
-  // SAVE
+  // =====================
+  //   SAVE TRIVIA
+  // =====================
   window.saveTrivia = async function() {
     const isImport = document.getElementById('tab-import').classList.contains('active');
-    let title, description, questions, valid = true;
+    let title, description, questions, pin, showScore, valid = true;
 
     if (!isImport) {
       title = document.getElementById('newTitle').value.trim();
       description = document.getElementById('newDesc').value.trim();
+      pin = document.getElementById('newPin').value.trim();
+      showScore = document.getElementById('showScoreToggle').classList.contains('on');
       if (!title) { document.getElementById('titleError').classList.add('show'); valid = false; } else document.getElementById('titleError').classList.remove('show');
       const r = getQuestionsFromBuilder();
       questions = r.questions;
@@ -599,6 +709,8 @@
     } else {
       title = document.getElementById('importTitle').value.trim();
       description = document.getElementById('importDesc').value.trim();
+      pin = document.getElementById('importPin').value.trim();
+      showScore = document.getElementById('importShowScoreToggle').classList.contains('on');
       if (!title) { document.getElementById('importTitleError').classList.add('show'); valid = false; } else document.getElementById('importTitleError').classList.remove('show');
       if (!importedQuestions?.length) { document.getElementById('importFileError').classList.add('show'); valid = false; } else document.getElementById('importFileError').classList.remove('show');
       questions = importedQuestions;
@@ -608,23 +720,49 @@
     const btn = document.getElementById('saveTriviaBtn');
     btn.textContent = 'Saving...'; btn.disabled = true;
     try {
-      await addDoc(collection(db, 'trivias'), { title, description, questions, createdAt: serverTimestamp() });
+      const payload = { title, description, questions, showScore, createdAt: serverTimestamp() };
+      if (pin) payload.pin = pin;
+      await addDoc(collection(db, 'trivias'), payload);
       closeModal('createModal'); showToast('Trivia saved and live!', 'success');
-    } catch(e) { showToast('Error saving trivia.', 'error'); }
+    } catch(e) { console.error(e); showToast('Error saving trivia.', 'error'); }
     finally { btn.textContent = 'Save Trivia'; btn.disabled = false; }
   };
 
-  // QUIZ
+  // =====================
+  //   QUIZ LOGIC
+  // =====================
   let currentTrivia = null, currentQuestion = 0, answers = [], playerName = '';
 
   window.beginQuiz = function(id) {
     currentTrivia = triviaCache.find(t => t.id === id);
     if (!currentTrivia) return;
+    if (currentTrivia.pin) {
+      document.getElementById('pinInput').value = '';
+      document.getElementById('pinError').classList.remove('show');
+      showPage('pinPage');
+    } else {
+      goToNamePage();
+    }
+  };
+
+  window.submitPin = function() {
+    const entered = document.getElementById('pinInput').value.trim();
+    if (entered === currentTrivia.pin) {
+      document.getElementById('pinError').classList.remove('show');
+      goToNamePage();
+    } else {
+      document.getElementById('pinError').classList.add('show');
+      const pi = document.getElementById('pinInput');
+      pi.style.animation = 'none'; pi.offsetHeight; pi.style.animation = 'shake 0.3s ease';
+    }
+  };
+
+  function goToNamePage() {
     document.getElementById('namePageTitle').textContent = currentTrivia.title;
     document.getElementById('playerNameInput').value = '';
     document.getElementById('nameError').classList.remove('show');
     showPage('namePage');
-  };
+  }
 
   window.startQuizWithName = function() {
     const name = document.getElementById('playerNameInput').value.trim();
@@ -646,7 +784,6 @@
     if (currentTrivia.description) { descEl.textContent = currentTrivia.description; descEl.style.display = 'block'; } else descEl.style.display = 'none';
     document.getElementById('questionText').textContent = q.text;
     document.getElementById('multiHint').style.display = isMulti ? 'block' : 'none';
-
     const optList = document.getElementById('optionsList');
     optList.innerHTML = '';
     const letters = 'ABCDEFGHIJ'.split('');
@@ -675,7 +812,7 @@
   }
 
   window.nextQuestion = function() {
-    if (!answers[currentQuestion] || !answers[currentQuestion].length) {
+    if (!answers[currentQuestion]?.length) {
       const ol = document.getElementById('optionsList');
       ol.style.animation = 'none'; ol.offsetHeight; ol.style.animation = 'shake 0.3s ease';
       return;
@@ -691,48 +828,144 @@
       const correct = [...(q.correct || [])].sort().join(',');
       if (chosen === correct) score++;
     });
+
+    // Show score if enabled
+    const showScore = currentTrivia.showScore !== false;
+    if (showScore) {
+      const pct = Math.round((score / currentTrivia.questions.length) * 100);
+      document.getElementById('submittedMsg').innerHTML = `You scored <strong style="color:var(--green)">${score} out of ${currentTrivia.questions.length}</strong> (${pct}%). Your answers have been submitted!`;
+    } else {
+      document.getElementById('submittedMsg').textContent = 'Your answers have been submitted. Thanks for playing!';
+    }
+
     try {
-      await addDoc(collection(db, 'responses'), { triviaId: currentTrivia.id, triviaTitle: currentTrivia.title, playerName, answers, score, total: currentTrivia.questions.length, submittedAt: serverTimestamp() });
+      await addDoc(collection(db, 'responses'), {
+        triviaId: currentTrivia.id,
+        triviaTitle: currentTrivia.title,
+        playerName,
+        answers: answers.map(a => Array.isArray(a) ? a : []),
+        score,
+        total: currentTrivia.questions.length,
+        submittedAt: serverTimestamp()
+      });
     } catch(e) { console.error(e); }
     showPage('submittedPage');
   }
 
-  // REVIEW
+  // =====================
+  //   REVIEW — FIXED
+  // =====================
+  let currentReviewTriviaId = null;
+  let currentReviewResponses = [];
+
   window.openReview = async function(triviaId) {
     const trivia = triviaCache.find(t => t.id === triviaId);
     if (!trivia) return;
-    document.getElementById('reviewTitle').textContent = trivia.title + ' \u2014 Responses';
+    currentReviewTriviaId = triviaId;
+    document.getElementById('reviewTitle').textContent = trivia.title;
     document.getElementById('reviewContent').innerHTML = '<div class="no-responses"><div class="spinner" style="margin:0 auto 10px"></div>Loading...</div>';
+    document.getElementById('reviewContent').style.display = 'block';
+    document.getElementById('leaderboardContent').style.display = 'none';
+    document.getElementById('reviewStats').style.display = 'none';
+    document.getElementById('reviewTabResponses').classList.add('active');
+    document.getElementById('reviewTabLeaderboard').classList.remove('active');
     document.getElementById('reviewModal').classList.add('open');
+
     try {
-      const snap = await getDocs(collection(db, 'responses'));
-      const responses = snap.docs.map(d => ({ id: d.id, ...d.data() }))
-        .filter(r => r.triviaId === triviaId)
+      // Use where() to filter by triviaId properly
+      const snap = await getDocs(query(collection(db, 'responses'), where('triviaId', '==', triviaId)));
+      currentReviewResponses = snap.docs.map(d => ({ id: d.id, ...d.data() }))
         .sort((a, b) => (b.submittedAt?.seconds||0) - (a.submittedAt?.seconds||0));
-      const content = document.getElementById('reviewContent');
-      if (!responses.length) { content.innerHTML = '<div class="no-responses">No responses yet.</div>'; return; }
-      content.innerHTML = responses.map(r => {
-        const details = (r.answers||[]).map((ans, i) => {
-          const q = trivia.questions[i]; if (!q) return '';
-          const chosen = Array.isArray(ans) ? ans : (ans!=null ? [ans] : []);
-          const correct = q.correct || [];
-          const isCorrect = [...chosen].sort().join(',') === [...correct].sort().join(',');
-          const chosenText = chosen.length ? chosen.map(c => q.options[c]).join(', ') : 'No answer';
-          return `<div class="answer-row"><span class="mark ${isCorrect?'correct':'wrong'}">${isCorrect?'+':'-'}</span><span class="q-text">${escHtml(q.text)}</span><span class="a-text">${escHtml(chosenText)}</span></div>`;
-        }).join('');
-        const timeStr = r.submittedAt?.seconds ? new Date(r.submittedAt.seconds*1000).toLocaleString() : '';
-        return `<div class="response-card"><div class="r-header"><div><div class="r-name">${escHtml(r.playerName)}</div>${timeStr?`<div class="r-time">${timeStr}</div>`:''}</div><div style="display:flex;align-items:center;gap:10px"><span class="score-badge">${r.score} / ${r.total}</span><button class="btn btn-danger btn-sm" onclick="deleteResponse('${r.id}','${triviaId}')">Delete</button></div></div><div class="response-details">${details}</div></div>`;
-      }).join('');
-    } catch(e) { document.getElementById('reviewContent').innerHTML = '<div class="no-responses">Error loading responses.</div>'; }
+
+      renderReviewResponses(trivia, currentReviewResponses);
+      renderLeaderboard(currentReviewResponses);
+    } catch(e) {
+      console.error(e);
+      document.getElementById('reviewContent').innerHTML = '<div class="no-responses">Error loading responses. Check Firestore rules.</div>';
+    }
   };
+
+  function renderReviewResponses(trivia, responses) {
+    const content = document.getElementById('reviewContent');
+    const statsEl = document.getElementById('reviewStats');
+
+    if (!responses.length) {
+      content.innerHTML = '<div class="no-responses">No responses yet.</div>';
+      statsEl.style.display = 'none';
+      return;
+    }
+
+    const avg = (responses.reduce((a, r) => a + (r.score||0), 0) / responses.length).toFixed(1);
+    const topScore = Math.max(...responses.map(r => r.score||0));
+    statsEl.innerHTML = `
+      <div class="stat-box"><div class="stat-val">${responses.length}</div><div class="stat-label">Responses</div></div>
+      <div class="stat-box"><div class="stat-val">${avg}</div><div class="stat-label">Avg Score</div></div>
+      <div class="stat-box"><div class="stat-val">${topScore}/${responses[0]?.total||'?'}</div><div class="stat-label">Top Score</div></div>`;
+    statsEl.style.display = 'grid';
+
+    content.innerHTML = responses.map(r => {
+      const answersArr = Array.isArray(r.answers) ? r.answers : [];
+      const details = answersArr.map((ans, i) => {
+        const q = trivia.questions[i]; if (!q) return '';
+        const chosen = Array.isArray(ans) ? ans : (ans != null ? [ans] : []);
+        const correct = q.correct || [];
+        const isCorrect = [...chosen].sort().join(',') === [...correct].sort().join(',');
+        const chosenText = chosen.length ? chosen.map(c => q.options[c]).filter(Boolean).join(', ') : 'No answer';
+        return `<div class="answer-row"><span class="mark ${isCorrect?'correct':'wrong'}">${isCorrect?'+':'-'}</span><span class="q-text">${escHtml(q.text)}</span><span class="a-text">${escHtml(chosenText)}</span></div>`;
+      }).join('');
+      const timeStr = r.submittedAt?.seconds ? new Date(r.submittedAt.seconds*1000).toLocaleString() : '';
+      return `
+        <div class="response-card">
+          <div class="r-header">
+            <div>
+              <div class="r-name">${escHtml(r.playerName||'Unknown')}</div>
+              ${timeStr ? `<div class="r-time">${timeStr}</div>` : ''}
+            </div>
+            <div style="display:flex;align-items:center;gap:10px">
+              <span class="score-badge">${r.score??'?'} / ${r.total??'?'}</span>
+              <button class="btn btn-danger btn-sm" onclick="deleteResponse('${r.id}','${currentReviewTriviaId}')">Delete</button>
+            </div>
+          </div>
+          <div class="response-details">${details}</div>
+        </div>`;
+    }).join('');
+  }
+
+  function renderLeaderboard(responses) {
+    const lb = document.getElementById('leaderboardContent');
+    if (!responses.length) { lb.innerHTML = '<div class="no-responses">No responses yet.</div>'; return; }
+
+    // Best score per player
+    const best = {};
+    responses.forEach(r => {
+      const name = r.playerName || 'Unknown';
+      const pct = (r.score||0) / (r.total||1);
+      if (!best[name] || pct > best[name].pct) best[name] = { score: r.score||0, total: r.total||0, pct };
+    });
+
+    const sorted = Object.entries(best).sort((a,b) => b[1].pct - a[1].pct);
+    const rankClasses = ['gold','silver','bronze'];
+    lb.innerHTML = sorted.map(([name, data], i) => `
+      <div class="leaderboard-row">
+        <span class="lb-rank ${rankClasses[i]||''}">${i+1}</span>
+        <span class="lb-name">${escHtml(name)}</span>
+        <span class="lb-score">${data.score}/${data.total}</span>
+        <span class="lb-pct">${Math.round(data.pct*100)}%</span>
+      </div>`).join('');
+  }
 
   window.deleteResponse = async function(responseId, triviaId) {
     if (!confirm('Delete this response?')) return;
-    try { await deleteDoc(doc(db, 'responses', responseId)); showToast('Response deleted.', 'success'); openReview(triviaId); }
-    catch(e) { showToast('Error deleting response.', 'error'); }
+    try {
+      await deleteDoc(doc(db, 'responses', responseId));
+      showToast('Response deleted.', 'success');
+      openReview(triviaId);
+    } catch(e) { showToast('Error deleting response.', 'error'); }
   };
 
-  // MODALS
+  // =====================
+  //   MODALS
+  // =====================
   window.openLoginModal = function() {
     ['loginUser','loginPass'].forEach(id => document.getElementById(id).value = '');
     document.getElementById('loginError').classList.remove('show');
@@ -742,8 +975,11 @@
   document.querySelectorAll('.modal-overlay').forEach(o => o.addEventListener('click', e => { if (e.target === o) o.classList.remove('open'); }));
   document.getElementById('loginPass').addEventListener('keydown', e => { if (e.key === 'Enter') doLogin(); });
   document.getElementById('playerNameInput').addEventListener('keydown', e => { if (e.key === 'Enter') startQuizWithName(); });
+  document.getElementById('pinInput').addEventListener('keydown', e => { if (e.key === 'Enter') submitPin(); });
 
-  // TOAST + UTILS
+  // =====================
+  //   TOAST + UTILS
+  // =====================
   function showToast(msg, type='') {
     const t = document.getElementById('toast');
     t.textContent = msg; t.className = 'toast ' + type; t.classList.add('show');
