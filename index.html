@@ -838,12 +838,16 @@
       document.getElementById('submittedMsg').textContent = 'Your answers have been submitted. Thanks for playing!';
     }
 
+    // Firestore doesn't support nested arrays — convert to a plain object keyed by index
+    const answersMap = {};
+    answers.forEach((a, i) => { answersMap[`q${i}`] = Array.isArray(a) ? a : []; });
+
     try {
       await addDoc(collection(db, 'responses'), {
         triviaId: currentTrivia.id,
         triviaTitle: currentTrivia.title,
         playerName,
-        answers: answers.map(a => Array.isArray(a) ? a : []),
+        answersMap,
         score,
         total: currentTrivia.questions.length,
         submittedAt: serverTimestamp()
@@ -904,9 +908,9 @@
     statsEl.style.display = 'grid';
 
     content.innerHTML = responses.map(r => {
-      const answersArr = Array.isArray(r.answers) ? r.answers : [];
-      const details = answersArr.map((ans, i) => {
-        const q = trivia.questions[i]; if (!q) return '';
+      // Support both old (answers array) and new (answersMap object) format
+      const details = trivia.questions.map((q, i) => {
+        const ans = r.answersMap ? (r.answersMap[`q${i}`] || []) : (Array.isArray(r.answers) ? (r.answers[i] || []) : []);
         const chosen = Array.isArray(ans) ? ans : (ans != null ? [ans] : []);
         const correct = q.correct || [];
         const isCorrect = [...chosen].sort().join(',') === [...correct].sort().join(',');
