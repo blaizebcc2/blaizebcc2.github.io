@@ -37,8 +37,6 @@
   .btn-ghost:hover { color: var(--text); border-color: var(--muted); }
   .btn-danger { background: rgba(255,101,132,0.15); color: var(--red); border: 1.5px solid rgba(255,101,132,0.3); }
   .btn-danger:hover { background: rgba(255,101,132,0.25); }
-  .btn-yellow { background: rgba(255,209,102,0.15); color: var(--yellow); border: 1.5px solid rgba(255,209,102,0.3); }
-  .btn-yellow:hover { background: rgba(255,209,102,0.25); }
   .btn-sm { padding: 7px 14px; font-size: 0.8rem; }
   .staff-badge { background: linear-gradient(135deg, rgba(108,99,255,0.2), rgba(255,101,132,0.2)); border: 1.5px solid rgba(108,99,255,0.4); color: var(--accent); padding: 6px 14px; border-radius: 50px; font-family: 'Nunito', sans-serif; font-weight: 700; font-size: 0.8rem; }
 
@@ -46,18 +44,33 @@
   .page { display: none; }
   .page.active { display: block; }
 
-  .home-header { text-align: center; margin-bottom: 40px; }
+  /* HOME */
+  .home-header { text-align: center; margin-bottom: 32px; }
   .home-header h1 { font-family: 'Nunito', sans-serif; font-weight: 900; font-size: 2.8rem; margin-bottom: 10px; background: linear-gradient(135deg, #e8eaf6, #8b90b8); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
   .home-header p { color: var(--muted); font-size: 1rem; }
+
+  /* SEARCH + FILTER */
+  .search-row { display: flex; gap: 10px; margin-bottom: 24px; }
+  .search-wrap { flex: 1; position: relative; }
+  .search-wrap svg { position: absolute; left: 14px; top: 50%; transform: translateY(-50%); color: var(--muted); pointer-events: none; }
+  .search-wrap input { width: 100%; background: var(--surface); border: 1.5px solid var(--border); border-radius: 12px; padding: 11px 16px 11px 40px; color: var(--text); font-family: 'Nunito Sans', sans-serif; font-size: 0.9rem; outline: none; transition: border-color 0.2s; }
+  .search-wrap input:focus { border-color: var(--accent); }
+  .cat-filter { background: var(--surface); border: 1.5px solid var(--border); border-radius: 12px; padding: 11px 16px; color: var(--text); font-family: 'Nunito Sans', sans-serif; font-size: 0.9rem; outline: none; cursor: pointer; min-width: 150px; appearance: none; }
+  .cat-filter:focus { border-color: var(--accent); }
 
   .trivia-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; }
   .trivia-card { background: var(--surface); border: 1.5px solid var(--border); border-radius: var(--radius); padding: 24px; transition: all 0.25s ease; display: flex; flex-direction: column; gap: 12px; }
   .trivia-card:hover { border-color: rgba(108,99,255,0.4); transform: translateY(-3px); box-shadow: var(--shadow); }
   .trivia-card h3 { font-family: 'Nunito', sans-serif; font-weight: 800; font-size: 1.15rem; }
   .trivia-card .desc { color: var(--muted); font-size: 0.88rem; line-height: 1.5; flex: 1; }
-  .trivia-card .meta { font-size: 0.8rem; color: var(--muted); display: flex; gap: 12px; }
+  .trivia-card .meta { font-size: 0.8rem; color: var(--muted); display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
   .trivia-card .card-actions { display: flex; gap: 8px; flex-wrap: wrap; }
-  .locked-badge { font-size: 0.75rem; background: rgba(255,209,102,0.12); color: var(--yellow); border: 1px solid rgba(255,209,102,0.25); border-radius: 20px; padding: 3px 10px; font-weight: 700; font-family: 'Nunito', sans-serif; }
+
+  .badge { font-size: 0.72rem; border-radius: 20px; padding: 3px 9px; font-weight: 700; font-family: 'Nunito', sans-serif; border: 1px solid; }
+  .badge-yellow { background: rgba(255,209,102,0.1); color: var(--yellow); border-color: rgba(255,209,102,0.25); }
+  .badge-purple { background: rgba(108,99,255,0.1); color: #a78bfa; border-color: rgba(108,99,255,0.25); }
+  .badge-green { background: rgba(67,217,160,0.1); color: var(--green); border-color: rgba(67,217,160,0.25); }
+  .badge-red { background: rgba(255,101,132,0.1); color: var(--red); border-color: rgba(255,101,132,0.25); }
 
   .empty-state { text-align: center; padding: 80px 20px; color: var(--muted); grid-column: 1 / -1; }
   .empty-state h3 { font-family: 'Nunito', sans-serif; font-weight: 800; margin-bottom: 8px; color: var(--text); font-size: 1.2rem; }
@@ -74,24 +87,24 @@
   .modal-header h2 { font-family: 'Nunito', sans-serif; font-weight: 800; font-size: 1.3rem; }
   .close-btn { background: var(--surface2); border: none; color: var(--muted); width: 32px; height: 32px; border-radius: 50%; cursor: pointer; font-size: 1rem; display: flex; align-items: center; justify-content: center; transition: all 0.2s; }
   .close-btn:hover { color: var(--text); background: var(--border); }
-
   .form-group { margin-bottom: 18px; }
   .form-group label { display: block; font-weight: 700; font-size: 0.82rem; color: var(--muted); margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px; }
   .form-group label span { color: var(--red); margin-left: 3px; }
-  input[type="text"], input[type="password"], input[type="number"], textarea { width: 100%; background: var(--surface2); border: 1.5px solid var(--border); border-radius: 12px; padding: 12px 16px; color: var(--text); font-family: 'Nunito Sans', sans-serif; font-size: 0.95rem; transition: border-color 0.2s; outline: none; }
-  input:focus, textarea:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(108,99,255,0.15); }
+  input[type="text"], input[type="password"], input[type="number"], textarea, select { width: 100%; background: var(--surface2); border: 1.5px solid var(--border); border-radius: 12px; padding: 12px 16px; color: var(--text); font-family: 'Nunito Sans', sans-serif; font-size: 0.95rem; transition: border-color 0.2s; outline: none; }
+  select { appearance: none; cursor: pointer; }
+  input:focus, textarea:focus, select:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(108,99,255,0.15); }
   textarea { resize: vertical; min-height: 80px; }
-
-  .toggle-row { display: flex; align-items: center; justify-content: space-between; background: var(--surface2); border: 1.5px solid var(--border); border-radius: 12px; padding: 12px 16px; }
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .toggle-row { display: flex; align-items: center; justify-content: space-between; background: var(--surface2); border: 1.5px solid var(--border); border-radius: 12px; padding: 12px 16px; margin-bottom: 10px; }
   .toggle-row span { font-size: 0.9rem; font-weight: 600; }
   .toggle-row small { color: var(--muted); font-size: 0.78rem; display: block; }
   .toggle { width: 42px; height: 24px; background: var(--border); border-radius: 12px; cursor: pointer; position: relative; transition: background 0.2s; flex-shrink: 0; border: none; }
   .toggle.on { background: var(--accent); }
   .toggle::after { content: ''; position: absolute; width: 18px; height: 18px; background: #fff; border-radius: 50%; top: 3px; left: 3px; transition: left 0.2s; }
   .toggle.on::after { left: 21px; }
-
   .error-msg { color: var(--red); font-size: 0.82rem; margin-top: 6px; display: none; }
   .error-msg.show { display: block; }
+  .hint-text { font-size: 0.78rem; color: var(--muted); margin-top: 6px; }
 
   /* TABS */
   .tab-row { display: flex; gap: 4px; margin-bottom: 24px; background: var(--surface2); border-radius: 10px; padding: 4px; }
@@ -127,24 +140,35 @@
   .preview-item strong { color: var(--text); }
   .format-hint { background: var(--surface2); border: 1.5px solid var(--border); border-radius: 12px; padding: 16px; margin-top: 14px; font-size: 0.82rem; color: var(--muted); line-height: 1.8; }
   .format-hint code { background: rgba(108,99,255,0.15); color: #a78bfa; padding: 1px 6px; border-radius: 4px; font-family: monospace; font-size: 0.8rem; }
-
   .modal-footer { display: flex; justify-content: flex-end; gap: 10px; margin-top: 24px; padding-top: 20px; border-top: 1px solid var(--border); }
   .divider { height: 1px; background: var(--border); margin: 20px 0; }
 
   /* QUIZ */
   .quiz-container { max-width: 640px; margin: 0 auto; }
-  .quiz-top-bar { margin-bottom: 32px; }
+  .quiz-top-bar { margin-bottom: 16px; }
   .quiz-top-bar h2 { font-family: 'Nunito', sans-serif; font-weight: 900; font-size: 2rem; margin-bottom: 6px; }
   .quiz-top-bar p { color: var(--muted); }
-  .progress-bar-wrap { background: var(--surface2); border-radius: 50px; height: 6px; margin: 20px 0; overflow: hidden; }
+  .quiz-meta-row { display: flex; align-items: center; justify-content: space-between; }
+  .question-num { font-size: 0.85rem; color: var(--muted); font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; }
+
+  /* TIMER */
+  .timer-ring-wrap { position: relative; width: 52px; height: 52px; flex-shrink: 0; }
+  .timer-ring-wrap svg { transform: rotate(-90deg); }
+  .timer-track { fill: none; stroke: var(--border); stroke-width: 4; }
+  .timer-fill { fill: none; stroke: var(--green); stroke-width: 4; stroke-linecap: round; transition: stroke-dashoffset 0.9s linear, stroke 0.3s; }
+  .timer-fill.warn { stroke: var(--yellow); }
+  .timer-fill.danger { stroke: var(--red); }
+  .timer-num { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-family: 'Nunito', sans-serif; font-weight: 900; font-size: 0.85rem; }
+
+  .progress-bar-wrap { background: var(--surface2); border-radius: 50px; height: 6px; margin: 14px 0 22px; overflow: hidden; }
   .progress-bar { background: linear-gradient(90deg, var(--accent), #a78bfa); height: 100%; border-radius: 50px; transition: width 0.4s ease; }
-  .question-num { font-size: 0.85rem; color: var(--muted); font-weight: 700; margin-bottom: 16px; text-transform: uppercase; letter-spacing: 0.5px; }
   .question-text { font-family: 'Nunito', sans-serif; font-weight: 800; font-size: 1.4rem; line-height: 1.4; margin-bottom: 10px; }
   .multi-hint { font-size: 0.82rem; color: var(--yellow); margin-bottom: 20px; font-weight: 600; }
   .options-list { display: flex; flex-direction: column; gap: 12px; }
   .option-btn { background: var(--surface); border: 1.5px solid var(--border); border-radius: 14px; padding: 16px 20px; color: var(--text); font-family: 'Nunito', sans-serif; font-weight: 700; font-size: 1rem; cursor: pointer; text-align: left; transition: all 0.2s; display: flex; align-items: center; gap: 14px; width: 100%; }
-  .option-btn:hover { border-color: var(--accent); background: rgba(108,99,255,0.08); transform: translateX(4px); }
+  .option-btn:hover:not(:disabled) { border-color: var(--accent); background: rgba(108,99,255,0.08); transform: translateX(4px); }
   .option-btn.selected { border-color: var(--accent); background: rgba(108,99,255,0.15); }
+  .option-btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
   .option-letter { width: 34px; height: 34px; border-radius: 50%; background: var(--surface2); display: flex; align-items: center; justify-content: center; font-size: 0.85rem; font-weight: 800; flex-shrink: 0; transition: all 0.2s; }
   .option-btn.selected .option-letter { background: var(--accent); color: #fff; }
   .quiz-nav { display: flex; justify-content: space-between; align-items: center; margin-top: 32px; }
@@ -158,10 +182,10 @@
 
   /* REVIEW */
   .review-modal-inner { max-width: 720px; }
-  .review-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 20px; }
+  .review-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 20px; }
   .stat-box { background: var(--surface2); border: 1.5px solid var(--border); border-radius: 12px; padding: 14px; text-align: center; }
-  .stat-box .stat-val { font-family: 'Nunito', sans-serif; font-weight: 900; font-size: 1.6rem; color: var(--text); }
-  .stat-box .stat-label { font-size: 0.75rem; color: var(--muted); margin-top: 2px; text-transform: uppercase; letter-spacing: 0.5px; }
+  .stat-box .stat-val { font-family: 'Nunito', sans-serif; font-weight: 900; font-size: 1.5rem; color: var(--text); }
+  .stat-box .stat-label { font-size: 0.72rem; color: var(--muted); margin-top: 2px; text-transform: uppercase; letter-spacing: 0.5px; }
   .response-card { background: var(--surface2); border: 1.5px solid var(--border); border-radius: 12px; padding: 18px; margin-bottom: 12px; }
   .response-card .r-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 14px; }
   .response-card .r-name { font-family: 'Nunito', sans-serif; font-weight: 800; font-size: 1rem; }
@@ -186,15 +210,27 @@
   .lb-name { flex: 1; font-weight: 700; font-family: 'Nunito', sans-serif; }
   .lb-score { font-size: 0.85rem; color: var(--muted); font-weight: 600; }
   .lb-pct { font-family: 'Nunito', sans-serif; font-weight: 800; font-size: 0.9rem; color: var(--green); }
+  .lb-bar-wrap { width: 80px; background: var(--border); border-radius: 4px; height: 6px; }
+  .lb-bar { background: linear-gradient(90deg, var(--accent), var(--green)); height: 100%; border-radius: 4px; }
 
-  /* NAME PAGE */
+  /* NAME / PIN PAGE */
   .name-input-page { max-width: 400px; margin: 80px auto; text-align: center; }
   .name-input-page h2 { font-family: 'Nunito', sans-serif; font-weight: 900; font-size: 1.8rem; margin-bottom: 10px; }
   .name-input-page p { color: var(--muted); margin-bottom: 28px; }
   .name-input-page input { text-align: center; font-size: 1.1rem; padding: 14px 20px; margin-bottom: 16px; }
+  .pin-input { letter-spacing: 8px; font-family: 'Nunito', sans-serif; font-weight: 800; }
 
-  /* PIN ENTRY */
-  .pin-input { text-align: center; font-size: 1.5rem; letter-spacing: 8px; font-family: 'Nunito', sans-serif; font-weight: 800; }
+  /* QUESTION BREAKDOWN in review */
+  .breakdown-section { margin-top: 20px; }
+  .breakdown-section h4 { font-family: 'Nunito', sans-serif; font-weight: 800; font-size: 0.82rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 12px; }
+  .breakdown-q { background: var(--surface2); border: 1.5px solid var(--border); border-radius: 10px; padding: 14px; margin-bottom: 10px; }
+  .breakdown-q .bq-text { font-weight: 700; font-size: 0.9rem; margin-bottom: 8px; }
+  .breakdown-q .bq-bar-row { display: flex; align-items: center; gap: 8px; margin-bottom: 4px; font-size: 0.82rem; }
+  .breakdown-q .bq-label { width: 120px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; color: var(--muted); }
+  .breakdown-q .bq-bar-outer { flex: 1; background: var(--border); border-radius: 4px; height: 8px; }
+  .breakdown-q .bq-bar-inner { height: 100%; border-radius: 4px; background: var(--accent); }
+  .breakdown-q .bq-bar-inner.correct-opt { background: var(--green); }
+  .breakdown-q .bq-count { color: var(--muted); font-size: 0.78rem; width: 24px; text-align: right; }
 
   ::-webkit-scrollbar { width: 6px; }
   ::-webkit-scrollbar-track { background: var(--bg); }
@@ -224,6 +260,15 @@
       <h1>Trivia Challenges</h1>
       <p>Pick a quiz and test your knowledge</p>
     </div>
+    <div class="search-row">
+      <div class="search-wrap">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+        <input type="text" id="searchInput" placeholder="Search trivia..." oninput="renderHome()" />
+      </div>
+      <select class="cat-filter" id="catFilter" onchange="renderHome()">
+        <option value="">All categories</option>
+      </select>
+    </div>
     <div class="trivia-grid" id="triviaGrid">
       <div class="loading-state" style="grid-column:1/-1"><div class="spinner"></div><p>Loading trivia...</p></div>
     </div>
@@ -245,7 +290,7 @@
   <div id="pinPage" class="page">
     <div class="name-input-page">
       <h2>This quiz is locked</h2>
-      <p id="pinDesc">Enter the PIN to access this quiz.</p>
+      <p>Enter the PIN to access this quiz.</p>
       <input type="text" id="pinInput" class="pin-input" placeholder="0000" maxlength="8" />
       <div class="error-msg" id="pinError" style="margin-bottom:12px">Incorrect PIN.</div>
       <br>
@@ -261,13 +306,22 @@
         <h2 id="quizTitle"></h2>
         <p id="quizDesc" style="display:none"></p>
       </div>
+      <div class="quiz-meta-row">
+        <div class="question-num" id="questionNum"></div>
+        <div class="timer-ring-wrap" id="timerWrap" style="display:none">
+          <svg width="52" height="52" viewBox="0 0 52 52">
+            <circle class="timer-track" cx="26" cy="26" r="22"/>
+            <circle class="timer-fill" id="timerArc" cx="26" cy="26" r="22"/>
+          </svg>
+          <div class="timer-num" id="timerNum">--</div>
+        </div>
+      </div>
       <div class="progress-bar-wrap"><div class="progress-bar" id="progressBar"></div></div>
-      <div class="question-num" id="questionNum"></div>
       <div class="question-text" id="questionText"></div>
       <div class="multi-hint" id="multiHint" style="display:none">Select all that apply</div>
       <div class="options-list" id="optionsList"></div>
       <div class="quiz-nav">
-        <button class="btn btn-ghost" onclick="showPage('homePage')">Quit</button>
+        <button class="btn btn-ghost" onclick="quitQuiz()">Quit</button>
         <button class="btn btn-primary" id="nextBtn" onclick="nextQuestion()">Next</button>
       </div>
     </div>
@@ -309,7 +363,7 @@
 
 <!-- CREATE MODAL -->
 <div class="modal-overlay" id="createModal">
-  <div class="modal" style="max-width:640px">
+  <div class="modal" style="max-width:660px">
     <div class="modal-header">
       <h2>New Trivia</h2>
       <button class="close-btn" onclick="closeModal('createModal')">&#10005;</button>
@@ -329,18 +383,33 @@
         <label>Description</label>
         <textarea id="newDesc" placeholder="Optional description..."></textarea>
       </div>
+      <div class="two-col">
+        <div class="form-group">
+          <label>Category</label>
+          <input type="text" id="newCategory" placeholder="e.g. Science, Sport..." />
+        </div>
+        <div class="form-group">
+          <label>PIN Lock</label>
+          <input type="text" id="newPin" placeholder="Leave blank for none" maxlength="8" />
+        </div>
+      </div>
       <div class="form-group">
-        <label>PIN Lock (optional)</label>
-        <input type="text" id="newPin" placeholder="Leave blank for no PIN" maxlength="8" />
-        <div style="font-size:0.78rem;color:var(--muted);margin-top:6px">Players will need to enter this PIN before starting.</div>
+        <label>Timer per question (seconds)</label>
+        <input type="number" id="newTimer" placeholder="Leave blank for no timer" min="5" max="300" />
+        <div class="hint-text">When time runs out, the question auto-advances.</div>
       </div>
       <div class="form-group">
         <div class="toggle-row">
-          <div>
-            <span>Show score at end</span>
-            <small>Players see their score when they finish</small>
-          </div>
+          <div><span>Show score at end</span><small>Players see their score when they finish</small></div>
           <button class="toggle on" id="showScoreToggle" onclick="this.classList.toggle('on')"></button>
+        </div>
+        <div class="toggle-row">
+          <div><span>Shuffle questions</span><small>Randomise order for each player</small></div>
+          <button class="toggle" id="shuffleToggle" onclick="this.classList.toggle('on')"></button>
+        </div>
+        <div class="toggle-row" style="margin-bottom:0">
+          <div><span>Shuffle options</span><small>Randomise answer order too</small></div>
+          <button class="toggle" id="shuffleOptsToggle" onclick="this.classList.toggle('on')"></button>
         </div>
       </div>
       <div class="divider"></div>
@@ -362,17 +431,32 @@
         <label>Description</label>
         <textarea id="importDesc" placeholder="Optional description..."></textarea>
       </div>
+      <div class="two-col">
+        <div class="form-group">
+          <label>Category</label>
+          <input type="text" id="importCategory" placeholder="e.g. Science, Sport..." />
+        </div>
+        <div class="form-group">
+          <label>PIN Lock</label>
+          <input type="text" id="importPin" placeholder="Leave blank for none" maxlength="8" />
+        </div>
+      </div>
       <div class="form-group">
-        <label>PIN Lock (optional)</label>
-        <input type="text" id="importPin" placeholder="Leave blank for no PIN" maxlength="8" />
+        <label>Timer per question (seconds)</label>
+        <input type="number" id="importTimer" placeholder="Leave blank for no timer" min="5" max="300" />
       </div>
       <div class="form-group">
         <div class="toggle-row">
-          <div>
-            <span>Show score at end</span>
-            <small>Players see their score when they finish</small>
-          </div>
+          <div><span>Show score at end</span><small>Players see their score when they finish</small></div>
           <button class="toggle on" id="importShowScoreToggle" onclick="this.classList.toggle('on')"></button>
+        </div>
+        <div class="toggle-row">
+          <div><span>Shuffle questions</span><small>Randomise order for each player</small></div>
+          <button class="toggle" id="importShuffleToggle" onclick="this.classList.toggle('on')"></button>
+        </div>
+        <div class="toggle-row" style="margin-bottom:0">
+          <div><span>Shuffle options</span><small>Randomise answer order too</small></div>
+          <button class="toggle" id="importShuffleOptsToggle" onclick="this.classList.toggle('on')"></button>
         </div>
       </div>
       <div class="form-group">
@@ -389,12 +473,9 @@
         <div class="error-msg" id="importFileError" style="margin-top:8px">Could not read the file. Check the format below.</div>
       </div>
       <div class="format-hint">
-        <strong style="color:var(--text);display:block;margin-bottom:8px">File format guide</strong>
-        <strong style="color:var(--text)">.txt / .csv</strong> &mdash; separate questions with a blank line. Start correct answers with <code>*</code>:<br><br>
-        <code>What is 2 + 2?</code><br>
-        <code>*4</code><br>
-        <code>3</code><br>
-        <code>5</code><br><br>
+        <strong style="color:var(--text);display:block;margin-bottom:8px">File format</strong>
+        <strong style="color:var(--text)">.txt / .csv</strong> &mdash; blank line between questions, <code>*</code> before correct answers:<br><br>
+        <code>What is 2 + 2?</code><br><code>*4</code><br><code>3</code><br><code>5</code><br><br>
         <strong style="color:var(--text)">.json</strong> &mdash; <code>[{"text":"Q?","options":["A","B"],"correct":[0]}]</code>
       </div>
     </div>
@@ -408,18 +489,20 @@
 
 <!-- REVIEW MODAL -->
 <div class="modal-overlay" id="reviewModal">
-  <div class="modal review-modal-inner" style="max-width:720px">
+  <div class="modal review-modal-inner" style="max-width:740px">
     <div class="modal-header">
       <h2 id="reviewTitle">Responses</h2>
       <button class="close-btn" onclick="closeModal('reviewModal')">&#10005;</button>
     </div>
-    <div class="tab-row" id="reviewTabRow">
+    <div class="tab-row">
       <button class="tab-btn active" id="reviewTabResponses" onclick="switchReviewTab('responses')">Responses</button>
       <button class="tab-btn" id="reviewTabLeaderboard" onclick="switchReviewTab('leaderboard')">Leaderboard</button>
+      <button class="tab-btn" id="reviewTabBreakdown" onclick="switchReviewTab('breakdown')">Breakdown</button>
     </div>
     <div id="reviewStats" class="review-stats" style="display:none"></div>
     <div id="reviewContent"></div>
     <div id="leaderboardContent" style="display:none"></div>
+    <div id="breakdownContent" style="display:none"></div>
   </div>
 </div>
 
@@ -441,9 +524,7 @@
   const app = initializeApp(firebaseConfig);
   const db = getFirestore(app);
 
-  // =====================
-  //   AUTH
-  // =====================
+  // AUTH
   const STAFF_USER = 'blaize', STAFF_PASS = 'blazesmpstafftrivia';
   let isStaff = sessionStorage.getItem('staffLoggedIn') === '1';
 
@@ -455,85 +536,79 @@
       closeModal('loginModal'); updateAuthUI(); renderHome();
     } else { document.getElementById('loginError').classList.add('show'); }
   };
-
-  window.logout = function() {
-    isStaff = false; sessionStorage.removeItem('staffLoggedIn'); updateAuthUI(); renderHome();
-  };
-
+  window.logout = function() { isStaff = false; sessionStorage.removeItem('staffLoggedIn'); updateAuthUI(); renderHome(); };
   function updateAuthUI() {
     document.getElementById('staffBadge').style.display = isStaff ? 'flex' : 'none';
     document.getElementById('addTriviaBtn').style.display = isStaff ? 'flex' : 'none';
     document.getElementById('loginBtn').style.display = isStaff ? 'none' : 'flex';
     document.getElementById('logoutBtn').style.display = isStaff ? 'flex' : 'none';
   }
+  window.showPage = function(id) { document.querySelectorAll('.page').forEach(p => p.classList.remove('active')); document.getElementById(id).classList.add('active'); };
 
-  window.showPage = function(id) {
-    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-    document.getElementById(id).classList.add('active');
-  };
-
-  // =====================
-  //   TABS
-  // =====================
+  // TABS
   window.switchTab = function(tab) {
-    document.getElementById('tabBtnManual').classList.toggle('active', tab === 'manual');
-    document.getElementById('tabBtnImport').classList.toggle('active', tab === 'import');
-    document.getElementById('tab-manual').classList.toggle('active', tab === 'manual');
-    document.getElementById('tab-import').classList.toggle('active', tab === 'import');
+    ['manual','import'].forEach(t => {
+      document.getElementById('tabBtn' + t.charAt(0).toUpperCase() + t.slice(1)).classList.toggle('active', t === tab);
+      document.getElementById('tab-' + t).classList.toggle('active', t === tab);
+    });
   };
-
   window.switchReviewTab = function(tab) {
-    document.getElementById('reviewTabResponses').classList.toggle('active', tab === 'responses');
-    document.getElementById('reviewTabLeaderboard').classList.toggle('active', tab === 'leaderboard');
+    ['responses','leaderboard','breakdown'].forEach(t => {
+      document.getElementById('reviewTab' + t.charAt(0).toUpperCase() + t.slice(1)).classList.toggle('active', t === tab);
+    });
     document.getElementById('reviewContent').style.display = tab === 'responses' ? 'block' : 'none';
     document.getElementById('leaderboardContent').style.display = tab === 'leaderboard' ? 'block' : 'none';
+    document.getElementById('breakdownContent').style.display = tab === 'breakdown' ? 'block' : 'none';
     document.getElementById('reviewStats').style.display = tab === 'responses' ? 'grid' : 'none';
   };
 
-  // =====================
-  //   TRIVIA LISTENER
-  // =====================
+  // TRIVIA
   let triviaCache = [];
-
   function listenTrivia() {
-    const q = query(collection(db, 'trivias'), orderBy('createdAt', 'desc'));
-    onSnapshot(q, snap => {
+    onSnapshot(query(collection(db, 'trivias'), orderBy('createdAt', 'desc')), snap => {
       triviaCache = snap.docs.map(d => ({ id: d.id, ...d.data() }));
-      renderHome();
-    }, err => {
-      console.error(err);
-      document.getElementById('triviaGrid').innerHTML = `<div class="empty-state" style="grid-column:1/-1"><h3>Could not connect</h3><p>Check your Firebase config.</p></div>`;
-    });
+      rebuildCatFilter(); renderHome();
+    }, err => { console.error(err); document.getElementById('triviaGrid').innerHTML = `<div class="empty-state" style="grid-column:1/-1"><h3>Could not connect</h3><p>Check your Firebase config.</p></div>`; });
   }
 
-  function renderHome() {
+  function rebuildCatFilter() {
+    const cats = [...new Set(triviaCache.map(t => t.category).filter(Boolean))].sort();
+    const sel = document.getElementById('catFilter');
+    const cur = sel.value;
+    sel.innerHTML = '<option value="">All categories</option>' + cats.map(c => `<option value="${escHtml(c)}">${escHtml(c)}</option>`).join('');
+    if (cur) sel.value = cur;
+  }
+
+  window.renderHome = function() {
     const grid = document.getElementById('triviaGrid');
+    const search = document.getElementById('searchInput').value.trim().toLowerCase();
+    const cat = document.getElementById('catFilter').value;
+    const filtered = triviaCache.filter(t =>
+      (!search || (t.title+' '+(t.description||'')+' '+(t.category||'')).toLowerCase().includes(search)) &&
+      (!cat || t.category === cat)
+    );
     grid.innerHTML = '';
-    if (!triviaCache.length) {
-      grid.innerHTML = `<div class="empty-state"><h3>No trivia yet</h3><p>${isStaff ? 'Click "Add Trivia" to create the first one.' : 'Check back soon!'}</p></div>`;
+    if (!filtered.length) {
+      grid.innerHTML = `<div class="empty-state"><h3>${triviaCache.length ? 'No results' : 'No trivia yet'}</h3><p>${triviaCache.length ? 'Try a different search.' : isStaff ? 'Click "Add Trivia" to get started.' : 'Check back soon!'}</p></div>`;
       return;
     }
-    triviaCache.forEach(t => {
+    filtered.forEach(t => {
       const card = document.createElement('div');
       card.className = 'trivia-card';
-      const desc = t.description ? `<div class="desc">${escHtml(t.description)}</div>` : `<div class="desc" style="font-style:italic;opacity:0.45">N/A</div>`;
-      const qCount = t.questions ? t.questions.length : 0;
-      const pinBadge = t.pin ? `<span class="locked-badge">PIN locked</span>` : '';
+      const desc = t.description ? `<div class="desc">${escHtml(t.description)}</div>` : `<div class="desc" style="font-style:italic;opacity:0.4">No description</div>`;
+      const qCount = t.questions?.length || 0;
+      const badges = [
+        t.category ? `<span class="badge badge-purple">${escHtml(t.category)}</span>` : '',
+        t.pin ? `<span class="badge badge-yellow">PIN locked</span>` : '',
+        t.timerSeconds ? `<span class="badge badge-green">${t.timerSeconds}s timer</span>` : '',
+        t.shuffle ? `<span class="badge badge-red">Shuffled</span>` : '',
+      ].join('');
       let actions = `<button class="btn btn-green btn-sm" onclick="beginQuiz('${t.id}')">Start</button>`;
-      if (isStaff) {
-        actions = `
-          <button class="btn btn-green btn-sm" onclick="beginQuiz('${t.id}')">Start</button>
-          <button class="btn btn-ghost btn-sm" onclick="openReview('${t.id}')">Review</button>
-          <button class="btn btn-danger btn-sm" onclick="deleteTrivia('${t.id}')">Delete</button>`;
-      }
-      card.innerHTML = `
-        <h3>${escHtml(t.title)}</h3>
-        ${desc}
-        <div class="meta"><span>${qCount} question${qCount!==1?'s':''}</span>${pinBadge}</div>
-        <div class="card-actions">${actions}</div>`;
+      if (isStaff) actions = `<button class="btn btn-green btn-sm" onclick="beginQuiz('${t.id}')">Start</button><button class="btn btn-ghost btn-sm" onclick="openReview('${t.id}')">Review</button><button class="btn btn-danger btn-sm" onclick="deleteTrivia('${t.id}')">Delete</button>`;
+      card.innerHTML = `<h3>${escHtml(t.title)}</h3>${desc}<div class="meta"><span>${qCount} question${qCount!==1?'s':''}</span>${badges}</div><div class="card-actions">${actions}</div>`;
       grid.appendChild(card);
     });
-  }
+  };
 
   window.deleteTrivia = async function(id) {
     if (!confirm('Delete this trivia and all its responses?')) return;
@@ -545,21 +620,18 @@
     } catch(e) { console.error(e); showToast('Error deleting trivia.', 'error'); }
   };
 
-  // =====================
-  //   QUESTION BUILDER
-  // =====================
+  // QUESTION BUILDER
   let questionCount = 0;
-
   window.openCreateModal = function() {
     questionCount = 0;
-    ['newTitle','newDesc','newPin','importTitle','importDesc','importPin'].forEach(id => document.getElementById(id).value = '');
+    ['newTitle','newDesc','newPin','newCategory','importTitle','importDesc','importPin','importCategory'].forEach(id => document.getElementById(id).value = '');
+    ['newTimer','importTimer'].forEach(id => document.getElementById(id).value = '');
     document.getElementById('questionsContainer').innerHTML = '';
     document.getElementById('importPreview').style.display = 'none';
     ['titleError','questionsError','importTitleError','importFileError'].forEach(id => document.getElementById(id).classList.remove('show'));
-    document.getElementById('showScoreToggle').classList.add('on');
-    document.getElementById('importShowScoreToggle').classList.add('on');
-    importedQuestions = null;
-    switchTab('manual');
+    ['showScoreToggle','importShowScoreToggle'].forEach(id => document.getElementById(id).classList.add('on'));
+    ['shuffleToggle','shuffleOptsToggle','importShuffleToggle','importShuffleOptsToggle'].forEach(id => document.getElementById(id).classList.remove('on'));
+    importedQuestions = null; switchTab('manual');
     document.getElementById('createModal').classList.add('open');
     addQuestion();
   };
@@ -570,55 +642,41 @@
     const div = document.createElement('div');
     div.className = 'question-card'; div.id = id;
     div.innerHTML = `
-      <div class="q-header">
-        <span class="q-num">Question ${questionCount}</span>
-        <button class="btn btn-danger btn-sm" onclick="removeQuestion('${id}')">Remove</button>
-      </div>
+      <div class="q-header"><span class="q-num">Question ${questionCount}</span><button class="btn btn-danger btn-sm" onclick="removeQuestion('${id}')">Remove</button></div>
       <input type="text" placeholder="Question text..." id="${id}_text" style="margin-bottom:10px" />
       <div class="opts-hint">Tick the checkmark to mark correct answers. You can mark more than one.</div>
-      <div id="${id}_opts">
-        ${[1,2,3,4].map(n => optRowHTML(id, n)).join('')}
-      </div>
-      <button class="btn btn-ghost btn-sm" style="margin-top:6px" onclick="addOption('${id}')">+ Add Option</button>
-    `;
+      <div id="${id}_opts">${[1,2,3,4].map(n => optRowHTML(id, n)).join('')}</div>
+      <button class="btn btn-ghost btn-sm" style="margin-top:6px" onclick="addOption('${id}')">+ Add Option</button>`;
     document.getElementById('questionsContainer').appendChild(div);
   };
 
   function optRowHTML(qId, n) {
-    return `<div class="option-row" id="${qId}_row_${n}"><input type="text" placeholder="Option ${n}" id="${qId}_opt_${n}" /><button class="correct-toggle" id="${qId}_chk_${n}" onclick="toggleCorrect('${qId}',${n})" title="Mark correct">&#10003;</button><button class="remove-opt-btn" onclick="removeOption('${qId}',${n})" title="Remove">&#10005;</button></div>`;
+    return `<div class="option-row" id="${qId}_row_${n}"><input type="text" placeholder="Option ${n}" id="${qId}_opt_${n}" /><button class="correct-toggle" id="${qId}_chk_${n}" onclick="toggleCorrect('${qId}',${n})">&#10003;</button><button class="remove-opt-btn" onclick="removeOption('${qId}',${n})">&#10005;</button></div>`;
   }
-
   window.addOption = function(qId) {
     const opts = document.getElementById(`${qId}_opts`);
     const n = opts.querySelectorAll('.option-row').length + 1;
     opts.insertAdjacentHTML('beforeend', optRowHTML(qId, n));
   };
-
   window.removeOption = function(qId, n) {
     const opts = document.getElementById(`${qId}_opts`);
     if (opts.querySelectorAll('.option-row').length <= 2) { showToast('Need at least 2 options.', 'error'); return; }
     document.getElementById(`${qId}_row_${n}`)?.remove();
   };
-
-  window.toggleCorrect = function(qId, n) {
-    document.getElementById(`${qId}_chk_${n}`)?.classList.toggle('active');
-  };
-
+  window.toggleCorrect = function(qId, n) { document.getElementById(`${qId}_chk_${n}`)?.classList.toggle('active'); };
   window.removeQuestion = function(id) { document.getElementById(id)?.remove(); };
 
   function getQuestionsFromBuilder() {
     const cards = document.querySelectorAll('#questionsContainer .question-card');
-    let valid = true;
-    const questions = [];
+    let valid = true; const questions = [];
     cards.forEach(card => {
       const qId = card.id;
       const text = document.getElementById(`${qId}_text`).value.trim();
       const rows = card.querySelectorAll('.option-row');
       const options = [], correct = [];
       rows.forEach(row => {
-        const inp = row.querySelector('input[type="text"]');
+        const val = row.querySelector('input[type="text"]')?.value.trim();
         const chk = row.querySelector('.correct-toggle');
-        const val = inp?.value.trim();
         if (val) { if (chk?.classList.contains('active')) correct.push(options.length); options.push(val); }
       });
       if (!text || options.length < 2 || !correct.length) valid = false;
@@ -627,32 +685,21 @@
     return { questions, valid, count: cards.length };
   }
 
-  // =====================
-  //   FILE IMPORT
-  // =====================
+  // FILE IMPORT
   let importedQuestions = null;
-
   window.handleFileImport = function(e) {
-    const file = e.target.files[0];
-    if (!file) return;
+    const file = e.target.files[0]; if (!file) return;
     const reader = new FileReader();
     reader.onload = ev => {
       try {
-        const content = ev.target.result;
-        const parsed = file.name.endsWith('.json') ? parseJSON(content) : parseTXT(content);
-        if (!parsed || !parsed.length) throw new Error('empty');
-        importedQuestions = parsed;
-        showImportPreview(parsed);
+        const parsed = file.name.endsWith('.json') ? parseJSON(ev.target.result) : parseTXT(ev.target.result);
+        if (!parsed?.length) throw new Error('empty');
+        importedQuestions = parsed; showImportPreview(parsed);
         document.getElementById('importFileError').classList.remove('show');
-      } catch(err) {
-        importedQuestions = null;
-        document.getElementById('importPreview').style.display = 'none';
-        document.getElementById('importFileError').classList.add('show');
-      }
+      } catch { importedQuestions = null; document.getElementById('importPreview').style.display = 'none'; document.getElementById('importFileError').classList.add('show'); }
     };
     reader.readAsText(file);
   };
-
   function parseTXT(content) {
     return content.split(/\n\s*\n/).map(b => b.trim()).filter(Boolean).map(block => {
       const lines = block.split('\n').map(l => l.trim()).filter(Boolean);
@@ -660,27 +707,22 @@
       const text = lines[0], options = [], correct = [];
       for (let i = 1; i < lines.length; i++) {
         const l = lines[i];
-        if (l.startsWith('*')) { correct.push(options.length); options.push(l.slice(1).trim()); }
-        else options.push(l);
+        if (l.startsWith('*')) { correct.push(options.length); options.push(l.slice(1).trim()); } else options.push(l);
       }
       return (!text || options.length < 2 || !correct.length) ? null : { text, options, correct };
     }).filter(Boolean);
   }
-
   function parseJSON(content) {
-    const data = JSON.parse(content);
-    if (!Array.isArray(data)) throw new Error('not array');
+    const data = JSON.parse(content); if (!Array.isArray(data)) throw 0;
     return data.map(item => (!item.text || !Array.isArray(item.options) || !Array.isArray(item.correct)) ? null : { text: item.text, options: item.options, correct: item.correct }).filter(Boolean);
   }
-
   function showImportPreview(qs) {
     document.getElementById('importPreviewContent').innerHTML = qs.slice(0,8).map((q,i) =>
-      `<div class="preview-item"><strong>Q${i+1}:</strong> ${escHtml(q.text)} <span style="color:var(--green)">&#10003; ${escHtml(q.correct.map(c => q.options[c]).join(', '))}</span></div>`
-    ).join('') + (qs.length > 8 ? `<div class="preview-item">...and ${qs.length - 8} more</div>` : '');
+      `<div class="preview-item"><strong>Q${i+1}:</strong> ${escHtml(q.text)} <span style="color:var(--green)">&#10003; ${escHtml(q.correct.map(c=>q.options[c]).join(', '))}</span></div>`
+    ).join('') + (qs.length > 8 ? `<div class="preview-item">...and ${qs.length-8} more</div>` : '');
     document.getElementById('importCount').textContent = `${qs.length} question${qs.length!==1?'s':''} ready to import`;
     document.getElementById('importPreview').style.display = 'block';
   }
-
   const iz = document.getElementById('importZone');
   iz.addEventListener('dragover', e => { e.preventDefault(); iz.classList.add('drag-over'); });
   iz.addEventListener('dragleave', () => iz.classList.remove('drag-over'));
@@ -690,95 +732,117 @@
     if (file) { const dt = new DataTransfer(); dt.items.add(file); document.getElementById('importFile').files = dt.files; handleFileImport({ target: { files: [file] } }); }
   });
 
-  // =====================
-  //   SAVE TRIVIA
-  // =====================
+  // SAVE
   window.saveTrivia = async function() {
     const isImport = document.getElementById('tab-import').classList.contains('active');
-    let title, description, questions, pin, showScore, valid = true;
-
+    let title, description, questions, pin, category, timerSeconds, showScore, shuffle, shuffleOpts, valid = true;
+    const g = id => document.getElementById(id);
     if (!isImport) {
-      title = document.getElementById('newTitle').value.trim();
-      description = document.getElementById('newDesc').value.trim();
-      pin = document.getElementById('newPin').value.trim();
-      showScore = document.getElementById('showScoreToggle').classList.contains('on');
-      if (!title) { document.getElementById('titleError').classList.add('show'); valid = false; } else document.getElementById('titleError').classList.remove('show');
-      const r = getQuestionsFromBuilder();
-      questions = r.questions;
-      if (!r.count || !r.valid) { document.getElementById('questionsError').classList.add('show'); valid = false; } else document.getElementById('questionsError').classList.remove('show');
+      title = g('newTitle').value.trim(); description = g('newDesc').value.trim(); pin = g('newPin').value.trim(); category = g('newCategory').value.trim();
+      showScore = g('showScoreToggle').classList.contains('on'); shuffle = g('shuffleToggle').classList.contains('on'); shuffleOpts = g('shuffleOptsToggle').classList.contains('on');
+      const tv = parseInt(g('newTimer').value); timerSeconds = (!isNaN(tv) && tv >= 5) ? tv : null;
+      if (!title) { g('titleError').classList.add('show'); valid = false; } else g('titleError').classList.remove('show');
+      const r = getQuestionsFromBuilder(); questions = r.questions;
+      if (!r.count || !r.valid) { g('questionsError').classList.add('show'); valid = false; } else g('questionsError').classList.remove('show');
     } else {
-      title = document.getElementById('importTitle').value.trim();
-      description = document.getElementById('importDesc').value.trim();
-      pin = document.getElementById('importPin').value.trim();
-      showScore = document.getElementById('importShowScoreToggle').classList.contains('on');
-      if (!title) { document.getElementById('importTitleError').classList.add('show'); valid = false; } else document.getElementById('importTitleError').classList.remove('show');
-      if (!importedQuestions?.length) { document.getElementById('importFileError').classList.add('show'); valid = false; } else document.getElementById('importFileError').classList.remove('show');
+      title = g('importTitle').value.trim(); description = g('importDesc').value.trim(); pin = g('importPin').value.trim(); category = g('importCategory').value.trim();
+      showScore = g('importShowScoreToggle').classList.contains('on'); shuffle = g('importShuffleToggle').classList.contains('on'); shuffleOpts = g('importShuffleOptsToggle').classList.contains('on');
+      const tv = parseInt(g('importTimer').value); timerSeconds = (!isNaN(tv) && tv >= 5) ? tv : null;
+      if (!title) { g('importTitleError').classList.add('show'); valid = false; } else g('importTitleError').classList.remove('show');
+      if (!importedQuestions?.length) { g('importFileError').classList.add('show'); valid = false; } else g('importFileError').classList.remove('show');
       questions = importedQuestions;
     }
-
     if (!valid) return;
-    const btn = document.getElementById('saveTriviaBtn');
-    btn.textContent = 'Saving...'; btn.disabled = true;
+    const btn = g('saveTriviaBtn'); btn.textContent = 'Saving...'; btn.disabled = true;
     try {
-      const payload = { title, description, questions, showScore, createdAt: serverTimestamp() };
-      if (pin) payload.pin = pin;
+      const payload = { title, description, questions, showScore, shuffle, shuffleOpts, createdAt: serverTimestamp() };
+      if (pin) payload.pin = pin; if (category) payload.category = category; if (timerSeconds) payload.timerSeconds = timerSeconds;
       await addDoc(collection(db, 'trivias'), payload);
       closeModal('createModal'); showToast('Trivia saved and live!', 'success');
     } catch(e) { console.error(e); showToast('Error saving trivia.', 'error'); }
     finally { btn.textContent = 'Save Trivia'; btn.disabled = false; }
   };
 
-  // =====================
-  //   QUIZ LOGIC
-  // =====================
+  // QUIZ
   let currentTrivia = null, currentQuestion = 0, answers = [], playerName = '';
+  let questionOrder = [], optionOrders = [];
+  let timerInterval = null, timeLeft = 0;
+  const CIRC = 2 * Math.PI * 22; // circumference for r=22
 
   window.beginQuiz = function(id) {
-    currentTrivia = triviaCache.find(t => t.id === id);
-    if (!currentTrivia) return;
+    currentTrivia = triviaCache.find(t => t.id === id); if (!currentTrivia) return;
     if (currentTrivia.pin) {
-      document.getElementById('pinInput').value = '';
-      document.getElementById('pinError').classList.remove('show');
-      showPage('pinPage');
-    } else {
-      goToNamePage();
-    }
+      document.getElementById('pinInput').value = ''; document.getElementById('pinError').classList.remove('show'); showPage('pinPage');
+    } else goToNamePage();
   };
-
   window.submitPin = function() {
     const entered = document.getElementById('pinInput').value.trim();
-    if (entered === currentTrivia.pin) {
-      document.getElementById('pinError').classList.remove('show');
-      goToNamePage();
-    } else {
+    if (entered === currentTrivia.pin) { document.getElementById('pinError').classList.remove('show'); goToNamePage(); }
+    else {
       document.getElementById('pinError').classList.add('show');
-      const pi = document.getElementById('pinInput');
-      pi.style.animation = 'none'; pi.offsetHeight; pi.style.animation = 'shake 0.3s ease';
+      const pi = document.getElementById('pinInput'); pi.style.animation = 'none'; pi.offsetHeight; pi.style.animation = 'shake 0.3s ease';
     }
   };
-
   function goToNamePage() {
     document.getElementById('namePageTitle').textContent = currentTrivia.title;
-    document.getElementById('playerNameInput').value = '';
-    document.getElementById('nameError').classList.remove('show');
-    showPage('namePage');
+    document.getElementById('playerNameInput').value = ''; document.getElementById('nameError').classList.remove('show'); showPage('namePage');
   }
-
   window.startQuizWithName = function() {
     const name = document.getElementById('playerNameInput').value.trim();
     if (!name) { document.getElementById('nameError').classList.add('show'); return; }
     document.getElementById('nameError').classList.remove('show');
     playerName = name; currentQuestion = 0;
+    // Build question order
+    questionOrder = currentTrivia.questions.map((_,i) => i);
+    if (currentTrivia.shuffle) shuffleArr(questionOrder);
+    // Build option orders per question
+    optionOrders = currentTrivia.questions.map(q => {
+      const order = q.options.map((_,i) => i);
+      if (currentTrivia.shuffleOpts) shuffleArr(order);
+      return order;
+    });
     answers = currentTrivia.questions.map(() => []);
     renderQuestion(); showPage('quizPage');
   };
+  function shuffleArr(arr) { for (let i = arr.length-1; i > 0; i--) { const j = Math.floor(Math.random()*(i+1)); [arr[i],arr[j]]=[arr[j],arr[i]]; } }
+
+  window.quitQuiz = function() { clearTimer(); showPage('homePage'); };
+
+  function clearTimer() { if (timerInterval) { clearInterval(timerInterval); timerInterval = null; } }
+
+  function startTimer() {
+    clearTimer();
+    const wrap = document.getElementById('timerWrap');
+    if (!currentTrivia.timerSeconds) { wrap.style.display = 'none'; return; }
+    wrap.style.display = 'flex';
+    timeLeft = currentTrivia.timerSeconds;
+    updateTimer();
+    timerInterval = setInterval(() => {
+      timeLeft--;
+      updateTimer();
+      if (timeLeft <= 0) { clearTimer(); document.querySelectorAll('.option-btn').forEach(b => b.disabled = true); setTimeout(() => { if (currentQuestion < questionOrder.length-1) { currentQuestion++; renderQuestion(); } else submitQuiz(); }, 900); }
+    }, 1000);
+  }
+
+  function updateTimer() {
+    const arc = document.getElementById('timerArc');
+    const num = document.getElementById('timerNum');
+    const total = currentTrivia.timerSeconds;
+    const pct = timeLeft / total;
+    arc.style.strokeDasharray = CIRC;
+    arc.style.strokeDashoffset = CIRC * (1 - pct);
+    arc.className = 'timer-fill' + (pct <= 0.2 ? ' danger' : pct <= 0.4 ? ' warn' : '');
+    num.textContent = timeLeft;
+  }
 
   function renderQuestion() {
-    const q = currentTrivia.questions[currentQuestion];
-    const total = currentTrivia.questions.length;
-    const isMulti = q.correct && q.correct.length > 1;
+    clearTimer();
+    const qi = questionOrder[currentQuestion];
+    const q = currentTrivia.questions[qi];
+    const total = questionOrder.length;
+    const isMulti = q.correct.length > 1;
     document.getElementById('progressBar').style.width = (currentQuestion / total * 100) + '%';
-    document.getElementById('questionNum').textContent = `Question ${currentQuestion + 1} of ${total}`;
+    document.getElementById('questionNum').textContent = `Question ${currentQuestion+1} of ${total}`;
     document.getElementById('quizTitle').textContent = currentTrivia.title;
     const descEl = document.getElementById('quizDesc');
     if (currentTrivia.description) { descEl.textContent = currentTrivia.description; descEl.style.display = 'block'; } else descEl.style.display = 'none';
@@ -787,213 +851,177 @@
     const optList = document.getElementById('optionsList');
     optList.innerHTML = '';
     const letters = 'ABCDEFGHIJ'.split('');
-    const cur = answers[currentQuestion] || [];
-    q.options.forEach((opt, i) => {
+    const cur = answers[qi] || [];
+    const optOrder = optionOrders[qi] || q.options.map((_,i)=>i);
+    optOrder.forEach((origIdx, displayPos) => {
       const btn = document.createElement('button');
-      btn.className = 'option-btn' + (cur.includes(i) ? ' selected' : '');
-      btn.innerHTML = `<span class="option-letter">${letters[i] || i+1}</span>${escHtml(opt)}`;
-      btn.onclick = () => toggleAnswer(i, isMulti);
+      btn.className = 'option-btn' + (cur.includes(origIdx) ? ' selected' : '');
+      btn.innerHTML = `<span class="option-letter">${letters[displayPos]}</span>${escHtml(q.options[origIdx])}`;
+      btn.onclick = () => toggleAnswer(qi, origIdx, isMulti);
       optList.appendChild(btn);
     });
-    document.getElementById('nextBtn').textContent = currentQuestion === total - 1 ? 'Submit' : 'Next';
+    document.getElementById('nextBtn').textContent = currentQuestion === total-1 ? 'Submit' : 'Next';
+    startTimer();
   }
 
-  function toggleAnswer(idx, isMulti) {
-    if (!answers[currentQuestion]) answers[currentQuestion] = [];
-    if (isMulti) {
-      const pos = answers[currentQuestion].indexOf(idx);
-      if (pos === -1) answers[currentQuestion].push(idx); else answers[currentQuestion].splice(pos, 1);
-    } else { answers[currentQuestion] = [idx]; }
-    const letters = 'ABCDEFGHIJ'.split('');
-    document.querySelectorAll('.option-btn').forEach((btn, i) => {
-      btn.classList.toggle('selected', answers[currentQuestion].includes(i));
-      btn.querySelector('.option-letter').textContent = letters[i] || i+1;
+  function toggleAnswer(qi, idx, isMulti) {
+    if (!answers[qi]) answers[qi] = [];
+    if (isMulti) { const pos = answers[qi].indexOf(idx); if (pos===-1) answers[qi].push(idx); else answers[qi].splice(pos,1); }
+    else answers[qi] = [idx];
+    const optOrder = optionOrders[qi] || currentTrivia.questions[qi].options.map((_,i)=>i);
+    document.querySelectorAll('.option-btn').forEach((btn, displayPos) => {
+      const origIdx = optOrder[displayPos];
+      btn.classList.toggle('selected', answers[qi].includes(origIdx));
     });
   }
 
   window.nextQuestion = function() {
-    if (!answers[currentQuestion]?.length) {
-      const ol = document.getElementById('optionsList');
-      ol.style.animation = 'none'; ol.offsetHeight; ol.style.animation = 'shake 0.3s ease';
-      return;
+    const qi = questionOrder[currentQuestion];
+    if (!answers[qi]?.length) {
+      const ol = document.getElementById('optionsList'); ol.style.animation='none'; ol.offsetHeight; ol.style.animation='shake 0.3s ease'; return;
     }
-    if (currentQuestion < currentTrivia.questions.length - 1) { currentQuestion++; renderQuestion(); }
-    else submitQuiz();
+    clearTimer();
+    if (currentQuestion < questionOrder.length-1) { currentQuestion++; renderQuestion(); } else submitQuiz();
   };
 
   async function submitQuiz() {
+    clearTimer();
     let score = 0;
     currentTrivia.questions.forEach((q, i) => {
-      const chosen = [...(answers[i] || [])].sort().join(',');
-      const correct = [...(q.correct || [])].sort().join(',');
+      const chosen = [...(answers[i]||[])].sort().join(',');
+      const correct = [...(q.correct||[])].sort().join(',');
       if (chosen === correct) score++;
     });
-
-    // Show score if enabled
     const showScore = currentTrivia.showScore !== false;
     if (showScore) {
-      const pct = Math.round((score / currentTrivia.questions.length) * 100);
-      document.getElementById('submittedMsg').innerHTML = `You scored <strong style="color:var(--green)">${score} out of ${currentTrivia.questions.length}</strong> (${pct}%). Your answers have been submitted!`;
+      const pct = Math.round(score / currentTrivia.questions.length * 100);
+      document.getElementById('submittedMsg').innerHTML = `You scored <strong style="color:var(--green)">${score} out of ${currentTrivia.questions.length}</strong> (${pct}%). Thanks for playing!`;
     } else {
       document.getElementById('submittedMsg').textContent = 'Your answers have been submitted. Thanks for playing!';
     }
-
-    // Firestore doesn't support nested arrays — convert to a plain object keyed by index
     const answersMap = {};
-    answers.forEach((a, i) => { answersMap[`q${i}`] = Array.isArray(a) ? a : []; });
-
+    answers.forEach((a,i) => { answersMap[`q${i}`] = Array.isArray(a) ? a : []; });
     try {
-      await addDoc(collection(db, 'responses'), {
-        triviaId: currentTrivia.id,
-        triviaTitle: currentTrivia.title,
-        playerName,
-        answersMap,
-        score,
-        total: currentTrivia.questions.length,
-        submittedAt: serverTimestamp()
-      });
+      await addDoc(collection(db, 'responses'), { triviaId: currentTrivia.id, triviaTitle: currentTrivia.title, playerName, answersMap, score, total: currentTrivia.questions.length, submittedAt: serverTimestamp() });
     } catch(e) { console.error(e); }
     showPage('submittedPage');
   }
 
-  // =====================
-  //   REVIEW — FIXED
-  // =====================
+  // REVIEW
   let currentReviewTriviaId = null;
-  let currentReviewResponses = [];
-
   window.openReview = async function(triviaId) {
-    const trivia = triviaCache.find(t => t.id === triviaId);
-    if (!trivia) return;
+    const trivia = triviaCache.find(t => t.id === triviaId); if (!trivia) return;
     currentReviewTriviaId = triviaId;
     document.getElementById('reviewTitle').textContent = trivia.title;
     document.getElementById('reviewContent').innerHTML = '<div class="no-responses"><div class="spinner" style="margin:0 auto 10px"></div>Loading...</div>';
-    document.getElementById('reviewContent').style.display = 'block';
-    document.getElementById('leaderboardContent').style.display = 'none';
+    ['reviewContent','leaderboardContent','breakdownContent'].forEach((id,i) => document.getElementById(id).style.display = i===0?'block':'none');
     document.getElementById('reviewStats').style.display = 'none';
-    document.getElementById('reviewTabResponses').classList.add('active');
-    document.getElementById('reviewTabLeaderboard').classList.remove('active');
+    ['responses','leaderboard','breakdown'].forEach((t,i) => document.getElementById('reviewTab'+t.charAt(0).toUpperCase()+t.slice(1)).classList.toggle('active', i===0));
     document.getElementById('reviewModal').classList.add('open');
-
     try {
-      // Use where() to filter by triviaId properly
       const snap = await getDocs(query(collection(db, 'responses'), where('triviaId', '==', triviaId)));
-      currentReviewResponses = snap.docs.map(d => ({ id: d.id, ...d.data() }))
-        .sort((a, b) => (b.submittedAt?.seconds||0) - (a.submittedAt?.seconds||0));
-
-      renderReviewResponses(trivia, currentReviewResponses);
-      renderLeaderboard(currentReviewResponses);
-    } catch(e) {
-      console.error(e);
-      document.getElementById('reviewContent').innerHTML = '<div class="no-responses">Error loading responses. Check Firestore rules.</div>';
-    }
+      const responses = snap.docs.map(d => ({ id: d.id, ...d.data() })).sort((a,b) => (b.submittedAt?.seconds||0)-(a.submittedAt?.seconds||0));
+      renderReviewResponses(trivia, responses);
+      renderLeaderboard(responses);
+      renderBreakdown(trivia, responses);
+    } catch(e) { console.error(e); document.getElementById('reviewContent').innerHTML = '<div class="no-responses">Error loading responses.</div>'; }
   };
 
   function renderReviewResponses(trivia, responses) {
     const content = document.getElementById('reviewContent');
     const statsEl = document.getElementById('reviewStats');
-
-    if (!responses.length) {
-      content.innerHTML = '<div class="no-responses">No responses yet.</div>';
-      statsEl.style.display = 'none';
-      return;
-    }
-
-    const avg = (responses.reduce((a, r) => a + (r.score||0), 0) / responses.length).toFixed(1);
-    const topScore = Math.max(...responses.map(r => r.score||0));
+    if (!responses.length) { content.innerHTML = '<div class="no-responses">No responses yet.</div>'; statsEl.style.display='none'; return; }
+    const avg = (responses.reduce((a,r)=>a+(r.score||0),0)/responses.length).toFixed(1);
+    const topScore = Math.max(...responses.map(r=>r.score||0));
+    const passCount = responses.filter(r => (r.score||0)/(r.total||1) >= 0.5).length;
     statsEl.innerHTML = `
       <div class="stat-box"><div class="stat-val">${responses.length}</div><div class="stat-label">Responses</div></div>
       <div class="stat-box"><div class="stat-val">${avg}</div><div class="stat-label">Avg Score</div></div>
-      <div class="stat-box"><div class="stat-val">${topScore}/${responses[0]?.total||'?'}</div><div class="stat-label">Top Score</div></div>`;
+      <div class="stat-box"><div class="stat-val">${topScore}/${responses[0]?.total||'?'}</div><div class="stat-label">Top Score</div></div>
+      <div class="stat-box"><div class="stat-val">${passCount}</div><div class="stat-label">Passed (50%+)</div></div>`;
     statsEl.style.display = 'grid';
-
     content.innerHTML = responses.map(r => {
-      // Support both old (answers array) and new (answersMap object) format
-      const details = trivia.questions.map((q, i) => {
-        const ans = r.answersMap ? (r.answersMap[`q${i}`] || []) : (Array.isArray(r.answers) ? (r.answers[i] || []) : []);
-        const chosen = Array.isArray(ans) ? ans : (ans != null ? [ans] : []);
-        const correct = q.correct || [];
-        const isCorrect = [...chosen].sort().join(',') === [...correct].sort().join(',');
-        const chosenText = chosen.length ? chosen.map(c => q.options[c]).filter(Boolean).join(', ') : 'No answer';
+      const details = trivia.questions.map((q,i) => {
+        const ans = r.answersMap ? (r.answersMap[`q${i}`]||[]) : (Array.isArray(r.answers) ? (r.answers[i]||[]) : []);
+        const chosen = Array.isArray(ans) ? ans : (ans!=null?[ans]:[]);
+        const isCorrect = [...chosen].sort().join(',') === [...(q.correct||[])].sort().join(',');
+        const chosenText = chosen.length ? chosen.map(c=>q.options[c]).filter(Boolean).join(', ') : 'No answer';
         return `<div class="answer-row"><span class="mark ${isCorrect?'correct':'wrong'}">${isCorrect?'+':'-'}</span><span class="q-text">${escHtml(q.text)}</span><span class="a-text">${escHtml(chosenText)}</span></div>`;
       }).join('');
       const timeStr = r.submittedAt?.seconds ? new Date(r.submittedAt.seconds*1000).toLocaleString() : '';
-      return `
-        <div class="response-card">
-          <div class="r-header">
-            <div>
-              <div class="r-name">${escHtml(r.playerName||'Unknown')}</div>
-              ${timeStr ? `<div class="r-time">${timeStr}</div>` : ''}
-            </div>
-            <div style="display:flex;align-items:center;gap:10px">
-              <span class="score-badge">${r.score??'?'} / ${r.total??'?'}</span>
-              <button class="btn btn-danger btn-sm" onclick="deleteResponse('${r.id}','${currentReviewTriviaId}')">Delete</button>
-            </div>
-          </div>
-          <div class="response-details">${details}</div>
-        </div>`;
+      return `<div class="response-card"><div class="r-header"><div><div class="r-name">${escHtml(r.playerName||'Unknown')}</div>${timeStr?`<div class="r-time">${timeStr}</div>`:''}</div><div style="display:flex;align-items:center;gap:10px"><span class="score-badge">${r.score??'?'}/${r.total??'?'}</span><button class="btn btn-danger btn-sm" onclick="deleteResponse('${r.id}','${currentReviewTriviaId}')">Delete</button></div></div><div class="response-details">${details}</div></div>`;
     }).join('');
   }
 
   function renderLeaderboard(responses) {
     const lb = document.getElementById('leaderboardContent');
     if (!responses.length) { lb.innerHTML = '<div class="no-responses">No responses yet.</div>'; return; }
-
-    // Best score per player
     const best = {};
-    responses.forEach(r => {
-      const name = r.playerName || 'Unknown';
-      const pct = (r.score||0) / (r.total||1);
-      if (!best[name] || pct > best[name].pct) best[name] = { score: r.score||0, total: r.total||0, pct };
-    });
-
-    const sorted = Object.entries(best).sort((a,b) => b[1].pct - a[1].pct);
+    responses.forEach(r => { const name = r.playerName||'Unknown', pct=(r.score||0)/(r.total||1); if (!best[name]||pct>best[name].pct) best[name]={score:r.score||0,total:r.total||0,pct}; });
+    const sorted = Object.entries(best).sort((a,b)=>b[1].pct-a[1].pct);
     const rankClasses = ['gold','silver','bronze'];
-    lb.innerHTML = sorted.map(([name, data], i) => `
+    lb.innerHTML = sorted.map(([name,data],i) => `
       <div class="leaderboard-row">
         <span class="lb-rank ${rankClasses[i]||''}">${i+1}</span>
         <span class="lb-name">${escHtml(name)}</span>
+        <div class="lb-bar-wrap"><div class="lb-bar" style="width:${Math.round(data.pct*100)}%"></div></div>
         <span class="lb-score">${data.score}/${data.total}</span>
         <span class="lb-pct">${Math.round(data.pct*100)}%</span>
       </div>`).join('');
   }
 
+  function renderBreakdown(trivia, responses) {
+    const el = document.getElementById('breakdownContent');
+    if (!responses.length) { el.innerHTML = '<div class="no-responses">No responses yet.</div>'; return; }
+    el.innerHTML = '<div class="breakdown-section"><h4>Question Breakdown</h4>' + trivia.questions.map((q, qi) => {
+      // Count how many times each option was chosen
+      const counts = q.options.map(() => 0);
+      let answered = 0;
+      responses.forEach(r => {
+        const ans = r.answersMap ? (r.answersMap[`q${qi}`]||[]) : [];
+        if (ans.length) { answered++; ans.forEach(idx => { if (counts[idx] !== undefined) counts[idx]++; }); }
+      });
+      const maxCount = Math.max(...counts, 1);
+      const bars = q.options.map((opt, oi) => {
+        const isCorrect = q.correct.includes(oi);
+        const pct = Math.round(counts[oi]/responses.length*100);
+        return `<div class="bq-bar-row">
+          <span class="bq-label" title="${escHtml(opt)}">${isCorrect?'&#10003; ':''}${escHtml(opt)}</span>
+          <div class="bq-bar-outer"><div class="bq-bar-inner ${isCorrect?'correct-opt':''}" style="width:${Math.round(counts[oi]/maxCount*100)}%"></div></div>
+          <span class="bq-count">${pct}%</span>
+        </div>`;
+      }).join('');
+      const correctPct = Math.round(responses.filter(r => {
+        const ans = r.answersMap ? (r.answersMap[`q${qi}`]||[]) : [];
+        return [...ans].sort().join(',') === [...q.correct].sort().join(',');
+      }).length / responses.length * 100);
+      return `<div class="breakdown-q"><div class="bq-text">Q${qi+1}: ${escHtml(q.text)} <span style="color:var(--green);font-size:0.8rem">(${correctPct}% correct)</span></div>${bars}</div>`;
+    }).join('') + '</div>';
+  }
+
   window.deleteResponse = async function(responseId, triviaId) {
     if (!confirm('Delete this response?')) return;
-    try {
-      await deleteDoc(doc(db, 'responses', responseId));
-      showToast('Response deleted.', 'success');
-      openReview(triviaId);
-    } catch(e) { showToast('Error deleting response.', 'error'); }
+    try { await deleteDoc(doc(db, 'responses', responseId)); showToast('Response deleted.', 'success'); openReview(triviaId); }
+    catch(e) { showToast('Error deleting response.', 'error'); }
   };
 
-  // =====================
-  //   MODALS
-  // =====================
+  // MODALS
   window.openLoginModal = function() {
     ['loginUser','loginPass'].forEach(id => document.getElementById(id).value = '');
     document.getElementById('loginError').classList.remove('show');
     document.getElementById('loginModal').classList.add('open');
   };
   window.closeModal = function(id) { document.getElementById(id).classList.remove('open'); };
-  document.querySelectorAll('.modal-overlay').forEach(o => o.addEventListener('click', e => { if (e.target === o) o.classList.remove('open'); }));
-  document.getElementById('loginPass').addEventListener('keydown', e => { if (e.key === 'Enter') doLogin(); });
-  document.getElementById('playerNameInput').addEventListener('keydown', e => { if (e.key === 'Enter') startQuizWithName(); });
-  document.getElementById('pinInput').addEventListener('keydown', e => { if (e.key === 'Enter') submitPin(); });
+  document.querySelectorAll('.modal-overlay').forEach(o => o.addEventListener('click', e => { if (e.target===o) o.classList.remove('open'); }));
+  document.getElementById('loginPass').addEventListener('keydown', e => { if (e.key==='Enter') doLogin(); });
+  document.getElementById('playerNameInput').addEventListener('keydown', e => { if (e.key==='Enter') startQuizWithName(); });
+  document.getElementById('pinInput').addEventListener('keydown', e => { if (e.key==='Enter') submitPin(); });
 
-  // =====================
-  //   TOAST + UTILS
-  // =====================
   function showToast(msg, type='') {
-    const t = document.getElementById('toast');
-    t.textContent = msg; t.className = 'toast ' + type; t.classList.add('show');
+    const t = document.getElementById('toast'); t.textContent = msg; t.className = 'toast '+type; t.classList.add('show');
     setTimeout(() => t.classList.remove('show'), 3000);
   }
-
-  function escHtml(str) {
-    if (!str) return '';
-    return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
-  }
+  function escHtml(str) { if (!str) return ''; return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
 
   updateAuthUI();
   listenTrivia();
