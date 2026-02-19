@@ -41,15 +41,28 @@
   .home-header h1 { font-family: 'Nunito', sans-serif; font-weight: 900; font-size: 2.8rem; margin-bottom: 10px; background: linear-gradient(135deg, #e8eaf6, #8b90b8); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
   .home-header p { color: var(--muted); font-size: 1rem; }
 
-  /* SEARCH BAR */
-  .search-row { display: flex; gap: 12px; margin-bottom: 28px; align-items: stretch; }
-  .search-wrap { flex: 1; position: relative; }
-  .search-wrap svg { position: absolute; left: 17px; top: 50%; transform: translateY(-50%); color: var(--muted); pointer-events: none; width: 20px; height: 20px; }
-  #searchInput { width: 100%; background: var(--surface); border: 2px solid var(--border); border-radius: 14px; padding: 16px 18px 16px 50px; color: var(--text) !important; font-family: 'Nunito', sans-serif; font-weight: 600; font-size: 1.05rem; outline: none; transition: border-color 0.2s, box-shadow 0.2s; -webkit-text-fill-color: var(--text); }
-  #searchInput::placeholder { color: var(--muted); -webkit-text-fill-color: var(--muted); }
-  #searchInput:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(108,99,255,0.15); }
-  .cat-filter { background: var(--surface); border: 2px solid var(--border); border-radius: 14px; padding: 14px 18px; color: var(--text); font-family: 'Nunito', sans-serif; font-weight: 600; font-size: 0.95rem; outline: none; cursor: pointer; min-width: 160px; appearance: none; }
-  .cat-filter:focus { border-color: var(--accent); }
+  /* SEARCH ROW — both inputs identical style, no SVG hack */
+  .search-row { display: flex; gap: 12px; margin-bottom: 28px; }
+  .search-row #searchInput,
+  .search-row #catFilter {
+    height: 50px;
+    background: var(--surface);
+    border: 2px solid var(--border);
+    border-radius: 14px;
+    padding: 0 18px;
+    font-family: 'Nunito Sans', sans-serif;
+    font-weight: 600;
+    font-size: 0.97rem;
+    color: var(--text);
+    -webkit-text-fill-color: var(--text);
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+  .search-row #searchInput { flex: 1; }
+  .search-row #searchInput::placeholder { color: var(--muted); -webkit-text-fill-color: var(--muted); }
+  .search-row #catFilter { width: 175px; appearance: none; cursor: pointer; }
+  .search-row #searchInput:focus,
+  .search-row #catFilter:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(108,99,255,0.15); }
 
   .trivia-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; }
   .trivia-card { background: var(--surface); border: 1.5px solid var(--border); border-radius: var(--radius); padding: 24px; transition: all 0.25s ease; display: flex; flex-direction: column; gap: 12px; }
@@ -80,13 +93,49 @@
   .modal-header h2 { font-family: 'Nunito', sans-serif; font-weight: 800; font-size: 1.3rem; }
   .close-btn { background: var(--surface2); border: none; color: var(--muted); width: 32px; height: 32px; border-radius: 50%; cursor: pointer; font-size: 1rem; display: flex; align-items: center; justify-content: center; transition: all 0.2s; }
   .close-btn:hover { color: var(--text); background: var(--border); }
+
+  /* FORM INPUTS — global style for modal forms */
   .form-group { margin-bottom: 16px; }
   .form-group label { display: block; font-weight: 700; font-size: 0.82rem; color: var(--muted); margin-bottom: 7px; text-transform: uppercase; letter-spacing: 0.5px; }
   .form-group label span.req { color: var(--red); margin-left: 3px; }
-  input[type="text"], input[type="password"], input[type="number"], textarea, select { width: 100%; background: var(--surface2); border: 1.5px solid var(--border); border-radius: 12px; padding: 12px 16px; color: var(--text); font-family: 'Nunito Sans', sans-serif; font-size: 0.95rem; transition: border-color 0.2s; outline: none; }
+  input[type="text"], input[type="password"], input[type="number"], textarea, select {
+    width: 100%; background: var(--surface2); border: 1.5px solid var(--border); border-radius: 12px;
+    padding: 12px 16px; color: var(--text); font-family: 'Nunito Sans', sans-serif; font-size: 0.95rem;
+    transition: border-color 0.2s; outline: none;
+  }
   select { appearance: none; cursor: pointer; }
   input:focus, textarea:focus, select:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(108,99,255,0.15); }
   textarea { resize: vertical; min-height: 80px; }
+
+  /* NAME/PIN inputs — scoped by ID to override the global rule above */
+  #playerNameInput, #pinInput {
+    display: block !important;
+    width: 100% !important;
+    background: var(--surface2) !important;
+    border: 2px solid var(--border) !important;
+    border-radius: 14px !important;
+    padding: 16px 20px !important;
+    color: var(--text) !important;
+    -webkit-text-fill-color: var(--text) !important;
+    font-family: 'Nunito', sans-serif !important;
+    font-weight: 700 !important;
+    font-size: 1.2rem !important;
+    text-align: center !important;
+    outline: none !important;
+    transition: border-color 0.2s, box-shadow 0.2s !important;
+    margin-bottom: 6px !important;
+    box-sizing: border-box !important;
+  }
+  #playerNameInput::placeholder, #pinInput::placeholder {
+    color: var(--muted) !important;
+    -webkit-text-fill-color: var(--muted) !important;
+  }
+  #playerNameInput:focus, #pinInput:focus {
+    border-color: var(--accent) !important;
+    box-shadow: 0 0 0 3px rgba(108,99,255,0.18) !important;
+  }
+  #pinInput { letter-spacing: 8px !important; font-size: 1.4rem !important; }
+
   .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
   .three-col { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; }
   .toggle-row { display: flex; align-items: center; justify-content: space-between; background: var(--surface2); border: 1.5px solid var(--border); border-radius: 12px; padding: 12px 16px; margin-bottom: 8px; }
@@ -148,11 +197,10 @@
   .entry-page { max-width: 420px; margin: 60px auto; }
   .entry-page .card { background: var(--surface); border: 1.5px solid var(--border); border-radius: var(--radius); padding: 40px 36px; box-shadow: var(--shadow); text-align: center; }
   .entry-page h2 { font-family: 'Nunito', sans-serif; font-weight: 900; font-size: 1.8rem; margin-bottom: 8px; }
-  .entry-page .subtitle { color: var(--muted); margin-bottom: 28px; font-size: 0.95rem; }
-  .entry-page .big-input { width: 100%; text-align: center; font-family: 'Nunito', sans-serif; font-weight: 700; font-size: 1.15rem; padding: 15px 20px; border-radius: 14px; margin-bottom: 4px; display: block; }
-  .entry-page .big-input.pin-style { letter-spacing: 8px; font-size: 1.4rem; }
+  .entry-page .subtitle { color: var(--muted); margin-bottom: 28px; font-size: 0.95rem; display: block; }
   .entry-page .action-btn { width: 100%; justify-content: center; margin-top: 14px; padding: 14px 20px; font-size: 1rem; }
   .entry-page .back-btn { width: 100%; justify-content: center; margin-top: 8px; }
+  #nameWelcome { display: none; background: var(--surface2); border: 1.5px solid var(--border); border-radius: 12px; padding: 14px 16px; font-size: 0.9rem; line-height: 1.6; color: var(--text); margin-bottom: 20px; text-align: left; }
 
   /* QUIZ */
   .quiz-container { max-width: 660px; margin: 0 auto; }
@@ -172,6 +220,7 @@
   .progress-bar { background: linear-gradient(90deg, var(--accent), #a78bfa); height: 100%; border-radius: 50px; transition: width 0.4s ease; }
   .question-text { font-family: 'Nunito', sans-serif; font-weight: 800; font-size: 1.4rem; line-height: 1.4; margin-bottom: 8px; }
   .question-points { font-size: 0.8rem; color: var(--yellow); font-weight: 700; margin-bottom: 18px; }
+  .question-image { width: 100%; max-height: 280px; object-fit: cover; border-radius: 12px; margin-bottom: 16px; border: 1.5px solid var(--border); display: none; }
   .multi-hint { font-size: 0.82rem; color: var(--yellow); margin-bottom: 16px; font-weight: 600; }
   .options-list { display: flex; flex-direction: column; gap: 12px; }
   .option-btn { background: var(--surface); border: 1.5px solid var(--border); border-radius: 14px; padding: 16px 20px; color: var(--text); font-family: 'Nunito', sans-serif; font-weight: 700; font-size: 1rem; cursor: pointer; text-align: left; transition: all 0.2s; display: flex; align-items: center; gap: 14px; width: 100%; }
@@ -209,21 +258,15 @@
   .answer-row .a-text { font-weight: 700; }
   .explanation-text { font-size: 0.78rem; color: #a78bfa; margin-top: 2px; margin-left: 26px; font-style: italic; }
   .no-responses { text-align: center; color: var(--muted); padding: 40px; font-size: 0.9rem; }
-
-  /* LEADERBOARD */
   .leaderboard-row { display: flex; align-items: center; gap: 12px; padding: 12px 0; border-bottom: 1px solid var(--border); }
   .leaderboard-row:last-child { border-bottom: none; }
   .lb-rank { font-family: 'Nunito', sans-serif; font-weight: 900; font-size: 1rem; width: 28px; text-align: center; color: var(--muted); }
-  .lb-rank.gold { color: #ffd700; }
-  .lb-rank.silver { color: #c0c0c0; }
-  .lb-rank.bronze { color: #cd7f32; }
+  .lb-rank.gold { color: #ffd700; } .lb-rank.silver { color: #c0c0c0; } .lb-rank.bronze { color: #cd7f32; }
   .lb-name { flex: 1; font-weight: 700; font-family: 'Nunito', sans-serif; }
   .lb-bar-wrap { width: 80px; background: var(--border); border-radius: 4px; height: 6px; }
   .lb-bar { background: linear-gradient(90deg, var(--accent), var(--green)); height: 100%; border-radius: 4px; }
   .lb-score { font-size: 0.85rem; color: var(--muted); font-weight: 600; }
   .lb-pct { font-family: 'Nunito', sans-serif; font-weight: 800; font-size: 0.9rem; color: var(--green); }
-
-  /* BREAKDOWN */
   .breakdown-q { background: var(--surface2); border: 1.5px solid var(--border); border-radius: 10px; padding: 14px; margin-bottom: 10px; }
   .bq-text { font-weight: 700; font-size: 0.9rem; margin-bottom: 10px; }
   .bq-bar-row { display: flex; align-items: center; gap: 8px; margin-bottom: 5px; font-size: 0.82rem; }
@@ -241,6 +284,11 @@
   .toast.show { transform: translateX(-50%) translateY(0); }
   .toast.success { border-color: rgba(67,217,160,0.4); color: var(--green); }
   .toast.error { border-color: rgba(255,101,132,0.4); color: var(--red); }
+
+  /* EDIT IMPORTED MODAL */
+  .edit-q-card { background: var(--surface2); border: 1.5px solid var(--border); border-radius: 10px; padding: 14px; margin-bottom: 10px; }
+  .edit-q-card .eq-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
+  .edit-q-card .eq-num { font-family: 'Nunito', sans-serif; font-weight: 800; font-size: 0.8rem; color: var(--accent); text-transform: uppercase; letter-spacing: 0.5px; }
 </style>
 </head>
 <body>
@@ -263,11 +311,8 @@
       <p>Pick a quiz and test your knowledge</p>
     </div>
     <div class="search-row">
-      <div class="search-wrap">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-        <input type="text" id="searchInput" placeholder="Search trivia by name, category..." oninput="renderHome()" autocomplete="off" />
-      </div>
-      <select class="cat-filter" id="catFilter" onchange="renderHome()">
+      <input type="text" id="searchInput" placeholder="Search trivia by name, category..." oninput="renderHome()" autocomplete="off" />
+      <select id="catFilter" onchange="renderHome()">
         <option value="">All categories</option>
       </select>
     </div>
@@ -276,14 +321,14 @@
     </div>
   </div>
 
-  <!-- NAME PAGE — fixed, no form tags, clean layout -->
+  <!-- NAME PAGE -->
   <div id="namePage" class="page">
     <div class="entry-page">
       <div class="card">
         <h2 id="namePageTitle">Before you start</h2>
-        <p class="subtitle">Enter your name so we know who's playing.</p>
-        <div id="nameWelcome" style="display:none;background:var(--surface2);border:1.5px solid var(--border);border-radius:12px;padding:14px 16px;font-size:0.9rem;line-height:1.6;color:var(--text);margin-bottom:20px;text-align:left"></div>
-        <input type="text" id="playerNameInput" class="big-input" placeholder="Your name" maxlength="40" autocomplete="off" />
+        <span class="subtitle">Enter your name so we know who's playing.</span>
+        <div id="nameWelcome"></div>
+        <input type="text" id="playerNameInput" placeholder="Your name" maxlength="40" autocomplete="off" />
         <div class="error-msg" id="nameError">Please enter your name.</div>
         <button class="btn btn-green action-btn" onclick="startQuizWithName()">Start Quiz</button>
         <button class="btn btn-ghost back-btn" onclick="showPage('homePage')">Back</button>
@@ -296,8 +341,8 @@
     <div class="entry-page">
       <div class="card">
         <h2>This quiz is locked</h2>
-        <p class="subtitle">Enter the PIN to access.</p>
-        <input type="text" id="pinInput" class="big-input pin-style" placeholder="••••" maxlength="8" autocomplete="off" />
+        <span class="subtitle">Enter the PIN to access.</span>
+        <input type="text" id="pinInput" placeholder="••••" maxlength="8" autocomplete="off" />
         <div class="error-msg" id="pinError">Incorrect PIN. Try again.</div>
         <button class="btn btn-green action-btn" onclick="submitPin()">Unlock</button>
         <button class="btn btn-ghost back-btn" onclick="showPage('homePage')">Back</button>
@@ -325,6 +370,7 @@
       <div class="progress-bar-wrap"><div class="progress-bar" id="progressBar" style="width:0%"></div></div>
       <div class="question-text" id="questionText"></div>
       <div class="question-points" id="questionPoints" style="display:none"></div>
+      <img class="question-image" id="questionImage" alt="Question image" />
       <div class="multi-hint" id="multiHint" style="display:none">Select all that apply</div>
       <div class="options-list" id="optionsList"></div>
       <div class="quiz-nav">
@@ -390,7 +436,6 @@
         <div class="form-group">
           <label>Max attempts per player</label>
           <input type="number" id="newMaxAttempts" placeholder="Blank = unlimited" min="1" max="99" />
-          <div class="hint-text">How many times can one player submit.</div>
         </div>
       </div>
       <div class="form-group">
@@ -411,7 +456,7 @@
         <div class="form-group">
           <label>Passing score (%)</label>
           <input type="number" id="newPassScore" placeholder="e.g. 70 — blank = none" min="1" max="100" />
-          <div class="hint-text">Shows pass/fail message on finish screen.</div>
+          <div class="hint-text">Shows pass/fail on finish screen.</div>
         </div>
       </div>
       <div class="form-group">
@@ -475,7 +520,7 @@
       <div class="form-group">
         <span class="section-label">Behaviour</span>
         <div class="toggle-row"><div><span>Show score at end</span><small>Players see their score on the finish screen</small></div><button class="toggle on" id="importShowScoreToggle" onclick="this.classList.toggle('on')"></button></div>
-        <div class="toggle-row"><div><span>Show explanations after each question</span><small>Explanation shown after answering (JSON only)</small></div><button class="toggle" id="importShowExplanationToggle" onclick="this.classList.toggle('on')"></button></div>
+        <div class="toggle-row"><div><span>Show explanations after each question</span><small>Explanation shown after answering (if set in file)</small></div><button class="toggle" id="importShowExplanationToggle" onclick="this.classList.toggle('on')"></button></div>
         <div class="toggle-row"><div><span>Shuffle questions</span><small>Randomise question order per player</small></div><button class="toggle" id="importShuffleToggle" onclick="this.classList.toggle('on')"></button></div>
         <div class="toggle-row"><div><span>Shuffle answer options</span><small>Randomise A/B/C/D order per player</small></div><button class="toggle" id="importShuffleOptsToggle" onclick="this.classList.toggle('on')"></button></div>
       </div>
@@ -488,26 +533,43 @@
         </div>
         <div id="importPreview" style="display:none">
           <div class="import-preview" id="importPreviewContent"></div>
-          <p style="font-size:0.8rem;color:var(--green);margin-top:8px;font-weight:700" id="importCount"></p>
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-top:8px">
+            <p style="font-size:0.8rem;color:var(--green);font-weight:700" id="importCount"></p>
+            <button class="btn btn-ghost btn-sm" onclick="openEditImported()">&#9998; Edit Questions</button>
+          </div>
         </div>
         <div class="error-msg" id="importFileError" style="margin-top:8px">Could not read file. Check the format guide below.</div>
       </div>
       <div class="format-hint">
         <strong style="color:var(--text);display:block;margin-bottom:8px">File format guide</strong>
-        <strong style="color:var(--text)">.txt / .csv</strong> — blank line between questions, <code>*</code> before correct answers. Optionally add <code>points:N</code> and <code>explanation:Your text</code> lines:<br><br>
+        <strong style="color:var(--text)">.txt / .csv</strong> — blank line between questions, <code>*</code> before correct answers. Optional extra lines: <code>points:N</code>, <code>explanation:text</code>, <code>image:URL</code><br><br>
         <code>What is 2 + 2?</code><br>
         <code>*4</code><br>
         <code>3</code><br>
         <code>5</code><br>
         <code>points:2</code><br>
-        <code>explanation:Because maths.</code><br><br>
-        <strong style="color:var(--text)">.json</strong> — <code>[{"text":"Q?","options":["A","B"],"correct":[0],"points":2,"explanation":"Because..."}]</code>
+        <code>explanation:Because maths.</code><br>
+        <code>image:https://example.com/pic.jpg</code><br><br>
+        <strong style="color:var(--text)">.json</strong> — <code>[{"text":"Q?","options":["A","B"],"correct":[0],"points":2,"explanation":"...","image":"https://..."}]</code><br><br>
+        <button class="btn btn-ghost btn-sm" onclick="downloadExample()">&#11015; Download example.txt</button>
       </div>
     </div>
 
     <div class="modal-footer">
       <button class="btn btn-ghost" onclick="closeModal('createModal')">Cancel</button>
       <button class="btn btn-primary" id="saveTriviaBtn" onclick="saveTrivia()">Save Trivia</button>
+    </div>
+  </div>
+</div>
+
+<!-- EDIT IMPORTED QUESTIONS MODAL -->
+<div class="modal-overlay" id="editImportedModal">
+  <div class="modal" style="max-width:680px">
+    <div class="modal-header"><h2>Edit Imported Questions</h2><button class="close-btn" onclick="closeEditImported()">&#10005;</button></div>
+    <div id="editImportedContainer"></div>
+    <div class="modal-footer">
+      <button class="btn btn-ghost" onclick="closeEditImported()">Cancel</button>
+      <button class="btn btn-primary" onclick="saveEditedImported()">Save Changes</button>
     </div>
   </div>
 </div>
@@ -532,7 +594,7 @@
 
 <script type="module">
   import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-  import { getFirestore, collection, getDocs, addDoc, deleteDoc, doc, onSnapshot, query, orderBy, serverTimestamp, where } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+  import { getFirestore, collection, getDocs, addDoc, updateDoc, deleteDoc, doc, onSnapshot, query, orderBy, serverTimestamp, where } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
   const firebaseConfig = {
     apiKey: "AIzaSyDXbNsdAs0Yt1bH6avEyrKfb4uMK-j_UP0",
@@ -545,7 +607,7 @@
 
   const app = initializeApp(firebaseConfig);
   const db = getFirestore(app);
-  const CIRC = 2 * Math.PI * 22; // r=22
+  const CIRC = 2 * Math.PI * 22;
 
   // ── AUTH ──────────────────────────────────────────────────────────────────
   const STAFF_USER = 'blaize', STAFF_PASS = 'blazesmpstafftrivia';
@@ -624,7 +686,11 @@
         t.maxAttempts ? `<span class="badge badge-blue">Max ${t.maxAttempts} attempt${t.maxAttempts>1?'s':''}</span>` : '',
       ].join('');
       let actions = `<button class="btn btn-green btn-sm" onclick="beginQuiz('${t.id}')">Start</button>`;
-      if (isStaff) actions = `<button class="btn btn-green btn-sm" onclick="beginQuiz('${t.id}')">Start</button><button class="btn btn-ghost btn-sm" onclick="openReview('${t.id}')">Review</button><button class="btn btn-danger btn-sm" onclick="deleteTrivia('${t.id}')">Delete</button>`;
+      if (isStaff) actions = `
+        <button class="btn btn-green btn-sm" onclick="beginQuiz('${t.id}')">Start</button>
+        <button class="btn btn-ghost btn-sm" onclick="openReview('${t.id}')">Review</button>
+        <button class="btn btn-ghost btn-sm" onclick="openEditTrivia('${t.id}')">Edit</button>
+        <button class="btn btn-danger btn-sm" onclick="deleteTrivia('${t.id}')">Delete</button>`;
       const card = document.createElement('div'); card.className='trivia-card';
       card.innerHTML = `<h3>${esc(t.title)}</h3><div class="desc">${t.description?esc(t.description):'<span style="opacity:0.4;font-style:italic">No description</span>'}</div><div class="meta"><span>${qc} question${qc!==1?'s':''}</span>${badges}</div><div class="card-actions">${actions}</div>`;
       grid.appendChild(card);
@@ -641,9 +707,63 @@
     } catch(e) { console.error(e); showToast('Error deleting.','error'); }
   };
 
+  // ── EDIT TRIVIA (opens create modal pre-filled) ───────────────────────────
+  let editingTriviaId = null;
+  window.openEditTrivia = id => {
+    const t = triviaCache.find(x => x.id === id); if (!t) return;
+    editingTriviaId = id;
+    // Reset and fill manual tab
+    qCount = 0;
+    ['newTitle','newDesc','newPin','newCategory','newWelcome'].forEach(i => g(i).value = '');
+    ['newTimer','newMaxAttempts','newPassScore'].forEach(i => g(i).value = '');
+    g('newDifficulty').value = '';
+    g('questionsContainer').innerHTML = '';
+    ['titleError','questionsError'].forEach(i => g(i).classList.remove('show'));
+    // Fill fields
+    g('newTitle').value = t.title || '';
+    g('newDesc').value = t.description || '';
+    g('newPin').value = t.pin || '';
+    g('newCategory').value = t.category || '';
+    g('newWelcome').value = t.welcome || '';
+    g('newDifficulty').value = t.difficulty || '';
+    if (t.timerSeconds) g('newTimer').value = t.timerSeconds;
+    if (t.maxAttempts) g('newMaxAttempts').value = t.maxAttempts;
+    if (t.passScore) g('newPassScore').value = t.passScore;
+    // Toggles
+    g('showScoreToggle').classList.toggle('on', t.showScore !== false);
+    g('showExplanationToggle').classList.toggle('on', !!t.showExplanation);
+    g('shuffleToggle').classList.toggle('on', !!t.shuffle);
+    g('shuffleOptsToggle').classList.toggle('on', !!t.shuffleOpts);
+    // Questions
+    (t.questions || []).forEach(q => {
+      qCount++;
+      const id2 = 'q_'+qCount;
+      const div = document.createElement('div'); div.className='question-card'; div.id=id2;
+      div.innerHTML = `
+        <div class="q-header"><span class="q-num">Question ${qCount}</span><button class="btn btn-danger btn-sm" onclick="removeQuestion('${id2}')">Remove</button></div>
+        <input type="text" placeholder="Question text..." id="${id2}_text" style="margin-bottom:8px" value="${esc(q.text)}" />
+        <div class="q-points-row"><label>Points:</label><input type="number" id="${id2}_pts" placeholder="1" min="1" max="100" value="${q.points||1}" /></div>
+        <div class="q-explanation-row"><textarea placeholder="Explanation (shown after answering if enabled)..." id="${id2}_exp" style="min-height:48px;font-size:0.85rem;padding:9px 12px">${esc(q.explanation||'')}</textarea></div>
+        <div style="margin-bottom:8px"><input type="text" placeholder="Image URL (optional)..." id="${id2}_img" value="${esc(q.image||'')}" style="font-size:0.85rem" /></div>
+        <div class="opts-hint">Tick &#10003; to mark correct. You can mark more than one.</div>
+        <div id="${id2}_opts">${q.options.map((opt,oi) => `<div class="option-row" id="${id2}_row_${oi+1}"><input type="text" placeholder="Option ${oi+1}" id="${id2}_opt_${oi+1}" value="${esc(opt)}" /><button class="correct-toggle${q.correct.includes(oi)?' active':''}" id="${id2}_chk_${oi+1}" onclick="toggleCorrect('${id2}',${oi+1})">&#10003;</button><button class="remove-opt-btn" onclick="removeOption('${id2}',${oi+1})">&#10005;</button></div>`).join('')}</div>
+        <button class="btn btn-ghost btn-sm" style="margin-top:6px" onclick="addOption('${id2}')">+ Add Option</button>`;
+      g('questionsContainer').appendChild(div);
+    });
+    // Change modal title and button
+    g('createModal').querySelector('.modal-header h2').textContent = 'Edit Trivia';
+    g('saveTriviaBtn').textContent = 'Save Changes';
+    importedQuestions = null;
+    switchTab('manual');
+    g('tab-import').style.display = 'none';
+    g('tabBtnImport').style.display = 'none';
+    g('createModal').classList.add('open');
+  };
+
   // ── QUESTION BUILDER ───────────────────────────────────────────────────────
   let qCount = 0;
   window.openCreateModal = () => {
+    editingTriviaId = null;
     qCount = 0;
     ['newTitle','newDesc','newPin','newCategory','newWelcome','importTitle','importDesc','importPin','importCategory','importWelcome'].forEach(id=>g(id).value='');
     ['newTimer','importTimer','newMaxAttempts','importMaxAttempts','newPassScore','importPassScore'].forEach(id=>g(id).value='');
@@ -652,7 +772,13 @@
     ['titleError','questionsError','importTitleError','importFileError'].forEach(id=>g(id).classList.remove('show'));
     ['showScoreToggle','importShowScoreToggle'].forEach(id=>g(id).classList.add('on'));
     ['shuffleToggle','shuffleOptsToggle','importShuffleToggle','importShuffleOptsToggle','showExplanationToggle','importShowExplanationToggle'].forEach(id=>g(id).classList.remove('on'));
-    importedQuestions=null; switchTab('manual');
+    importedQuestions=null;
+    // Reset modal to create mode
+    g('createModal').querySelector('.modal-header h2').textContent = 'New Trivia';
+    g('saveTriviaBtn').textContent = 'Save Trivia';
+    g('tab-import').style.display = '';
+    g('tabBtnImport').style.display = '';
+    switchTab('manual');
     g('createModal').classList.add('open');
     addQuestion();
   };
@@ -666,6 +792,7 @@
       <input type="text" placeholder="Question text..." id="${id}_text" style="margin-bottom:8px" />
       <div class="q-points-row"><label>Points:</label><input type="number" id="${id}_pts" placeholder="1" min="1" max="100" value="1" /></div>
       <div class="q-explanation-row"><textarea placeholder="Explanation (shown after answering if enabled)..." id="${id}_exp" style="min-height:48px;font-size:0.85rem;padding:9px 12px"></textarea></div>
+      <div style="margin-bottom:8px"><input type="text" placeholder="Image URL (optional)..." id="${id}_img" style="font-size:0.85rem" /></div>
       <div class="opts-hint">Tick &#10003; to mark correct. You can mark more than one.</div>
       <div id="${id}_opts">${[1,2,3,4].map(n=>optRowHTML(id,n)).join('')}</div>
       <button class="btn btn-ghost btn-sm" style="margin-top:6px" onclick="addOption('${id}')">+ Add Option</button>`;
@@ -695,6 +822,7 @@
       const text = g(`${qId}_text`).value.trim();
       const pts = parseInt(g(`${qId}_pts`)?.value)||1;
       const exp = g(`${qId}_exp`)?.value.trim()||'';
+      const img = g(`${qId}_img`)?.value.trim()||'';
       const rows = card.querySelectorAll('.option-row');
       const options=[], correct=[];
       rows.forEach(row => {
@@ -703,7 +831,7 @@
         if (val) { if (chk?.classList.contains('active')) correct.push(options.length); options.push(val); }
       });
       if (!text||options.length<2||!correct.length) valid=false;
-      else questions.push({text,options,correct,points:pts,...(exp?{explanation:exp}:{})});
+      else questions.push({text,options,correct,points:pts,...(exp?{explanation:exp}:{}),...(img?{image:img}:{})});
     });
     return {questions,valid,count:cards.length};
   }
@@ -729,15 +857,17 @@
       const lines = block.split('\n').map(l=>l.trim()).filter(Boolean);
       if (lines.length < 3) return null;
       const text = lines[0]; const options=[], correct=[];
-      let points=1, explanation='';
+      let points=1, explanation='', image='';
       for (let i=1; i<lines.length; i++) {
         const l = lines[i];
-        if (l.toLowerCase().startsWith('points:')) { points = parseInt(l.split(':')[1])||1; continue; }
-        if (l.toLowerCase().startsWith('explanation:')) { explanation = l.substring(l.indexOf(':')+1).trim(); continue; }
+        const ll = l.toLowerCase();
+        if (ll.startsWith('points:')) { points = parseInt(l.split(':')[1])||1; continue; }
+        if (ll.startsWith('explanation:')) { explanation = l.substring(l.indexOf(':')+1).trim(); continue; }
+        if (ll.startsWith('image:')) { image = l.substring(l.indexOf(':')+1).trim(); continue; }
         if (l.startsWith('*')) { correct.push(options.length); options.push(l.slice(1).trim()); }
         else options.push(l);
       }
-      return (!text||options.length<2||!correct.length) ? null : {text,options,correct,points,...(explanation?{explanation}:{})};
+      return (!text||options.length<2||!correct.length) ? null : {text,options,correct,points,...(explanation?{explanation}:{}),...(image?{image}:{})};
     }).filter(Boolean);
   }
 
@@ -745,17 +875,108 @@
     const data = JSON.parse(content); if (!Array.isArray(data)) throw 0;
     return data.map(item => {
       if (!item.text||!Array.isArray(item.options)||!Array.isArray(item.correct)) return null;
-      return {text:item.text, options:item.options, correct:item.correct, points:item.points||1, ...(item.explanation?{explanation:item.explanation}:{})};
+      return {text:item.text,options:item.options,correct:item.correct,points:item.points||1,...(item.explanation?{explanation:item.explanation}:{}),...(item.image?{image:item.image}:{})};
     }).filter(Boolean);
   }
 
   function showImportPreview(qs) {
     g('importPreviewContent').innerHTML = qs.slice(0,8).map((q,i)=>
-      `<div class="preview-item"><strong>Q${i+1}:</strong> ${esc(q.text)} <span style="color:var(--green)">&#10003; ${esc(q.correct.map(c=>q.options[c]).join(', '))}</span>${q.points&&q.points!==1?` <span style="color:var(--yellow)">[${q.points}pts]</span>`:''}</div>`
+      `<div class="preview-item"><strong>Q${i+1}:</strong> ${esc(q.text)} <span style="color:var(--green)">&#10003; ${esc(q.correct.map(c=>q.options[c]).join(', '))}</span>${q.points&&q.points!==1?` <span style="color:var(--yellow)">[${q.points}pts]</span>`:''}${q.image?` <span style="color:#38bdf8">[img]</span>`:''}</div>`
     ).join('') + (qs.length>8?`<div class="preview-item">...and ${qs.length-8} more</div>`:'');
     g('importCount').textContent = `${qs.length} question${qs.length!==1?'s':''} ready to import`;
     g('importPreview').style.display = 'block';
   }
+
+  // ── EDIT IMPORTED QUESTIONS ────────────────────────────────────────────────
+  window.openEditImported = () => {
+    if (!importedQuestions?.length) return;
+    const container = g('editImportedContainer');
+    container.innerHTML = importedQuestions.map((q, qi) => `
+      <div class="edit-q-card" id="eq_${qi}">
+        <div class="eq-header"><span class="eq-num">Q${qi+1}</span></div>
+        <div style="margin-bottom:8px">
+          <label style="font-size:0.76rem;color:var(--muted);font-weight:700;text-transform:uppercase;letter-spacing:.5px;margin-bottom:5px;display:block">Question</label>
+          <input type="text" id="eq_${qi}_text" value="${esc(q.text)}" />
+        </div>
+        <div class="two-col" style="margin-bottom:8px">
+          <div>
+            <label style="font-size:0.76rem;color:var(--muted);font-weight:700;text-transform:uppercase;letter-spacing:.5px;margin-bottom:5px;display:block">Points</label>
+            <input type="number" id="eq_${qi}_pts" value="${q.points||1}" min="1" max="100" />
+          </div>
+          <div>
+            <label style="font-size:0.76rem;color:var(--muted);font-weight:700;text-transform:uppercase;letter-spacing:.5px;margin-bottom:5px;display:block">Image URL</label>
+            <input type="text" id="eq_${qi}_img" value="${esc(q.image||'')}" placeholder="Optional..." />
+          </div>
+        </div>
+        <div style="margin-bottom:8px">
+          <label style="font-size:0.76rem;color:var(--muted);font-weight:700;text-transform:uppercase;letter-spacing:.5px;margin-bottom:5px;display:block">Explanation</label>
+          <textarea id="eq_${qi}_exp" style="min-height:44px">${esc(q.explanation||'')}</textarea>
+        </div>
+        <label style="font-size:0.76rem;color:var(--muted);font-weight:700;text-transform:uppercase;letter-spacing:.5px;margin-bottom:7px;display:block">Options — tick &#10003; for correct</label>
+        ${q.options.map((opt, oi) => `
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:7px">
+            <input type="text" id="eq_${qi}_opt_${oi}" value="${esc(opt)}" style="flex:1" />
+            <button class="correct-toggle${q.correct.includes(oi)?' active':''}" id="eq_${qi}_chk_${oi}" onclick="this.classList.toggle('active')">&#10003;</button>
+          </div>`).join('')}
+      </div>`).join('');
+    closeModal('createModal');
+    g('editImportedModal').classList.add('open');
+  };
+
+  window.closeEditImported = () => {
+    closeModal('editImportedModal');
+    g('createModal').classList.add('open');
+  };
+
+  window.saveEditedImported = () => {
+    const updated = importedQuestions.map((q, qi) => {
+      const text = g(`eq_${qi}_text`)?.value.trim() || q.text;
+      const pts  = parseInt(g(`eq_${qi}_pts`)?.value) || 1;
+      const exp  = g(`eq_${qi}_exp`)?.value.trim() || '';
+      const img  = g(`eq_${qi}_img`)?.value.trim() || '';
+      const options = q.options.map((_, oi) => g(`eq_${qi}_opt_${oi}`)?.value.trim() || q.options[oi]);
+      const correct = q.options.map((_, oi) => oi).filter(oi => g(`eq_${qi}_chk_${oi}`)?.classList.contains('active'));
+      return {text, options, correct: correct.length ? correct : q.correct, points: pts, ...(exp?{explanation:exp}:{}), ...(img?{image:img}:{})};
+    });
+    importedQuestions = updated;
+    showImportPreview(updated);
+    closeModal('editImportedModal');
+    g('createModal').classList.add('open');
+    showToast('Questions updated!','success');
+  };
+
+  // ── DOWNLOAD EXAMPLE ──────────────────────────────────────────────────────
+  window.downloadExample = () => {
+    const txt = `What is the capital of France?
+*Paris
+London
+Berlin
+Madrid
+points:1
+explanation:Paris has been the capital of France since 987 AD.
+
+Which of these are planets in our solar system? (select all that apply)
+*Mars
+*Jupiter
+Pluto
+*Earth
+points:3
+explanation:Pluto was reclassified as a dwarf planet in 2006.
+
+What is 7 x 8?
+*56
+54
+48
+64
+points:2
+explanation:7 times 8 equals 56.
+image:https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/Simple_arithmetic.svg/320px-Simple_arithmetic.svg.png`;
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(new Blob([txt], {type:'text/plain'}));
+    a.download = 'trivia-example.txt';
+    a.click();
+    URL.revokeObjectURL(a.href);
+  };
 
   const iz = g('importZone');
   iz.addEventListener('dragover', e=>{e.preventDefault();iz.classList.add('drag-over');});
@@ -800,10 +1021,25 @@
       if (pin) payload.pin=pin; if (category) payload.category=category; if (welcome) payload.welcome=welcome;
       if (difficulty) payload.difficulty=difficulty; if (timerSeconds) payload.timerSeconds=timerSeconds;
       if (maxAttempts) payload.maxAttempts=maxAttempts; if (passScore) payload.passScore=passScore;
-      await addDoc(collection(db,'trivias'),payload);
-      closeModal('createModal'); showToast('Trivia saved and live!','success');
+
+      if (editingTriviaId) {
+        // Update existing — preserve createdAt
+        delete payload.createdAt;
+        await updateDoc(doc(db,'trivias',editingTriviaId), payload);
+        showToast('Trivia updated!','success');
+      } else {
+        await addDoc(collection(db,'trivias'),payload);
+        showToast('Trivia saved and live!','success');
+      }
+      // Reset modal state
+      g('tab-import').style.display = '';
+      g('tabBtnImport').style.display = '';
+      g('createModal').querySelector('.modal-header h2').textContent = 'New Trivia';
+      g('saveTriviaBtn').textContent = 'Save Trivia';
+      editingTriviaId = null;
+      closeModal('createModal');
     } catch(e){console.error(e);showToast('Error saving trivia.','error');}
-    finally{btn.textContent='Save Trivia';btn.disabled=false;}
+    finally{btn.textContent=editingTriviaId?'Save Changes':'Save Trivia';btn.disabled=false;}
   };
 
   // ── QUIZ ───────────────────────────────────────────────────────────────────
@@ -813,7 +1049,7 @@
 
   window.beginQuiz = id => {
     currentTrivia = triviaCache.find(t=>t.id===id); if (!currentTrivia) return;
-    if (currentTrivia.pin) { g('pinInput').value=''; g('pinError').classList.remove('show'); showPage('pinPage'); }
+    if (currentTrivia.pin) { g('pinInput').value=''; g('pinError').classList.remove('show'); showPage('pinPage'); setTimeout(()=>g('pinInput').focus(),100); }
     else goToNamePage();
   };
 
@@ -827,13 +1063,13 @@
 
   function goToNamePage() {
     g('namePageTitle').textContent = currentTrivia.title;
-    // Show welcome message if set
     const welcomeEl = g('nameWelcome');
     if (currentTrivia.welcome) { welcomeEl.textContent = currentTrivia.welcome; welcomeEl.style.display='block'; }
     else welcomeEl.style.display='none';
-    g('playerNameInput').value = ''; g('nameError').classList.remove('show');
+    g('playerNameInput').value = '';
+    g('nameError').classList.remove('show');
     showPage('namePage');
-    setTimeout(() => g('playerNameInput').focus(), 150);
+    setTimeout(() => g('playerNameInput').focus(), 100);
   }
 
   window.startQuizWithName = () => {
@@ -897,9 +1133,13 @@
     if (currentTrivia.description){descEl.textContent=currentTrivia.description;descEl.style.display='block';}else descEl.style.display='none';
     g('questionText').textContent = q.text;
 
-    // points display
     const ptsEl=g('questionPoints');
     if (q.points && q.points>1){ptsEl.textContent=`Worth ${q.points} points`;ptsEl.style.display='block';}else ptsEl.style.display='none';
+
+    // Image
+    const imgEl = g('questionImage');
+    if (q.image) { imgEl.src = q.image; imgEl.style.display = 'block'; }
+    else imgEl.style.display = 'none';
 
     g('multiHint').style.display = isMulti?'block':'none';
 
@@ -953,8 +1193,8 @@
       if (currentTrivia.passScore) {
         const passed=pct>=currentTrivia.passScore;
         passFail=passed
-          ? `<span style="color:var(--green);font-weight:800"> ✓ PASSED</span>`
-          : `<span style="color:var(--red);font-weight:800"> ✗ FAILED</span> (${currentTrivia.passScore}% needed)`;
+          ? `<span style="color:var(--green);font-weight:800"> &#10003; PASSED</span>`
+          : `<span style="color:var(--red);font-weight:800"> &#10007; FAILED</span> (${currentTrivia.passScore}% needed)`;
       }
       g('submittedMsg').innerHTML=`You scored <strong style="color:var(--green)">${score}/${maxScore}</strong> (${pct}%)${passFail}. Thanks for playing!`;
     } else g('submittedMsg').textContent='Your answers have been submitted. Thanks for playing!';
@@ -1022,8 +1262,7 @@
       const name=r.playerName||'Unknown', score=r.score||0, max=r.maxScore||r.total||1, pct=score/max;
       if (!best[name]||pct>best[name].pct) best[name]={score,max,pct};
     });
-    const sorted=Object.entries(best).sort((a,b)=>b[1].pct-a[1].pct);
-    lb.innerHTML=sorted.map(([name,d],i)=>`
+    lb.innerHTML=Object.entries(best).sort((a,b)=>b[1].pct-a[1].pct).map(([name,d],i)=>`
       <div class="leaderboard-row">
         <span class="lb-rank ${['gold','silver','bronze'][i]||''}">${i+1}</span>
         <span class="lb-name">${esc(name)}</span>
@@ -1038,15 +1277,9 @@
     if (!responses.length){el.innerHTML='<div class="no-responses">No responses yet.</div>';return;}
     el.innerHTML=trivia.questions.map((q,qi)=>{
       const counts=q.options.map(()=>0);
-      responses.forEach(r=>{
-        const ans=r.answersMap?(r.answersMap[`q${qi}`]||[]):[];
-        ans.forEach(idx=>{if(counts[idx]!==undefined)counts[idx]++;});
-      });
+      responses.forEach(r=>{const ans=r.answersMap?(r.answersMap[`q${qi}`]||[]):[];ans.forEach(idx=>{if(counts[idx]!==undefined)counts[idx]++;});});
       const maxC=Math.max(...counts,1);
-      const correctPct=Math.round(responses.filter(r=>{
-        const ans=r.answersMap?(r.answersMap[`q${qi}`]||[]):[];
-        return [...ans].sort().join(',')===([...q.correct]).sort().join(',');
-      }).length/responses.length*100);
+      const correctPct=Math.round(responses.filter(r=>{const ans=r.answersMap?(r.answersMap[`q${qi}`]||[]):[];return [...ans].sort().join(',')===([...q.correct]).sort().join(',');}).length/responses.length*100);
       const bars=q.options.map((opt,oi)=>{
         const pct=Math.round(counts[oi]/responses.length*100);
         const isCor=q.correct.includes(oi);
