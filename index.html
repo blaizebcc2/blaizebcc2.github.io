@@ -192,6 +192,18 @@
   .q-points-row input { width: 70px; padding: 7px 10px; font-size: 0.85rem; }
   .q-explanation-row { margin-bottom: 10px; }
   .q-explanation-row textarea { min-height: 52px; font-size: 0.85rem; padding: 9px 12px; }
+  /* Question text textarea in builder */
+  .q-text-area {
+    width: 100%; background: var(--surface2); border: 1px solid var(--border); border-radius: 10px;
+    padding: 10px 14px; color: var(--text); font-family: 'DM Sans', sans-serif; font-size: 0.92rem;
+    transition: border-color 0.18s, box-shadow 0.18s; outline: none;
+    resize: vertical; min-height: 68px; margin-bottom: 8px;
+    -webkit-text-fill-color: var(--text);
+    line-height: 1.55;
+  }
+  .q-text-area:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(224,123,57,0.12); }
+  .q-text-hint { font-size: 0.73rem; color: var(--muted); margin-bottom: 8px; margin-top: -4px; }
+  .q-text-hint code { background: rgba(224,123,57,0.12); color: #60c4b8; padding: 1px 5px; border-radius: 4px; font-family: monospace; font-size: 0.78rem; }
   .opts-hint { font-size: 0.75rem; color: var(--muted); margin-bottom: 8px; line-height: 1.4; }
   .option-row { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
   .option-row input[type="text"] { flex: 1; padding: 9px 12px; font-size: 0.88rem; }
@@ -241,7 +253,24 @@
   .timer-num { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-family: 'DM Serif Display', serif; font-weight: 900; font-size: 0.85rem; }
   .progress-bar-wrap { background: var(--surface2); border-radius: 50px; height: 6px; margin: 12px 0 22px; overflow: hidden; }
   .progress-bar { background: linear-gradient(90deg, var(--accent), var(--green)); height: 100%; border-radius: 50px; transition: width 0.4s ease; }
-  .question-text { font-family: 'DM Serif Display', serif; font-weight: 800; font-size: 1.4rem; line-height: 1.4; margin-bottom: 8px; }
+
+  /* Question text in quiz - supports multi-line and inline code */
+  .question-text {
+    font-family: 'DM Serif Display', serif; font-weight: 800; font-size: 1.4rem;
+    line-height: 1.5; margin-bottom: 8px; white-space: pre-wrap; word-break: break-word;
+  }
+  .question-text code {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.9em;
+    background: rgba(96, 196, 184, 0.12);
+    color: #60c4b8;
+    border: 1px solid rgba(96, 196, 184, 0.25);
+    border-radius: 6px;
+    padding: 2px 7px;
+    font-weight: 700;
+    white-space: pre;
+  }
+
   .question-points { font-size: 0.8rem; color: var(--yellow); font-weight: 700; margin-bottom: 18px; }
   .question-image { width: 100%; max-height: 280px; object-fit: cover; border-radius: 12px; margin-bottom: 16px; border: 1.5px solid var(--border); display: none; }
   .multi-hint { font-size: 0.82rem; color: var(--yellow); margin-bottom: 16px; font-weight: 600; }
@@ -249,10 +278,43 @@
   .option-btn { background: var(--surface); border: 1.5px solid var(--border); border-radius: 14px; padding: 16px 20px; color: var(--text); font-family: 'DM Serif Display', serif; font-weight: 700; font-size: 1rem; cursor: pointer; text-align: left; transition: all 0.2s; display: flex; align-items: center; gap: 14px; width: 100%; }
   .option-btn:hover:not(:disabled) { border-color: var(--accent); background: rgba(224,123,57,0.07); transform: translateX(4px); }
   .option-btn.selected { border-color: var(--accent); background: rgba(224,123,57,0.12); }
-  .option-btn:disabled { opacity: 0.45; cursor: not-allowed; transform: none; pointer-events: none; }
+  .option-btn.reveal-correct { border-color: var(--green) !important; background: rgba(67,217,160,0.12) !important; }
+  .option-btn.reveal-wrong { border-color: var(--red) !important; background: rgba(240,100,126,0.1) !important; opacity: 0.7; }
+  .option-btn:disabled { cursor: not-allowed; transform: none; pointer-events: none; }
   .option-letter { width: 34px; height: 34px; border-radius: 50%; background: var(--surface2); display: flex; align-items: center; justify-content: center; font-size: 0.85rem; font-weight: 800; flex-shrink: 0; transition: all 0.2s; }
   .option-btn.selected .option-letter { background: var(--accent); color: #fff; }
+  .option-btn.reveal-correct .option-letter { background: var(--green); color: #0d0e14; }
+  .option-btn.reveal-wrong .option-letter { background: var(--red); color: #fff; }
   .quiz-nav { display: flex; justify-content: space-between; align-items: center; margin-top: 32px; }
+
+  /* EXPLANATION PANEL - shown after answering */
+  .explanation-panel {
+    display: none;
+    margin-top: 18px;
+    background: rgba(96, 196, 184, 0.07);
+    border: 1.5px solid rgba(96, 196, 184, 0.25);
+    border-radius: 12px;
+    padding: 14px 16px;
+    animation: fadeSlideIn 0.3s ease;
+  }
+  .explanation-panel.show { display: block; }
+  .explanation-panel .ep-label {
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    color: #60c4b8;
+    margin-bottom: 5px;
+  }
+  .explanation-panel .ep-text {
+    font-size: 0.9rem;
+    color: var(--text);
+    line-height: 1.6;
+  }
+  @keyframes fadeSlideIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
 
   /* SUBMITTED */
   .submitted-state { text-align: center; padding: 80px 20px; max-width: 440px; margin: 0 auto; }
@@ -576,6 +638,11 @@
       <img class="question-image" id="questionImage" alt="Question image" />
       <div class="multi-hint" id="multiHint" style="display:none">Select all that apply</div>
       <div class="options-list" id="optionsList"></div>
+      <!-- Explanation panel shown after answering -->
+      <div class="explanation-panel" id="explanationPanel">
+        <div class="ep-label">Explanation</div>
+        <div class="ep-text" id="explanationText"></div>
+      </div>
       <div class="quiz-nav">
         <button class="btn btn-ghost" onclick="quitQuiz()">Quit</button>
         <button class="btn btn-primary" id="nextBtn" onclick="nextQuestion()">Next</button>
@@ -810,7 +877,7 @@
 </div>
 
 <!-- VERSION BUTTON -->
-<button class="version-btn" type="button" onclick="openChangelog()">v1.8.0</button>
+<button class="version-btn" type="button" onclick="openChangelog()">v1.9.0</button>
 
 <!-- CHANGELOG MODAL -->
 <div class="modal-overlay" id="changelogModal">
@@ -819,7 +886,17 @@
     <div class="changelog-list">
 
       <div class="changelog-entry">
-        <div class="changelog-ver">v1.8.0 <span class="changelog-date">Today</span></div>
+        <div class="changelog-ver">v1.9.0 <span class="changelog-date">Today</span></div>
+        <ul class="changelog-items">
+          <li class="new">Multi-line question text: question field is now a textarea that grows with your content</li>
+          <li class="new">Inline code formatting in question titles: wrap text in backticks to display as code blocks (e.g. `print("hello")`)</li>
+          <li class="fix">Fixed explanations not showing after questions even when the toggle was on</li>
+          <li class="new">Answer reveal on explanation: correct answers highlighted green, wrong ones dimmed red before moving on</li>
+        </ul>
+      </div>
+
+      <div class="changelog-entry">
+        <div class="changelog-ver">v1.8.0 <span class="changelog-date">Earlier</span></div>
         <ul class="changelog-items">
           <li class="new">Custom animated drop-down notification for errors and confirmations</li>
           <li class="new">High score shown on each quiz card (stored locally per device)</li>
@@ -853,7 +930,6 @@
           <li class="new">Cannot remove the account you are logged in as</li>
           <li class="new">Animated modal open and close with background blur</li>
           <li class="change">Colour theme changed from purple to amber and teal</li>
-          
         </ul>
       </div>
 
@@ -1032,7 +1108,6 @@
 
   window.doLogin = async () => {
     const u = g('loginUser').value.trim(), p = g('loginPass').value;
-    // Check hardcoded owner account
     if (u === STAFF_USER && p === STAFF_PASS) {
       isStaff = true;
       sessionStorage.setItem('staffLoggedIn','1');
@@ -1041,7 +1116,6 @@
       sessionStorage.setItem('staffPerms', JSON.stringify({create:true,edit:true,delete:true,review:true,accounts:true}));
       closeModal('loginModal'); updateAuthUI(); renderHome(); return;
     }
-    // Check Firestore staff accounts
     try {
       const snap = await getDocs(query(collection(db,'staffAccounts'), where('username','==',u)));
       if (!snap.empty && snap.docs[0].data().password === p) {
@@ -1142,7 +1216,7 @@
 
       const startBtn = maxed
         ? `<button class="btn btn-ghost btn-sm btn-disabled" onclick="showToast('You have reached the maximum number of attempts for this quiz.','error')">Start</button>`
-        : `<button class="btn btn-green btn-sm" onclick="${maxed?'':"beginQuiz('" + t.id + "')"}">Start</button>`;
+        : `<button class="btn btn-green btn-sm" onclick="beginQuiz('${t.id}')">Start</button>`;
 
       let actions = startBtn;
       if (isStaff) {
@@ -1168,19 +1242,17 @@
     } catch(e) { console.error(e); showToast('Error deleting.','error'); }
   };
 
-  // ── EDIT TRIVIA (opens create modal pre-filled) ───────────────────────────
+  // ── EDIT TRIVIA ───────────────────────────────────────────────────────────
   let editingTriviaId = null;
   window.openEditTrivia = id => {
     const t = triviaCache.find(x => x.id === id); if (!t) return;
     editingTriviaId = id;
-    // Reset and fill manual tab
     qCount = 0;
     ['newTitle','newDesc','newPin','newCategory','newWelcome'].forEach(i => g(i).value = '');
     ['newTimer','newMaxAttempts','newPassScore'].forEach(i => g(i).value = '');
     g('newDifficulty').value = '';
     g('questionsContainer').innerHTML = '';
     ['titleError','questionsError'].forEach(i => g(i).classList.remove('show'));
-    // Fill fields
     g('newTitle').value = t.title || '';
     g('newDesc').value = t.description || '';
     g('newPin').value = t.pin || '';
@@ -1190,28 +1262,26 @@
     if (t.timerSeconds) g('newTimer').value = t.timerSeconds;
     if (t.maxAttempts) g('newMaxAttempts').value = t.maxAttempts;
     if (t.passScore) g('newPassScore').value = t.passScore;
-    // Toggles
     g('showScoreToggle').classList.toggle('on', t.showScore !== false);
     g('showExplanationToggle').classList.toggle('on', !!t.showExplanation);
     g('shuffleToggle').classList.toggle('on', !!t.shuffle);
     g('shuffleOptsToggle').classList.toggle('on', !!t.shuffleOpts);
-    // Questions
     (t.questions || []).forEach(q => {
       qCount++;
       const id2 = 'q_'+qCount;
       const div = document.createElement('div'); div.className='question-card'; div.id=id2;
       div.innerHTML = `
         <div class="q-header"><span class="q-num">Question ${qCount}</span><button class="btn btn-danger btn-sm" onclick="removeQuestion('${id2}')">Remove</button></div>
-        <input type="text" placeholder="Question text..." id="${id2}_text" style="margin-bottom:8px" value="${esc(q.text)}" />
+        <textarea class="q-text-area" placeholder="Question text... (use backticks for inline code, e.g. \`code here\`)" id="${id2}_text" rows="2">${escAttr(q.text)}</textarea>
+        <div class="q-text-hint">Wrap text in backticks for code: <code>\`example\`</code></div>
         <div class="q-points-row"><label>Points:</label><input type="number" id="${id2}_pts" placeholder="1" min="1" max="100" value="${q.points||1}" /></div>
-        <div class="q-explanation-row"><textarea placeholder="Explanation (shown after answering if enabled)..." id="${id2}_exp" style="min-height:48px;font-size:0.85rem;padding:9px 12px">${esc(q.explanation||'')}</textarea></div>
-        <div style="margin-bottom:8px"><input type="text" placeholder="Image URL (optional)..." id="${id2}_img" value="${esc(q.image||'')}" style="font-size:0.85rem" /></div>
+        <div class="q-explanation-row"><textarea placeholder="Explanation (shown after answering if enabled)..." id="${id2}_exp" style="min-height:48px;font-size:0.85rem;padding:9px 12px">${escAttr(q.explanation||'')}</textarea></div>
+        <div style="margin-bottom:8px"><input type="text" placeholder="Image URL (optional)..." id="${id2}_img" value="${escAttr(q.image||'')}" style="font-size:0.85rem" /></div>
         <div class="opts-hint">Tick &#10003; to mark correct. You can mark more than one.</div>
-        <div id="${id2}_opts">${q.options.map((opt,oi) => `<div class="option-row" id="${id2}_row_${oi+1}"><input type="text" placeholder="Option ${oi+1}" id="${id2}_opt_${oi+1}" value="${esc(opt)}" /><button class="correct-toggle${q.correct.includes(oi)?' active':''}" id="${id2}_chk_${oi+1}" onclick="toggleCorrect('${id2}',${oi+1})">&#10003;</button><button class="remove-opt-btn" onclick="removeOption('${id2}',${oi+1})">&#10005;</button></div>`).join('')}</div>
+        <div id="${id2}_opts">${q.options.map((opt,oi) => `<div class="option-row" id="${id2}_row_${oi+1}"><input type="text" placeholder="Option ${oi+1}" id="${id2}_opt_${oi+1}" value="${escAttr(opt)}" /><button class="correct-toggle${q.correct.includes(oi)?' active':''}" id="${id2}_chk_${oi+1}" onclick="toggleCorrect('${id2}',${oi+1})">&#10003;</button><button class="remove-opt-btn" onclick="removeOption('${id2}',${oi+1})">&#10005;</button></div>`).join('')}</div>
         <button class="btn btn-ghost btn-sm" style="margin-top:6px" onclick="addOption('${id2}')">+ Add Option</button>`;
       g('questionsContainer').appendChild(div);
     });
-    // Change modal title and button
     g('createModal').querySelector('.modal-header h2').textContent = 'Edit Trivia';
     g('saveTriviaBtn').textContent = 'Save Changes';
     importedQuestions = null;
@@ -1234,7 +1304,6 @@
     ['showScoreToggle','importShowScoreToggle'].forEach(id=>g(id).classList.add('on'));
     ['shuffleToggle','shuffleOptsToggle','importShuffleToggle','importShuffleOptsToggle','showExplanationToggle','importShowExplanationToggle'].forEach(id=>g(id).classList.remove('on'));
     importedQuestions=null;
-    // Reset modal to create mode
     g('createModal').querySelector('.modal-header h2').textContent = 'New Trivia';
     g('saveTriviaBtn').textContent = 'Save Trivia';
     g('tab-import').style.display = '';
@@ -1250,7 +1319,8 @@
     const div = document.createElement('div'); div.className='question-card'; div.id=id;
     div.innerHTML = `
       <div class="q-header"><span class="q-num">Question ${qCount}</span><button class="btn btn-danger btn-sm" onclick="removeQuestion('${id}')">Remove</button></div>
-      <input type="text" placeholder="Question text..." id="${id}_text" style="margin-bottom:8px" />
+      <textarea class="q-text-area" placeholder="Question text... (use backticks for inline code, e.g. \`print('hello')\`)" id="${id}_text" rows="2"></textarea>
+      <div class="q-text-hint">Wrap text in backticks for inline code: <code>\`example\`</code></div>
       <div class="q-points-row"><label>Points:</label><input type="number" id="${id}_pts" placeholder="1" min="1" max="100" value="1" /></div>
       <div class="q-explanation-row"><textarea placeholder="Explanation (shown after answering if enabled)..." id="${id}_exp" style="min-height:48px;font-size:0.85rem;padding:9px 12px"></textarea></div>
       <div style="margin-bottom:8px"><input type="text" placeholder="Image URL (optional)..." id="${id}_img" style="font-size:0.85rem" /></div>
@@ -1280,7 +1350,8 @@
     let valid = true; const questions = [];
     cards.forEach(card => {
       const qId = card.id;
-      const text = g(`${qId}_text`).value.trim();
+      const textEl = g(`${qId}_text`);
+      const text = (textEl ? textEl.value : '').trim();
       const pts = parseInt(g(`${qId}_pts`)?.value)||1;
       const exp = g(`${qId}_exp`)?.value.trim()||'';
       const img = g(`${qId}_img`)?.value.trim()||'';
@@ -1295,6 +1366,31 @@
       else questions.push({text,options,correct,points:pts,...(exp?{explanation:exp}:{}),...(img?{image:img}:{})});
     });
     return {questions,valid,count:cards.length};
+  }
+
+  // ── INLINE CODE RENDERER ───────────────────────────────────────────────────
+  // Renders backtick-wrapped text as <code> elements, preserving newlines
+  function renderQuestionText(el, text) {
+    el.innerHTML = '';
+    if (!text) return;
+    // Split on backtick pairs
+    const parts = text.split(/`([^`]+)`/);
+    parts.forEach((part, i) => {
+      if (i % 2 === 1) {
+        // Inside backticks - render as code
+        const code = document.createElement('code');
+        code.textContent = part;
+        el.appendChild(code);
+      } else if (part) {
+        // Normal text - preserve newlines via text nodes
+        // Split on newlines and insert <br> between them
+        const lines = part.split('\n');
+        lines.forEach((line, li) => {
+          if (li > 0) el.appendChild(document.createElement('br'));
+          if (line) el.appendChild(document.createTextNode(line));
+        });
+      }
+    });
   }
 
   // ── FILE IMPORT ────────────────────────────────────────────────────────────
@@ -1357,7 +1453,7 @@
         <div class="eq-header"><span class="eq-num">Q${qi+1}</span></div>
         <div style="margin-bottom:8px">
           <label style="font-size:0.76rem;color:var(--muted);font-weight:700;text-transform:uppercase;letter-spacing:.5px;margin-bottom:5px;display:block">Question</label>
-          <input type="text" id="eq_${qi}_text" value="${esc(q.text)}" />
+          <textarea class="q-text-area" id="eq_${qi}_text" rows="2">${escAttr(q.text)}</textarea>
         </div>
         <div class="two-col" style="margin-bottom:8px">
           <div>
@@ -1366,17 +1462,17 @@
           </div>
           <div>
             <label style="font-size:0.76rem;color:var(--muted);font-weight:700;text-transform:uppercase;letter-spacing:.5px;margin-bottom:5px;display:block">Image URL</label>
-            <input type="text" id="eq_${qi}_img" value="${esc(q.image||'')}" placeholder="Optional..." />
+            <input type="text" id="eq_${qi}_img" value="${escAttr(q.image||'')}" placeholder="Optional..." />
           </div>
         </div>
         <div style="margin-bottom:8px">
           <label style="font-size:0.76rem;color:var(--muted);font-weight:700;text-transform:uppercase;letter-spacing:.5px;margin-bottom:5px;display:block">Explanation</label>
-          <textarea id="eq_${qi}_exp" style="min-height:44px">${esc(q.explanation||'')}</textarea>
+          <textarea id="eq_${qi}_exp" style="min-height:44px">${escAttr(q.explanation||'')}</textarea>
         </div>
         <label style="font-size:0.76rem;color:var(--muted);font-weight:700;text-transform:uppercase;letter-spacing:.5px;margin-bottom:7px;display:block">Options: tick &#10003; for correct</label>
         ${q.options.map((opt, oi) => `
           <div style="display:flex;align-items:center;gap:8px;margin-bottom:7px">
-            <input type="text" id="eq_${qi}_opt_${oi}" value="${esc(opt)}" style="flex:1" />
+            <input type="text" id="eq_${qi}_opt_${oi}" value="${escAttr(opt)}" style="flex:1" />
             <button class="correct-toggle${q.correct.includes(oi)?' active':''}" id="eq_${qi}_chk_${oi}" onclick="this.classList.toggle('active')">&#10003;</button>
           </div>`).join('')}
       </div>`).join('');
@@ -1391,7 +1487,8 @@
 
   window.saveEditedImported = () => {
     const updated = importedQuestions.map((q, qi) => {
-      const text = g(`eq_${qi}_text`)?.value.trim() || q.text;
+      const textEl = g(`eq_${qi}_text`);
+      const text = (textEl ? textEl.value : q.text).trim();
       const pts  = parseInt(g(`eq_${qi}_pts`)?.value) || 1;
       const exp  = g(`eq_${qi}_exp`)?.value.trim() || '';
       const img  = g(`eq_${qi}_img`)?.value.trim() || '';
@@ -1484,7 +1581,6 @@ image:https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/Simple_arithmeti
       if (maxAttempts) payload.maxAttempts=maxAttempts; if (passScore) payload.passScore=passScore;
 
       if (editingTriviaId) {
-        // Update existing, preserve createdAt
         delete payload.createdAt;
         await updateDoc(doc(db,'trivias',editingTriviaId), payload);
         showToast('Trivia updated!','success');
@@ -1492,7 +1588,6 @@ image:https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/Simple_arithmeti
         await addDoc(collection(db,'trivias'),payload);
         showToast('Trivia saved and live!','success');
       }
-      // Reset modal state
       g('tab-import').style.display = '';
       g('tabBtnImport').style.display = '';
       g('createModal').querySelector('.modal-header h2').textContent = 'New Trivia';
@@ -1507,6 +1602,8 @@ image:https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/Simple_arithmeti
   let currentTrivia=null, currentQuestion=0, answers=[], playerName='';
   let questionOrder=[], optionOrders=[];
   let timerInterval=null, timeLeft=0;
+  // Track whether we are in the "explanation shown" state (waiting for user to advance)
+  let explanationShown = false;
 
   window.beginQuiz = id => {
     currentTrivia = triviaCache.find(t=>t.id===id); if (!currentTrivia) return;
@@ -1544,8 +1641,7 @@ image:https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/Simple_arithmeti
     if (!name) { g('nameError').classList.add('show'); return; }
     g('nameError').classList.remove('show');
     try {
-      playerName = name; currentQuestion = 0;
-      // Normalize q.correct to always be an array (handles legacy number format in Firestore)
+      playerName = name; currentQuestion = 0; explanationShown = false;
       currentTrivia.questions = currentTrivia.questions.map(q => ({
         ...q,
         correct: Array.isArray(q.correct) ? q.correct : (q.correct != null ? [q.correct] : [0])
@@ -1582,8 +1678,18 @@ image:https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/Simple_arithmeti
       updateTimerDisplay();
       if (timeLeft<=0) {
         clearTimer();
+        // Disable all options and show explanation or advance
         document.querySelectorAll('.option-btn').forEach(b=>b.disabled=true);
-        setTimeout(()=>{ if (currentQuestion<questionOrder.length-1){currentQuestion++;renderQuestion();}else submitQuiz(); },900);
+        const qi = questionOrder[currentQuestion];
+        const q = currentTrivia.questions[qi];
+        revealAnswers(qi, q);
+        setTimeout(()=>{
+          if (currentTrivia.showExplanation && q.explanation) {
+            showExplanationPanel(q.explanation, true /* auto-advance after delay */);
+          } else {
+            advanceQuestion();
+          }
+        }, 900);
       }
     },1000);
   }
@@ -1599,6 +1705,8 @@ image:https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/Simple_arithmeti
 
   function renderQuestion() {
     clearTimer();
+    explanationShown = false;
+    g('explanationPanel').classList.remove('show');
     const qi = questionOrder[currentQuestion];
     const q = currentTrivia.questions[qi];
     const total = questionOrder.length;
@@ -1609,12 +1717,13 @@ image:https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/Simple_arithmeti
     g('quizTitle').textContent = currentTrivia.title;
     const descEl=g('quizDesc');
     if (currentTrivia.description){descEl.textContent=currentTrivia.description;descEl.style.display='block';}else descEl.style.display='none';
-    g('questionText').textContent = q.text;
+
+    // Render question text with inline code support
+    renderQuestionText(g('questionText'), q.text);
 
     const ptsEl=g('questionPoints');
     if (q.points && q.points>1){ptsEl.textContent=`Worth ${q.points} points`;ptsEl.style.display='block';}else ptsEl.style.display='none';
 
-    // Image
     const imgEl = g('questionImage');
     if (q.image) { imgEl.src = q.image; imgEl.style.display = 'block'; }
     else imgEl.style.display = 'none';
@@ -1636,7 +1745,50 @@ image:https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/Simple_arithmeti
     startTimer();
   }
 
+  // Highlight correct/wrong options after answering
+  function revealAnswers(qi, q) {
+    const optOrder = optionOrders[qi] || q.options.map((_,i) => i);
+    const chosen = answers[qi] || [];
+    document.querySelectorAll('.option-btn').forEach((btn, displayPos) => {
+      const origIdx = optOrder[displayPos];
+      const isCorrect = q.correct.includes(origIdx);
+      const wasChosen = chosen.includes(origIdx);
+      btn.disabled = true;
+      btn.classList.remove('selected');
+      if (isCorrect) {
+        btn.classList.add('reveal-correct');
+        btn.querySelector('.option-letter').style.background = 'var(--green)';
+        btn.querySelector('.option-letter').style.color = '#0d0e14';
+      } else if (wasChosen && !isCorrect) {
+        btn.classList.add('reveal-wrong');
+      }
+    });
+  }
+
+  function showExplanationPanel(text, autoAdvance) {
+    explanationShown = true;
+    g('explanationText').textContent = text;
+    g('explanationPanel').classList.add('show');
+    g('nextBtn').textContent = currentQuestion === questionOrder.length - 1 ? 'Submit' : 'Continue';
+    if (autoAdvance) {
+      // If timer ran out, auto-advance after showing explanation briefly
+      setTimeout(() => advanceQuestion(), 3500);
+    }
+  }
+
+  function advanceQuestion() {
+    explanationShown = false;
+    g('explanationPanel').classList.remove('show');
+    if (currentQuestion < questionOrder.length - 1) {
+      currentQuestion++;
+      renderQuestion();
+    } else {
+      submitQuiz();
+    }
+  }
+
   function toggleAnswer(qi, idx, isMulti) {
+    if (explanationShown) return; // lock once explanation is shown
     if (!answers[qi]) answers[qi]=[];
     if (isMulti){const pos=answers[qi].indexOf(idx);if(pos===-1)answers[qi].push(idx);else answers[qi].splice(pos,1);}
     else answers[qi]=[idx];
@@ -1647,12 +1799,33 @@ image:https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/Simple_arithmeti
   }
 
   window.nextQuestion = () => {
-    const qi=questionOrder[currentQuestion];
-    if (!answers[qi]?.length){
+    const qi = questionOrder[currentQuestion];
+    const q = currentTrivia.questions[qi];
+
+    // If explanation is already shown, just advance
+    if (explanationShown) {
+      advanceQuestion();
+      return;
+    }
+
+    // Must have selected an answer
+    if (!answers[qi]?.length) {
       const ol=g('optionsList');ol.style.animation='none';ol.offsetHeight;ol.style.animation='shake 0.3s ease';return;
     }
+
     clearTimer();
-    if (currentQuestion<questionOrder.length-1){currentQuestion++;renderQuestion();}else submitQuiz();
+
+    // Reveal correct/wrong highlights if explanations are enabled
+    if (currentTrivia.showExplanation) {
+      revealAnswers(qi, q);
+      if (q.explanation) {
+        showExplanationPanel(q.explanation, false);
+        return; // Wait for user to click Continue/Submit
+      }
+    }
+
+    // No explanation to show, advance immediately
+    advanceQuestion();
   };
 
   async function submitQuiz() {
@@ -1682,12 +1855,10 @@ image:https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/Simple_arithmeti
     try {
       await addDoc(collection(db,'responses'),{triviaId:currentTrivia.id,triviaTitle:currentTrivia.title,playerName,answersMap,score,maxScore,total:currentTrivia.questions.length,submittedAt:serverTimestamp()});
     } catch(e){console.error(e);}
-    // Store high score locally
     const hsKey = 'hs_' + currentTrivia.id;
     const prev = parseInt(localStorage.getItem(hsKey) || '-1');
     const pct = Math.round(score/maxScore*100);
     if (pct > prev) localStorage.setItem(hsKey, pct);
-    // Track attempt count
     const attKey = 'att_' + currentTrivia.id;
     localStorage.setItem(attKey, (parseInt(localStorage.getItem(attKey)||'0') + 1).toString());
     showPage('submittedPage');
@@ -1797,17 +1968,15 @@ image:https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/Simple_arithmeti
     g('newStaffUser').value = ''; g('newStaffPass').value = ''; g('newStaffRank').value = '';
     g('newStaffError').classList.remove('show');
     const myPerms = getPerms();
-    // Set defaults and disable perms the current user doesn't hold
     PERMS_LIST.forEach(p => {
       const el = g('np_' + p.key);
       const haveIt = myPerms[p.key] !== false;
-      el.checked = haveIt; // default to checked if you have it
+      el.checked = haveIt;
       el.disabled = !haveIt;
       el.closest('.perm-row').style.opacity = haveIt ? '1' : '0.4';
       el.closest('.perm-row').style.cursor = haveIt ? 'pointer' : 'not-allowed';
       el.closest('.perm-row').title = haveIt ? '' : 'You do not have this permission';
     });
-    // Delete defaults to off
     if (myPerms.delete !== false) { g('np_delete').checked = false; }
     if (myPerms.accounts !== false) { g('np_accounts').checked = false; }
     openModal('staffAccountsModal');
@@ -1979,8 +2148,10 @@ image:https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/Simple_arithmeti
   function g(id){return document.getElementById(id);}
   function cap(s){return s.charAt(0).toUpperCase()+s.slice(1);}
   function esc(str){if(!str)return'';return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+  // escAttr: for textarea values (no need to escape quotes as it's between tags, but escape < > & for safety)
+  function escAttr(str){if(!str)return'';return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
 
-  // Toast: drops from top
+  // Toast
   let toastTimer;
   function showToast(msg, type='') {
     const t = g('toast');
@@ -1991,7 +2162,7 @@ image:https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/Simple_arithmeti
     toastTimer = setTimeout(() => t.classList.remove('show'), 3200);
   }
 
-  // Confirm dialog (async, replaces confirm())
+  // Confirm dialog
   let confirmResolve = null;
   function showConfirm(msg, okLabel='Confirm', okClass='btn-danger') {
     return new Promise(resolve => {
@@ -2006,11 +2177,9 @@ image:https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/Simple_arithmeti
     g('confirmOverlay').classList.remove('open');
     if (confirmResolve) { confirmResolve(yes); confirmResolve = null; }
   };
-  // Close confirm on overlay click
   g('confirmOverlay').addEventListener('click', e => { if (e.target === g('confirmOverlay')) resolveConfirm(false); });
 
   // Custom category dropdown
-  let catOptions = [''];
   window.toggleCatDropdown = () => {
     const btn = g('catSelectBtn'), dd = g('catDropdown');
     const open = dd.classList.contains('open');
@@ -2026,7 +2195,6 @@ image:https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/Simple_arithmeti
   window.selectCat = val => {
     g('catFilter').value = val;
     g('catSelectVal').textContent = val || 'All categories';
-    // Update selected class
     document.querySelectorAll('#catDropdown .cs-option').forEach(el => {
       el.classList.toggle('selected', el.textContent === (val || 'All categories'));
     });
@@ -2034,7 +2202,6 @@ image:https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/Simple_arithmeti
     g('catSelectBtn').classList.remove('open');
     renderHome();
   };
-  // Close dropdown on outside click
   document.addEventListener('click', e => {
     const wrap = g('catSelectWrap');
     if (wrap && !wrap.contains(e.target)) {
