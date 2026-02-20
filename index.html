@@ -7,21 +7,21 @@
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg: #0f1117; --surface: #1a1d27; --surface2: #22263a; --border: #2e3250;
-    --accent: #6c63ff; --accent-hover: #5a52e0; --green: #43d9a0; --green-hover: #35c48e;
-    --red: #ff6584; --yellow: #ffd166; --text: #e8eaf6; --muted: #8b90b8;
+    --bg: #0f1117; --surface: #1a1d27; --surface2: #22263a; --border: #2a2d3a;
+    --accent: #e07b39; --accent-hover: #c96a2a; --green: #43d9a0; --green-hover: #35c48e;
+    --red: #ff6584; --yellow: #ffd166; --text: #e8eaf6; --muted: #8a8fa8;
     --radius: 16px; --shadow: 0 8px 32px rgba(0,0,0,0.4);
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body { font-family: 'Nunito Sans', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh;
-    background-image: radial-gradient(ellipse at 15% 10%, rgba(108,99,255,0.15) 0%, transparent 55%), radial-gradient(ellipse at 85% 85%, rgba(255,101,132,0.1) 0%, transparent 50%); }
+    background-image: radial-gradient(ellipse at 15% 10%, rgba(224,123,57,0.12) 0%, transparent 55%), radial-gradient(ellipse at 85% 85%, rgba(67,217,160,0.08) 0%, transparent 50%); }
   header { display: flex; align-items: center; justify-content: space-between; padding: 18px 32px; border-bottom: 1px solid var(--border); background: rgba(15,17,23,0.85); backdrop-filter: blur(12px); position: sticky; top: 0; z-index: 100; }
-  .logo { font-family: 'Nunito', sans-serif; font-weight: 900; font-size: 1.5rem; background: linear-gradient(135deg, #6c63ff, #ff6584); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+  .logo { font-family: 'Nunito', sans-serif; font-weight: 900; font-size: 1.5rem; background: linear-gradient(135deg, #e07b39, #43d9a0); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
   .header-actions { display: flex; gap: 10px; align-items: center; }
   .btn { font-family: 'Nunito', sans-serif; font-weight: 700; font-size: 0.9rem; padding: 10px 20px; border-radius: 50px; border: none; cursor: pointer; transition: all 0.2s ease; display: inline-flex; align-items: center; gap: 7px; }
   .btn:active { transform: scale(0.97); }
   .btn-primary { background: var(--accent); color: #fff; }
-  .btn-primary:hover { background: var(--accent-hover); transform: translateY(-1px); box-shadow: 0 4px 16px rgba(108,99,255,0.4); }
+  .btn-primary:hover { background: var(--accent-hover); transform: translateY(-1px); box-shadow: 0 4px 16px rgba(224,123,57,0.4); }
   .btn-green { background: var(--green); color: #0f1117; }
   .btn-green:hover { background: var(--green-hover); transform: translateY(-1px); box-shadow: 0 4px 16px rgba(67,217,160,0.35); }
   .btn-ghost { background: transparent; color: var(--muted); border: 1.5px solid var(--border); }
@@ -30,7 +30,14 @@
   .btn-danger:hover { background: rgba(255,101,132,0.25); }
   .btn-sm { padding: 7px 14px; font-size: 0.8rem; }
   .btn-block { width: 100%; justify-content: center; margin-top: 10px; }
-  .staff-badge { background: linear-gradient(135deg, rgba(108,99,255,0.2), rgba(255,101,132,0.2)); border: 1.5px solid rgba(108,99,255,0.4); color: var(--accent); padding: 6px 14px; border-radius: 50px; font-family: 'Nunito', sans-serif; font-weight: 700; font-size: 0.8rem; }
+  .staff-badge {
+    background: linear-gradient(135deg, rgba(224,123,57,0.15), rgba(67,217,160,0.12));
+    border: 1.5px solid rgba(224,123,57,0.35); color: var(--accent);
+    padding: 5px 12px; border-radius: 50px; font-family: 'Nunito', sans-serif;
+    font-weight: 700; font-size: 0.78rem; white-space: nowrap; max-width: 160px;
+    overflow: hidden; text-overflow: ellipsis; display: inline-flex; align-items: center; gap: 5px;
+  }
+  .staff-badge .sb-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); flex-shrink: 0; }
 
   main { max-width: 960px; margin: 0 auto; padding: 40px 24px; }
   .page { display: none; }
@@ -38,10 +45,10 @@
 
   /* HOME */
   .home-header { text-align: center; margin-bottom: 32px; }
-  .home-header h1 { font-family: 'Nunito', sans-serif; font-weight: 900; font-size: 2.8rem; margin-bottom: 10px; background: linear-gradient(135deg, #e8eaf6, #8b90b8); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+  .home-header h1 { font-family: 'Nunito', sans-serif; font-weight: 900; font-size: 2.8rem; margin-bottom: 10px; background: linear-gradient(135deg, #f0f2ff, #8a8fa8); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
   .home-header p { color: var(--muted); font-size: 1rem; }
 
-  /* SEARCH ROW — both inputs identical style, no SVG hack */
+  /* SEARCH ROW */
   .search-row { display: flex; gap: 12px; margin-bottom: 28px; }
   .search-row #searchInput,
   .search-row #catFilter {
@@ -62,20 +69,20 @@
   .search-row #searchInput::placeholder { color: var(--muted); -webkit-text-fill-color: var(--muted); }
   .search-row #catFilter { width: 175px; appearance: none; cursor: pointer; }
   .search-row #searchInput:focus,
-  .search-row #catFilter:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(108,99,255,0.15); }
+  .search-row #catFilter:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(224,123,57,0.12); }
 
   .trivia-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; }
   .trivia-card { background: var(--surface); border: 1.5px solid var(--border); border-radius: var(--radius); padding: 24px; transition: all 0.25s ease; display: flex; flex-direction: column; gap: 12px; }
-  .trivia-card:hover { border-color: rgba(108,99,255,0.4); transform: translateY(-3px); box-shadow: var(--shadow); }
+  .trivia-card:hover { border-color: rgba(224,123,57,0.35); transform: translateY(-3px); box-shadow: var(--shadow); }
   .trivia-card h3 { font-family: 'Nunito', sans-serif; font-weight: 800; font-size: 1.15rem; }
   .trivia-card .desc { color: var(--muted); font-size: 0.88rem; line-height: 1.5; flex: 1; }
   .trivia-card .meta { font-size: 0.8rem; color: var(--muted); display: flex; gap: 6px; flex-wrap: wrap; align-items: center; }
   .trivia-card .card-actions { display: flex; gap: 8px; flex-wrap: wrap; }
   .badge { font-size: 0.72rem; border-radius: 20px; padding: 3px 9px; font-weight: 700; font-family: 'Nunito', sans-serif; border: 1px solid; }
   .badge-yellow { background: rgba(255,209,102,0.1); color: var(--yellow); border-color: rgba(255,209,102,0.25); }
-  .badge-purple { background: rgba(108,99,255,0.1); color: #a78bfa; border-color: rgba(108,99,255,0.25); }
+  .badge-purple { background: rgba(224,123,57,0.1); color: var(--accent); border-color: rgba(224,123,57,0.25); }
   .badge-green { background: rgba(67,217,160,0.1); color: var(--green); border-color: rgba(67,217,160,0.25); }
-  .badge-red { background: rgba(255,101,132,0.1); color: var(--red); border-color: rgba(255,101,132,0.25); }
+  .badge-red { background: rgba(67,217,160,0.08); color: var(--red); border-color: rgba(255,101,132,0.25); }
   .badge-blue { background: rgba(56,189,248,0.1); color: #38bdf8; border-color: rgba(56,189,248,0.25); }
 
   .empty-state { text-align: center; padding: 80px 20px; color: var(--muted); grid-column: 1 / -1; }
@@ -85,16 +92,32 @@
   @keyframes spin { to { transform: rotate(360deg); } }
 
   /* MODALS */
-  .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.7); backdrop-filter: blur(6px); z-index: 200; align-items: center; justify-content: center; padding: 20px; }
+  .modal-overlay {
+    display: none; position: fixed; inset: 0;
+    background: rgba(0,0,0,0);
+    backdrop-filter: blur(0px);
+    -webkit-backdrop-filter: blur(0px);
+    z-index: 200; align-items: center; justify-content: center; padding: 20px;
+    transition: background 0.3s ease, backdrop-filter 0.3s ease;
+  }
   .modal-overlay.open { display: flex; }
-  .modal { background: var(--surface); border: 1.5px solid var(--border); border-radius: var(--radius); width: 100%; max-width: 540px; max-height: 90vh; overflow-y: auto; padding: 32px; box-shadow: var(--shadow); animation: slideUp 0.25s ease; }
-  @keyframes slideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+  .modal-overlay.anim-in { background: rgba(0,0,0,0.72); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); }
+  .modal-overlay.anim-out { background: rgba(0,0,0,0); backdrop-filter: blur(0px); -webkit-backdrop-filter: blur(0px); }
+  .modal {
+    background: var(--surface); border: 1.5px solid var(--border); border-radius: var(--radius);
+    width: 100%; max-width: 540px; max-height: 90vh; overflow-y: auto; padding: 32px;
+    box-shadow: var(--shadow);
+    transform: translateY(28px) scale(0.97); opacity: 0;
+    transition: transform 0.32s cubic-bezier(0.34,1.48,0.64,1), opacity 0.25s ease;
+  }
+  .modal-overlay.anim-in .modal { transform: translateY(0) scale(1); opacity: 1; }
+  .modal-overlay.anim-out .modal { transform: translateY(16px) scale(0.97); opacity: 0; }
   .modal-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 24px; }
   .modal-header h2 { font-family: 'Nunito', sans-serif; font-weight: 800; font-size: 1.3rem; }
   .close-btn { background: var(--surface2); border: none; color: var(--muted); width: 32px; height: 32px; border-radius: 50%; cursor: pointer; font-size: 1rem; display: flex; align-items: center; justify-content: center; transition: all 0.2s; }
   .close-btn:hover { color: var(--text); background: var(--border); }
 
-  /* FORM INPUTS — global style for modal forms */
+  /* FORM INPUTS */
   .form-group { margin-bottom: 16px; }
   .form-group label { display: block; font-weight: 700; font-size: 0.82rem; color: var(--muted); margin-bottom: 7px; text-transform: uppercase; letter-spacing: 0.5px; }
   .form-group label span.req { color: var(--red); margin-left: 3px; }
@@ -104,10 +127,10 @@
     transition: border-color 0.2s; outline: none;
   }
   select { appearance: none; cursor: pointer; }
-  input:focus, textarea:focus, select:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(108,99,255,0.15); }
+  input:focus, textarea:focus, select:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(224,123,57,0.12); }
   textarea { resize: vertical; min-height: 80px; }
 
-  /* NAME/PIN inputs — scoped by ID to override the global rule above */
+  /* NAME/PIN inputs, scoped by ID */
   #playerNameInput, #pinInput {
     display: block !important;
     width: 100% !important;
@@ -132,7 +155,7 @@
   }
   #playerNameInput:focus, #pinInput:focus {
     border-color: var(--accent) !important;
-    box-shadow: 0 0 0 3px rgba(108,99,255,0.18) !important;
+    box-shadow: 0 0 0 3px rgba(224,123,57,0.2) !important;
   }
   #pinInput { letter-spacing: 8px !important; font-size: 1.4rem !important; }
 
@@ -154,7 +177,7 @@
   /* TABS */
   .tab-row { display: flex; gap: 4px; margin-bottom: 24px; background: var(--surface2); border-radius: 10px; padding: 4px; }
   .tab-btn { flex: 1; padding: 9px; border: none; border-radius: 7px; cursor: pointer; font-family: 'Nunito', sans-serif; font-weight: 700; font-size: 0.85rem; background: transparent; color: var(--muted); transition: all 0.2s; }
-  .tab-btn.active { background: var(--surface); color: var(--text); box-shadow: 0 2px 8px rgba(0,0,0,0.2); }
+  .tab-btn.active { background: var(--surface); color: var(--text); box-shadow: 0 2px 8px rgba(0,0,0,0.25); }
   .tab-content { display: none; }
   .tab-content.active { display: block; }
 
@@ -176,11 +199,11 @@
   .correct-toggle.active { border-color: var(--green); background: rgba(67,217,160,0.15); color: var(--green); }
   .correct-toggle:hover { border-color: var(--green); color: var(--green); }
   .remove-opt-btn { width: 30px; height: 30px; border-radius: 6px; border: none; background: transparent; color: var(--muted); cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 1rem; transition: all 0.2s; flex-shrink: 0; }
-  .remove-opt-btn:hover { color: var(--red); background: rgba(255,101,132,0.1); }
+  .remove-opt-btn:hover { color: var(--red); background: rgba(67,217,160,0.08); }
 
   /* IMPORT */
   .import-zone { border: 2px dashed var(--border); border-radius: 12px; padding: 28px 20px; text-align: center; cursor: pointer; transition: all 0.2s; position: relative; }
-  .import-zone:hover, .import-zone.drag-over { border-color: var(--accent); background: rgba(108,99,255,0.06); }
+  .import-zone:hover, .import-zone.drag-over { border-color: var(--accent); background: rgba(224,123,57,0.06); }
   .import-zone input[type="file"] { position: absolute; inset: 0; opacity: 0; cursor: pointer; width: 100%; height: 100%; }
   .import-zone h4 { font-family: 'Nunito', sans-serif; font-weight: 800; margin-bottom: 6px; font-size: 1rem; }
   .import-zone p { font-size: 0.82rem; color: var(--muted); }
@@ -189,7 +212,7 @@
   .preview-item:last-child { border-bottom: none; }
   .preview-item strong { color: var(--text); }
   .format-hint { background: var(--surface2); border: 1.5px solid var(--border); border-radius: 12px; padding: 16px; margin-top: 12px; font-size: 0.82rem; color: var(--muted); line-height: 1.8; }
-  .format-hint code { background: rgba(108,99,255,0.15); color: #a78bfa; padding: 1px 6px; border-radius: 4px; font-family: monospace; font-size: 0.8rem; }
+  .format-hint code { background: rgba(224,123,57,0.12); color: #60c4b8; padding: 1px 6px; border-radius: 4px; font-family: monospace; font-size: 0.8rem; }
   .modal-footer { display: flex; justify-content: flex-end; gap: 10px; margin-top: 24px; padding-top: 20px; border-top: 1px solid var(--border); }
   .divider { height: 1px; background: var(--border); margin: 18px 0; }
 
@@ -217,15 +240,15 @@
   .timer-fill.danger { stroke: var(--red); }
   .timer-num { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-family: 'Nunito', sans-serif; font-weight: 900; font-size: 0.85rem; }
   .progress-bar-wrap { background: var(--surface2); border-radius: 50px; height: 6px; margin: 12px 0 22px; overflow: hidden; }
-  .progress-bar { background: linear-gradient(90deg, var(--accent), #a78bfa); height: 100%; border-radius: 50px; transition: width 0.4s ease; }
+  .progress-bar { background: linear-gradient(90deg, var(--accent), var(--green)); height: 100%; border-radius: 50px; transition: width 0.4s ease; }
   .question-text { font-family: 'Nunito', sans-serif; font-weight: 800; font-size: 1.4rem; line-height: 1.4; margin-bottom: 8px; }
   .question-points { font-size: 0.8rem; color: var(--yellow); font-weight: 700; margin-bottom: 18px; }
   .question-image { width: 100%; max-height: 280px; object-fit: cover; border-radius: 12px; margin-bottom: 16px; border: 1.5px solid var(--border); display: none; }
   .multi-hint { font-size: 0.82rem; color: var(--yellow); margin-bottom: 16px; font-weight: 600; }
   .options-list { display: flex; flex-direction: column; gap: 12px; }
   .option-btn { background: var(--surface); border: 1.5px solid var(--border); border-radius: 14px; padding: 16px 20px; color: var(--text); font-family: 'Nunito', sans-serif; font-weight: 700; font-size: 1rem; cursor: pointer; text-align: left; transition: all 0.2s; display: flex; align-items: center; gap: 14px; width: 100%; }
-  .option-btn:hover:not(:disabled) { border-color: var(--accent); background: rgba(108,99,255,0.08); transform: translateX(4px); }
-  .option-btn.selected { border-color: var(--accent); background: rgba(108,99,255,0.15); }
+  .option-btn:hover:not(:disabled) { border-color: var(--accent); background: rgba(224,123,57,0.07); transform: translateX(4px); }
+  .option-btn.selected { border-color: var(--accent); background: rgba(224,123,57,0.12); }
   .option-btn:disabled { opacity: 0.45; cursor: not-allowed; transform: none; pointer-events: none; }
   .option-letter { width: 34px; height: 34px; border-radius: 50%; background: var(--surface2); display: flex; align-items: center; justify-content: center; font-size: 0.85rem; font-weight: 800; flex-shrink: 0; transition: all 0.2s; }
   .option-btn.selected .option-letter { background: var(--accent); color: #fff; }
@@ -256,7 +279,7 @@
   .answer-row .mark.wrong { color: var(--red); }
   .answer-row .q-text { color: var(--muted); flex: 1; min-width: 0; }
   .answer-row .a-text { font-weight: 700; }
-  .explanation-text { font-size: 0.78rem; color: #a78bfa; margin-top: 2px; margin-left: 26px; font-style: italic; }
+  .explanation-text { font-size: 0.78rem; color: #60c4b8; margin-top: 2px; margin-left: 26px; font-style: italic; }
   .no-responses { text-align: center; color: var(--muted); padding: 40px; font-size: 0.9rem; }
   .leaderboard-row { display: flex; align-items: center; gap: 12px; padding: 12px 0; border-bottom: 1px solid var(--border); }
   .leaderboard-row:last-child { border-bottom: none; }
@@ -276,7 +299,7 @@
   .bq-bar-inner.correct-opt { background: var(--green); }
   .bq-count { color: var(--muted); font-size: 0.76rem; width: 30px; text-align: right; flex-shrink: 0; }
 
-  /* VERSION BUTTON — liquid glass */
+  /* VERSION BUTTON, liquid glass */
   .version-btn {
     position: fixed;
     bottom: 24px;
@@ -319,10 +342,22 @@
   .changelog-items li.change::before { background: var(--accent); }
 
   /* STAFF ACCOUNTS MODAL */
-  .staff-account-row { display: flex; align-items: center; justify-content: space-between; background: var(--surface2); border: 1.5px solid var(--border); border-radius: 10px; padding: 11px 14px; margin-bottom: 8px; }
-  .staff-account-row .sa-name { font-family: 'Nunito', sans-serif; font-weight: 800; font-size: 0.9rem; }
-  .staff-account-row .sa-meta { font-size: 0.75rem; color: var(--muted); margin-top: 2px; }
-  .sa-owner-badge { font-size: 0.68rem; background: rgba(108,99,255,0.15); color: var(--accent); border: 1px solid rgba(108,99,255,0.3); border-radius: 20px; padding: 2px 8px; font-weight: 700; font-family: 'Nunito', sans-serif; }
+  .staff-account-row { background: var(--surface2); border: 1.5px solid var(--border); border-radius: 12px; padding: 14px 16px; margin-bottom: 8px; transition: border-color 0.2s; }
+  .staff-account-row:hover { border-color: rgba(224,123,57,0.3); }
+  .sa-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 10px; }
+  .sa-info { flex: 1; min-width: 0; }
+  .sa-name { font-family: 'Nunito', sans-serif; font-weight: 800; font-size: 0.92rem; }
+  .sa-rank-label { font-size: 0.72rem; color: var(--accent); font-weight: 700; margin-top: 2px; }
+  .sa-actions { display: flex; gap: 6px; flex-shrink: 0; }
+  .sa-perms { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 10px; }
+  .sa-perm { font-size: 0.67rem; border-radius: 20px; padding: 2px 9px; font-weight: 700; font-family: 'Nunito', sans-serif; border: 1px solid var(--border); background: var(--surface); color: var(--muted); }
+  .sa-perm.granted { background: rgba(67,217,160,0.1); color: var(--green); border-color: rgba(67,217,160,0.3); }
+  .sa-owner-badge { font-size: 0.68rem; background: rgba(224,123,57,0.12); color: var(--accent); border: 1px solid rgba(224,123,57,0.3); border-radius: 20px; padding: 3px 10px; font-weight: 700; font-family: 'Nunito', sans-serif; white-space: nowrap; flex-shrink: 0; }
+  .sa-you-badge { font-size: 0.68rem; background: rgba(67,217,160,0.1); color: var(--green); border: 1px solid rgba(67,217,160,0.3); border-radius: 20px; padding: 3px 10px; font-weight: 700; font-family: 'Nunito', sans-serif; white-space: nowrap; flex-shrink: 0; }
+  .perm-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-top: 8px; }
+  .perm-row { display: flex; align-items: center; gap: 7px; font-size: 0.82rem; color: var(--muted); font-weight: 600; cursor: pointer; user-select: none; padding: 6px 10px; border-radius: 8px; background: var(--surface2); border: 1.5px solid var(--border); transition: border-color 0.15s, color 0.15s; }
+  .perm-row:hover { border-color: rgba(224,123,57,0.3); color: var(--text); }
+  .perm-row input[type="checkbox"] { accent-color: var(--green); width: 14px; height: 14px; cursor: pointer; flex-shrink: 0; }
 
   ::-webkit-scrollbar { width: 6px; }
   ::-webkit-scrollbar-track { background: var(--bg); }
@@ -344,10 +379,10 @@
 <header>
   <div class="logo">Trivia</div>
   <div class="header-actions">
-    <div id="staffBadge" class="staff-badge" style="display:none">Staff</div>
+    <div id="staffBadge" class="staff-badge" style="display:none"><span class="sb-dot"></span><span id="staffRankText">Staff</span></div>
     <button class="btn btn-primary" id="addTriviaBtn" style="display:none" onclick="openCreateModal()">+ Add Trivia</button>
     <button class="btn btn-ghost" id="loginBtn" onclick="openLoginModal()">Staff Login</button>
-    <button class="btn btn-ghost btn-sm" id="staffAccountsBtn" style="display:none" onclick="openStaffAccounts()">&#128100; Accounts</button>
+    <button class="btn btn-ghost btn-sm" id="staffAccountsBtn" style="display:none" onclick="openStaffAccounts()">Accounts</button>
     <button class="btn btn-ghost" id="logoutBtn" style="display:none" onclick="logout()">Log Out</button>
   </div>
 </header>
@@ -479,7 +514,7 @@
       <div class="two-col">
         <div class="form-group">
           <label>Timer per question (s)</label>
-          <input type="number" id="newTimer" placeholder="e.g. 30 — blank = none" min="5" max="300" />
+          <input type="number" id="newTimer" placeholder="e.g. 30 (blank = none)" min="5" max="300" />
           <div class="hint-text">Auto-advances when time runs out.</div>
         </div>
         <div class="form-group">
@@ -504,7 +539,7 @@
         </div>
         <div class="form-group">
           <label>Passing score (%)</label>
-          <input type="number" id="newPassScore" placeholder="e.g. 70 — blank = none" min="1" max="100" />
+          <input type="number" id="newPassScore" placeholder="e.g. 70 (blank = none)" min="1" max="100" />
           <div class="hint-text">Shows pass/fail on finish screen.</div>
         </div>
       </div>
@@ -539,7 +574,7 @@
       <div class="two-col">
         <div class="form-group">
           <label>Timer per question (s)</label>
-          <input type="number" id="importTimer" placeholder="e.g. 30 — blank = none" min="5" max="300" />
+          <input type="number" id="importTimer" placeholder="e.g. 30 (blank = none)" min="5" max="300" />
         </div>
         <div class="form-group">
           <label>Max attempts per player</label>
@@ -563,7 +598,7 @@
         </div>
         <div class="form-group">
           <label>Passing score (%)</label>
-          <input type="number" id="importPassScore" placeholder="e.g. 70 — blank = none" min="1" max="100" />
+          <input type="number" id="importPassScore" placeholder="e.g. 70 (blank = none)" min="1" max="100" />
         </div>
       </div>
       <div class="form-group">
@@ -591,7 +626,7 @@
       </div>
       <div class="format-hint">
         <strong style="color:var(--text);display:block;margin-bottom:8px">File format guide</strong>
-        <strong style="color:var(--text)">.txt / .csv</strong> — blank line between questions, <code>*</code> before correct answers. Optional extra lines: <code>points:N</code>, <code>explanation:text</code>, <code>image:URL</code><br><br>
+        <strong style="color:var(--text)">.txt / .csv</strong>: blank line between questions, <code>*</code> before correct answers. Optional extra lines: <code>points:N</code>, <code>explanation:text</code>, <code>image:URL</code><br><br>
         <code>What is 2 + 2?</code><br>
         <code>*4</code><br>
         <code>3</code><br>
@@ -599,7 +634,7 @@
         <code>points:2</code><br>
         <code>explanation:Because maths.</code><br>
         <code>image:https://example.com/pic.jpg</code><br><br>
-        <strong style="color:var(--text)">.json</strong> — <code>[{"text":"Q?","options":["A","B"],"correct":[0],"points":2,"explanation":"...","image":"https://..."}]</code><br><br>
+        <strong style="color:var(--text)">.json</strong>: <code>[{"text":"Q?","options":["A","B"],"correct":[0],"points":2,"explanation":"...","image":"https://..."}]</code><br><br>
         <button class="btn btn-ghost btn-sm" onclick="downloadExample()">&#11015; Download example.txt</button>
       </div>
     </div>
@@ -642,21 +677,35 @@
 <div class="toast" id="toast"></div>
 
 <!-- VERSION BUTTON -->
-<button class="version-btn" type="button" onclick="openChangelog()">v1.5.0</button>
+<button class="version-btn" type="button" onclick="openChangelog()">v1.6.0</button>
 
 <!-- CHANGELOG MODAL -->
 <div class="modal-overlay" id="changelogModal">
   <div class="modal" style="max-width:480px">
-    <div class="modal-header"><h2>&#128197; Update Log</h2><button class="close-btn" onclick="closeModal('changelogModal')">&#10005;</button></div>
+    <div class="modal-header"><h2>Update Log</h2><button class="close-btn" onclick="closeModal('changelogModal')">&#10005;</button></div>
     <div>
 
       <div class="changelog-entry">
-        <div class="changelog-ver">v1.5.0 <span class="changelog-date">Today</span></div>
+        <div class="changelog-ver">v1.6.0 <span class="changelog-date">Today</span></div>
         <ul class="changelog-items">
-          <li class="new">Staff accounts — add &amp; remove extra staff logins from the app</li>
-          <li class="new">Version button with liquid glass style + this update log</li>
-          <li class="fix">Fixed quiz start crash (SVG className setter bug)</li>
-          <li class="fix">Fixed name input not responding on Start Quiz press</li>
+          <li class="new">Staff badge now shows your rank and resizes to fit</li>
+          <li class="new">Custom rank per staff account</li>
+          <li class="new">Permissions per account (create, edit, delete, review, manage accounts)</li>
+          <li class="new">Edit button on staff accounts</li>
+          <li class="new">Cannot remove the account you are logged in as</li>
+          <li class="new">Animated modal open and close with background blur</li>
+          <li class="change">Colour theme changed from purple to amber and teal</li>
+          <li class="fix">Removed all em-dashes and emoji from the interface</li>
+        </ul>
+      </div>
+
+      <div class="changelog-entry">
+        <div class="changelog-ver">v1.5.0 <span class="changelog-date">Earlier</span></div>
+        <ul class="changelog-items">
+          <li class="new">Staff accounts: add and remove extra staff logins from the app</li>
+          <li class="new">Version button with liquid glass style and update log</li>
+          <li class="fix">Fixed quiz start crash caused by SVG className setter</li>
+          <li class="fix">Fixed name input not responding on Start Quiz</li>
         </ul>
       </div>
 
@@ -710,7 +759,7 @@
       <div class="changelog-entry">
         <div class="changelog-ver">v1.0.0 <span class="changelog-date">Launch</span></div>
         <ul class="changelog-items">
-          <li class="new">Initial release — Firebase trivia app</li>
+          <li class="new">Initial release, Firebase trivia app</li>
           <li class="new">Staff login / logout</li>
           <li class="new">Create &amp; delete trivia</li>
           <li class="new">Player name entry + quiz flow</li>
@@ -724,22 +773,78 @@
 
 <!-- STAFF ACCOUNTS MODAL -->
 <div class="modal-overlay" id="staffAccountsModal">
-  <div class="modal" style="max-width:460px">
-    <div class="modal-header"><h2>&#128100; Staff Accounts</h2><button class="close-btn" onclick="closeModal('staffAccountsModal')">&#10005;</button></div>
-    <p style="font-size:0.84rem;color:var(--muted);margin-bottom:16px">Staff can log in, create trivia, review responses, and edit/delete.</p>
+  <div class="modal" style="max-width:500px">
+    <div class="modal-header">
+      <h2>Staff Accounts</h2>
+      <button class="close-btn" type="button" onclick="closeModal('staffAccountsModal')">&#10005;</button>
+    </div>
+    <p style="font-size:0.84rem;color:var(--muted);margin-bottom:16px">Manage who can log in as staff. Each account can have a custom rank and specific permissions.</p>
     <div id="staffAccountsList"></div>
     <div class="divider"></div>
-    <div style="display:flex;flex-direction:column;gap:10px">
-      <div class="form-group" style="margin-bottom:0">
-        <label>Username</label>
-        <input type="text" id="newStaffUser" placeholder="e.g. alice" autocomplete="off" />
+    <div id="addAccountForm">
+      <p style="font-family:'Nunito',sans-serif;font-weight:800;font-size:0.78rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:12px">Add New Account</p>
+      <div class="two-col" style="margin-bottom:10px">
+        <div class="form-group" style="margin-bottom:0">
+          <label>Username</label>
+          <input type="text" id="newStaffUser" placeholder="e.g. alice" autocomplete="off" />
+        </div>
+        <div class="form-group" style="margin-bottom:0">
+          <label>Password</label>
+          <input type="password" id="newStaffPass" placeholder="Password" />
+        </div>
       </div>
-      <div class="form-group" style="margin-bottom:0">
-        <label>Password</label>
-        <input type="password" id="newStaffPass" placeholder="Choose a strong password" />
+      <div class="form-group" style="margin-bottom:10px">
+        <label>Rank (optional)</label>
+        <input type="text" id="newStaffRank" placeholder="e.g. Moderator, Editor..." autocomplete="off" />
       </div>
-      <div class="error-msg" id="newStaffError">Username already exists or fields are empty.</div>
-      <button type="button" class="btn btn-primary" onclick="addStaffAccount()" style="align-self:flex-end">+ Add Account</button>
+      <p style="font-family:'Nunito',sans-serif;font-weight:700;font-size:0.76rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:8px">Permissions</p>
+      <div class="perm-grid" style="margin-bottom:12px">
+        <label class="perm-row"><input type="checkbox" id="np_create" checked /> Create trivia</label>
+        <label class="perm-row"><input type="checkbox" id="np_edit" checked /> Edit trivia</label>
+        <label class="perm-row"><input type="checkbox" id="np_delete" /> Delete trivia</label>
+        <label class="perm-row"><input type="checkbox" id="np_review" checked /> View responses</label>
+        <label class="perm-row"><input type="checkbox" id="np_accounts" /> Manage accounts</label>
+      </div>
+      <div class="error-msg" id="newStaffError">Username already exists or required fields are empty.</div>
+      <div style="display:flex;justify-content:flex-end;margin-top:10px">
+        <button type="button" class="btn btn-primary" onclick="addStaffAccount()">Add Account</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- EDIT STAFF ACCOUNT MODAL -->
+<div class="modal-overlay" id="editStaffModal">
+  <div class="modal" style="max-width:460px">
+    <div class="modal-header">
+      <h2>Edit Account</h2>
+      <button class="close-btn" type="button" onclick="closeModal('editStaffModal');openModal('staffAccountsModal')">&#10005;</button>
+    </div>
+    <input type="hidden" id="editStaffId" />
+    <div class="form-group">
+      <label>Username</label>
+      <input type="text" id="editStaffUser" autocomplete="off" />
+    </div>
+    <div class="form-group">
+      <label>New Password <span style="font-weight:400;text-transform:none;font-size:0.75rem;color:var(--muted)">(leave blank to keep current)</span></label>
+      <input type="password" id="editStaffPass" placeholder="Leave blank to keep current" />
+    </div>
+    <div class="form-group">
+      <label>Rank</label>
+      <input type="text" id="editStaffRank" placeholder="e.g. Moderator, Editor..." autocomplete="off" />
+    </div>
+    <p style="font-family:'Nunito',sans-serif;font-weight:700;font-size:0.76rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:8px">Permissions</p>
+    <div class="perm-grid" style="margin-bottom:12px">
+      <label class="perm-row"><input type="checkbox" id="ep_create" /> Create trivia</label>
+      <label class="perm-row"><input type="checkbox" id="ep_edit" /> Edit trivia</label>
+      <label class="perm-row"><input type="checkbox" id="ep_delete" /> Delete trivia</label>
+      <label class="perm-row"><input type="checkbox" id="ep_review" /> View responses</label>
+      <label class="perm-row"><input type="checkbox" id="ep_accounts" /> Manage accounts</label>
+    </div>
+    <div class="error-msg" id="editStaffError">Username is required or already taken.</div>
+    <div class="modal-footer" style="margin-top:0;padding-top:16px">
+      <button type="button" class="btn btn-ghost" onclick="closeModal('editStaffModal');openModal('staffAccountsModal')">Cancel</button>
+      <button type="button" class="btn btn-primary" onclick="saveEditedStaff()">Save Changes</button>
     </div>
   </div>
 </div>
@@ -769,26 +874,43 @@
     const u = g('loginUser').value.trim(), p = g('loginPass').value;
     // Check hardcoded owner account
     if (u === STAFF_USER && p === STAFF_PASS) {
-      isStaff = true; sessionStorage.setItem('staffLoggedIn','1');
+      isStaff = true;
+      sessionStorage.setItem('staffLoggedIn','1');
+      sessionStorage.setItem('staffUser', STAFF_USER);
+      sessionStorage.setItem('staffRank', 'Owner');
+      sessionStorage.setItem('staffPerms', JSON.stringify({create:true,edit:true,delete:true,review:true,accounts:true}));
       closeModal('loginModal'); updateAuthUI(); renderHome(); return;
     }
     // Check Firestore staff accounts
     try {
       const snap = await getDocs(query(collection(db,'staffAccounts'), where('username','==',u)));
       if (!snap.empty && snap.docs[0].data().password === p) {
-        isStaff = true; sessionStorage.setItem('staffLoggedIn','1');
+        const data = snap.docs[0].data();
+        isStaff = true;
+        sessionStorage.setItem('staffLoggedIn','1');
+        sessionStorage.setItem('staffUser', u);
+        sessionStorage.setItem('staffRank', data.rank || 'Staff');
+        sessionStorage.setItem('staffPerms', JSON.stringify(data.perms || {create:true,edit:true,delete:false,review:true,accounts:false}));
         closeModal('loginModal'); updateAuthUI(); renderHome(); return;
       }
     } catch(e) { console.error(e); }
     g('loginError').classList.add('show');
   };
-  window.logout = () => { isStaff = false; sessionStorage.removeItem('staffLoggedIn'); updateAuthUI(); renderHome(); };
+  window.logout = () => { isStaff = false; ['staffLoggedIn','staffUser','staffRank','staffPerms'].forEach(k=>sessionStorage.removeItem(k)); updateAuthUI(); renderHome(); };
+  function getPerms() {
+    try { return JSON.parse(sessionStorage.getItem('staffPerms') || '{}'); } catch { return {}; }
+  }
   function updateAuthUI() {
+    const perms = getPerms();
     g('staffBadge').style.display = isStaff ? 'flex' : 'none';
-    g('addTriviaBtn').style.display = isStaff ? 'flex' : 'none';
+    if (isStaff) {
+      const rank = sessionStorage.getItem('staffRank') || 'Staff';
+      g('staffRankText').textContent = rank;
+    }
+    g('addTriviaBtn').style.display = (isStaff && perms.create !== false) ? 'flex' : 'none';
     g('loginBtn').style.display = isStaff ? 'none' : 'flex';
     g('logoutBtn').style.display = isStaff ? 'flex' : 'none';
-    g('staffAccountsBtn').style.display = isStaff ? 'flex' : 'none';
+    g('staffAccountsBtn').style.display = (isStaff && perms.accounts !== false) ? 'flex' : 'none';
   }
 
   // ── PAGE NAV ───────────────────────────────────────────────────────────────
@@ -849,11 +971,13 @@
         t.maxAttempts ? `<span class="badge badge-blue">Max ${t.maxAttempts} attempt${t.maxAttempts>1?'s':''}</span>` : '',
       ].join('');
       let actions = `<button class="btn btn-green btn-sm" onclick="beginQuiz('${t.id}')">Start</button>`;
-      if (isStaff) actions = `
-        <button class="btn btn-green btn-sm" onclick="beginQuiz('${t.id}')">Start</button>
-        <button class="btn btn-ghost btn-sm" onclick="openReview('${t.id}')">Review</button>
-        <button class="btn btn-ghost btn-sm" onclick="openEditTrivia('${t.id}')">Edit</button>
-        <button class="btn btn-danger btn-sm" onclick="deleteTrivia('${t.id}')">Delete</button>`;
+      if (isStaff) {
+        const p = getPerms();
+        actions = `<button class="btn btn-green btn-sm" onclick="beginQuiz('${t.id}')">Start</button>
+        ${p.review!==false?`<button class="btn btn-ghost btn-sm" onclick="openReview('${t.id}')">Review</button>`:''}
+        ${p.edit!==false?`<button class="btn btn-ghost btn-sm" onclick="openEditTrivia('${t.id}')">Edit</button>`:''}
+        ${p.delete?`<button class="btn btn-danger btn-sm" onclick="deleteTrivia('${t.id}')">Delete</button>`:''}`;
+      }
       const card = document.createElement('div'); card.className='trivia-card';
       card.innerHTML = `<h3>${esc(t.title)}</h3><div class="desc">${t.description?esc(t.description):'<span style="opacity:0.4;font-style:italic">No description</span>'}</div><div class="meta"><span>${qc} question${qc!==1?'s':''}</span>${badges}</div><div class="card-actions">${actions}</div>`;
       grid.appendChild(card);
@@ -920,7 +1044,7 @@
     switchTab('manual');
     g('tab-import').style.display = 'none';
     g('tabBtnImport').style.display = 'none';
-    g('createModal').classList.add('open');
+    openModal('createModal');
   };
 
   // ── QUESTION BUILDER ───────────────────────────────────────────────────────
@@ -942,7 +1066,7 @@
     g('tab-import').style.display = '';
     g('tabBtnImport').style.display = '';
     switchTab('manual');
-    g('createModal').classList.add('open');
+    openModal('createModal');
     addQuestion();
   };
 
@@ -1075,7 +1199,7 @@
           <label style="font-size:0.76rem;color:var(--muted);font-weight:700;text-transform:uppercase;letter-spacing:.5px;margin-bottom:5px;display:block">Explanation</label>
           <textarea id="eq_${qi}_exp" style="min-height:44px">${esc(q.explanation||'')}</textarea>
         </div>
-        <label style="font-size:0.76rem;color:var(--muted);font-weight:700;text-transform:uppercase;letter-spacing:.5px;margin-bottom:7px;display:block">Options — tick &#10003; for correct</label>
+        <label style="font-size:0.76rem;color:var(--muted);font-weight:700;text-transform:uppercase;letter-spacing:.5px;margin-bottom:7px;display:block">Options: tick &#10003; for correct</label>
         ${q.options.map((opt, oi) => `
           <div style="display:flex;align-items:center;gap:8px;margin-bottom:7px">
             <input type="text" id="eq_${qi}_opt_${oi}" value="${esc(opt)}" style="flex:1" />
@@ -1083,12 +1207,12 @@
           </div>`).join('')}
       </div>`).join('');
     closeModal('createModal');
-    g('editImportedModal').classList.add('open');
+    openModal('editImportedModal');
   };
 
   window.closeEditImported = () => {
     closeModal('editImportedModal');
-    g('createModal').classList.add('open');
+    openModal('createModal');
   };
 
   window.saveEditedImported = () => {
@@ -1104,7 +1228,7 @@
     importedQuestions = updated;
     showImportPreview(updated);
     closeModal('editImportedModal');
-    g('createModal').classList.add('open');
+    openModal('createModal');
     showToast('Questions updated!','success');
   };
 
@@ -1186,7 +1310,7 @@ image:https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/Simple_arithmeti
       if (maxAttempts) payload.maxAttempts=maxAttempts; if (passScore) payload.passScore=passScore;
 
       if (editingTriviaId) {
-        // Update existing — preserve createdAt
+        // Update existing, preserve createdAt
         delete payload.createdAt;
         await updateDoc(doc(db,'trivias',editingTriviaId), payload);
         showToast('Trivia updated!','success');
@@ -1391,7 +1515,7 @@ image:https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/Simple_arithmeti
     ['reviewContent','leaderboardContent','breakdownContent'].forEach((id,i)=>g(id).style.display=i===0?'block':'none');
     g('reviewStats').style.display='none';
     ['responses','leaderboard','breakdown'].forEach((t,i)=>g('reviewTab'+cap(t)).classList.toggle('active',i===0));
-    g('reviewModal').classList.add('open');
+    openModal('reviewModal');
     try {
       const snap=await getDocs(query(collection(db,'responses'),where('triviaId','==',triviaId)));
       const responses=snap.docs.map(d=>({id:d.id,...d.data()})).sort((a,b)=>(b.submittedAt?.seconds||0)-(a.submittedAt?.seconds||0));
@@ -1420,7 +1544,7 @@ image:https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/Simple_arithmeti
         const chosen=Array.isArray(ans)?ans:(ans!=null?[ans]:[]);
         const isCorrect=[...chosen].sort().join(',')===([...(q.correct||[])]).sort().join(',');
         const chosenText=chosen.length?chosen.map(c=>q.options[c]).filter(Boolean).join(', '):'No answer';
-        const expLine=q.explanation?`<div class="explanation-text">&#128161; ${esc(q.explanation)}</div>`:'';
+        const expLine=q.explanation?`<div class="explanation-text">${esc(q.explanation)}</div>`:'';
         return `<div class="answer-row"><span class="mark ${isCorrect?'correct':'wrong'}">${isCorrect?'+':'-'}</span><span class="q-text">${esc(q.text)}</span><span class="a-text">${esc(chosenText)}</span></div>${expLine}`;
       }).join('');
       const timeStr=r.submittedAt?.seconds?new Date(r.submittedAt.seconds*1000).toLocaleString():'';
@@ -1470,35 +1594,74 @@ image:https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/Simple_arithmeti
   };
 
   // ── CHANGELOG ─────────────────────────────────────────────────────────────
-  window.openChangelog = () => g('changelogModal').classList.add('open');
+  window.openChangelog = () => openModal('changelogModal');
 
   // ── STAFF ACCOUNTS ─────────────────────────────────────────────────────────
+  const PERMS_LIST = [
+    {key:'create',   label:'Create trivia'},
+    {key:'edit',     label:'Edit trivia'},
+    {key:'delete',   label:'Delete trivia'},
+    {key:'review',   label:'View responses'},
+    {key:'accounts', label:'Manage accounts'},
+  ];
+
   window.openStaffAccounts = async () => {
-    g('newStaffUser').value = ''; g('newStaffPass').value = '';
+    g('newStaffUser').value = ''; g('newStaffPass').value = ''; g('newStaffRank').value = '';
+    g('np_create').checked = true; g('np_edit').checked = true;
+    g('np_delete').checked = false; g('np_review').checked = true; g('np_accounts').checked = false;
     g('newStaffError').classList.remove('show');
-    g('staffAccountsModal').classList.add('open');
+    openModal('staffAccountsModal');
     await renderStaffAccounts();
   };
 
   async function renderStaffAccounts() {
     const list = g('staffAccountsList');
-    list.innerHTML = '<div style="color:var(--muted);font-size:0.85rem;padding:8px 0">Loading...</div>';
+    const currentUser = sessionStorage.getItem('staffUser') || STAFF_USER;
+    const isOwnerSession = (currentUser === STAFF_USER);
+    list.innerHTML = '<div style="color:var(--muted);font-size:0.82rem;padding:4px 0 8px">Loading...</div>';
     try {
       const snap = await getDocs(collection(db,'staffAccounts'));
       const accounts = snap.docs.map(d => ({id:d.id,...d.data()}));
-      // Always show the owner account first
+      const ownerIsYou = (currentUser === STAFF_USER);
       let html = `<div class="staff-account-row">
-        <div><div class="sa-name">${esc(STAFF_USER)}</div><div class="sa-meta">Owner account</div></div>
-        <span class="sa-owner-badge">Owner</span>
+        <div class="sa-top">
+          <div class="sa-info">
+            <div class="sa-name">${esc(STAFF_USER)}</div>
+            <div class="sa-rank-label">Owner</div>
+          </div>
+          <div style="display:flex;gap:6px;align-items:center;flex-shrink:0">
+            ${ownerIsYou ? '<span class="sa-you-badge">You</span>' : ''}
+            <span class="sa-owner-badge">Owner</span>
+          </div>
+        </div>
+        <div class="sa-perms">
+          ${PERMS_LIST.map(p=>`<span class="sa-perm granted">${p.label}</span>`).join('')}
+        </div>
       </div>`;
       if (!accounts.length) {
-        html += '<div style="color:var(--muted);font-size:0.82rem;padding:10px 0 4px">No extra accounts yet.</div>';
+        html += '<div style="color:var(--muted);font-size:0.82rem;padding:12px 0;text-align:center">No extra accounts yet.</div>';
       } else {
-        html += accounts.map(a => `
-          <div class="staff-account-row">
-            <div><div class="sa-name">${esc(a.username)}</div><div class="sa-meta">Added by staff</div></div>
-            <button type="button" class="btn btn-danger btn-sm" onclick="deleteStaffAccount('${a.id}')">Remove</button>
-          </div>`).join('');
+        html += accounts.map(a => {
+          const perms = a.perms || {create:true,edit:true,delete:false,review:true,accounts:false};
+          const isYou = (a.username === currentUser);
+          const permPills = PERMS_LIST.map(p =>
+            `<span class="sa-perm ${perms[p.key]?'granted':''}">${p.label}</span>`
+          ).join('');
+          return `<div class="staff-account-row">
+            <div class="sa-top">
+              <div class="sa-info">
+                <div class="sa-name">${esc(a.username)}</div>
+                <div class="sa-rank-label">${esc(a.rank || 'Staff')}</div>
+              </div>
+              <div class="sa-actions">
+                ${isYou ? '<span class="sa-you-badge">You</span>' : ''}
+                ${isOwnerSession ? `<button type="button" class="btn btn-ghost btn-sm" onclick="openEditStaff('${a.id}')">Edit</button>` : ''}
+                ${(isOwnerSession && !isYou) ? `<button type="button" class="btn btn-danger btn-sm" onclick="deleteStaffAccount('${a.id}')">Remove</button>` : ''}
+              </div>
+            </div>
+            <div class="sa-perms">${permPills}</div>
+          </div>`;
+        }).join('');
       }
       list.innerHTML = html;
     } catch(e) { list.innerHTML = '<div style="color:var(--red);font-size:0.85rem">Error loading accounts.</div>'; }
@@ -1507,22 +1670,76 @@ image:https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/Simple_arithmeti
   window.addStaffAccount = async () => {
     const username = g('newStaffUser').value.trim();
     const password = g('newStaffPass').value;
+    const rank = g('newStaffRank').value.trim() || 'Staff';
     if (!username || !password) { g('newStaffError').classList.add('show'); return; }
-    // Check not duplicate of owner
     if (username === STAFF_USER) { g('newStaffError').classList.add('show'); return; }
+    const perms = {
+      create:   g('np_create').checked,
+      edit:     g('np_edit').checked,
+      delete:   g('np_delete').checked,
+      review:   g('np_review').checked,
+      accounts: g('np_accounts').checked
+    };
     try {
-      // Check duplicate in Firestore
       const existing = await getDocs(query(collection(db,'staffAccounts'), where('username','==',username)));
       if (!existing.empty) { g('newStaffError').classList.add('show'); return; }
-      await addDoc(collection(db,'staffAccounts'), {username, password});
-      g('newStaffUser').value = ''; g('newStaffPass').value = '';
+      await addDoc(collection(db,'staffAccounts'), {username, password, rank, perms});
+      g('newStaffUser').value = ''; g('newStaffPass').value = ''; g('newStaffRank').value = '';
       g('newStaffError').classList.remove('show');
       showToast('Account added!','success');
       await renderStaffAccounts();
     } catch(e) { console.error(e); showToast('Error adding account.','error'); }
   };
 
+  window.openEditStaff = async id => {
+    const snap = await getDocs(collection(db,'staffAccounts'));
+    const acct = snap.docs.map(d=>({id:d.id,...d.data()})).find(a=>a.id===id);
+    if (!acct) return;
+    const perms = acct.perms || {create:true,edit:true,delete:false,review:true,accounts:false};
+    g('editStaffId').value = id;
+    g('editStaffUser').value = acct.username;
+    g('editStaffPass').value = '';
+    g('editStaffRank').value = acct.rank || '';
+    g('ep_create').checked = !!perms.create; g('ep_edit').checked = !!perms.edit;
+    g('ep_delete').checked = !!perms.delete; g('ep_review').checked = !!perms.review;
+    g('ep_accounts').checked = !!perms.accounts;
+    g('editStaffError').classList.remove('show');
+    closeModal('staffAccountsModal');
+    openModal('editStaffModal');
+  };
+
+  window.saveEditedStaff = async () => {
+    const id = g('editStaffId').value;
+    const username = g('editStaffUser').value.trim();
+    const password = g('editStaffPass').value;
+    const rank = g('editStaffRank').value.trim() || 'Staff';
+    if (!username) { g('editStaffError').classList.add('show'); return; }
+    const perms = {
+      create:   g('ep_create').checked,
+      edit:     g('ep_edit').checked,
+      delete:   g('ep_delete').checked,
+      review:   g('ep_review').checked,
+      accounts: g('ep_accounts').checked
+    };
+    try {
+      const existing = await getDocs(query(collection(db,'staffAccounts'), where('username','==',username)));
+      const conflict = existing.docs.find(d => d.id !== id);
+      if (conflict) { g('editStaffError').classList.add('show'); return; }
+      const payload = {username, rank, perms};
+      if (password) payload.password = password;
+      await updateDoc(doc(db,'staffAccounts',id), payload);
+      showToast('Account updated!','success');
+      closeModal('editStaffModal');
+      openModal('staffAccountsModal');
+      await renderStaffAccounts();
+    } catch(e) { console.error(e); showToast('Error.','error'); }
+  };
+
   window.deleteStaffAccount = async id => {
+    const currentUser = sessionStorage.getItem('staffUser');
+    const snap = await getDocs(collection(db,'staffAccounts'));
+    const acct = snap.docs.map(d=>({id:d.id,...d.data()})).find(a=>a.id===id);
+    if (acct && acct.username === currentUser) { showToast('Cannot remove your own account.','error'); return; }
     if (!confirm('Remove this staff account?')) return;
     try {
       await deleteDoc(doc(db,'staffAccounts',id));
@@ -1532,8 +1749,20 @@ image:https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/Simple_arithmeti
   };
 
   // ── MODALS ─────────────────────────────────────────────────────────────────
-  window.openLoginModal = () => { ['loginUser','loginPass'].forEach(id=>g(id).value=''); g('loginError').classList.remove('show'); g('loginModal').classList.add('open'); };
-  window.closeModal = id => g(id).classList.remove('open');
+  window.openLoginModal = () => { ['loginUser','loginPass'].forEach(id=>g(id).value=''); g('loginError').classList.remove('show'); openModal('loginModal'); };
+  function openModal(id) {
+    const el = g(id);
+    el.classList.add('open');
+    el.classList.remove('anim-out');
+    requestAnimationFrame(() => requestAnimationFrame(() => el.classList.add('anim-in')));
+  }
+  function closeModal(id) {
+    const el = g(id);
+    el.classList.remove('anim-in');
+    el.classList.add('anim-out');
+    setTimeout(() => { el.classList.remove('open','anim-out'); }, 280);
+  }
+  window.closeModal = closeModal;
   document.querySelectorAll('.modal-overlay').forEach(o=>o.addEventListener('click',e=>{if(e.target===o)o.classList.remove('open');}));
   g('loginPass').addEventListener('keydown',e=>{if(e.key==='Enter')doLogin();});
   g('playerNameInput').addEventListener('keydown',e=>{if(e.key==='Enter')startQuizWithName();});
