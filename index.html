@@ -1124,9 +1124,9 @@ image:https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/Simple_arithmeti
   function updateTimerDisplay() {
     const arc=g('timerArc'), num=g('timerNum');
     const pct = timeLeft/currentTrivia.timerSeconds;
-    arc.style.strokeDasharray = CIRC;
-    arc.style.strokeDashoffset = CIRC*(1-pct);
-    arc.className = 'timer-fill'+(pct<=0.2?' danger':pct<=0.4?' warn':'');
+    arc.setAttribute('stroke-dasharray', CIRC);
+    arc.setAttribute('stroke-dashoffset', CIRC*(1-pct));
+    arc.setAttribute('class', 'timer-fill'+(pct<=0.2?' danger':pct<=0.4?' warn':''));
     num.textContent = timeLeft;
   }
 
