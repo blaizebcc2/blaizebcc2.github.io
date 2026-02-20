@@ -368,10 +368,119 @@
   ::-webkit-scrollbar-track { background: var(--bg); }
   ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
   @keyframes shake { 0%,100%{transform:translateX(0)} 25%{transform:translateX(-8px)} 75%{transform:translateX(8px)} }
-  .toast { position: fixed; bottom: 28px; left: 50%; transform: translateX(-50%) translateY(80px); background: var(--surface); border: 1.5px solid var(--border); border-radius: 50px; padding: 12px 24px; font-family: 'DM Serif Display', serif; font-weight: 700; font-size: 0.9rem; box-shadow: var(--shadow); z-index: 999; transition: transform 0.3s ease; pointer-events: none; }
+
+  /* TOAST   slides down from top */
+  .toast {
+    position: fixed; top: 0; left: 50%;
+    transform: translateX(-50%) translateY(-120%);
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 0 0 16px 16px;
+    padding: 14px 22px 16px;
+    font-family: 'DM Sans', sans-serif; font-weight: 600; font-size: 0.88rem;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.5); z-index: 9999;
+    transition: transform 0.35s cubic-bezier(0.34,1.3,0.64,1);
+    pointer-events: none; max-width: 92vw; text-align: center;
+    border-top: none;
+  }
   .toast.show { transform: translateX(-50%) translateY(0); }
-  .toast.success { border-color: rgba(67,217,160,0.4); color: var(--green); }
-  .toast.error { border-color: rgba(255,101,132,0.4); color: var(--red); }
+  .toast.success { border-color: rgba(62,207,142,0.5); color: var(--green); background: rgba(62,207,142,0.08); }
+  .toast.error { border-color: rgba(240,100,126,0.5); color: var(--red); background: rgba(240,100,126,0.08); }
+  .toast.info { border-color: rgba(224,123,57,0.5); color: var(--accent); background: rgba(224,123,57,0.08); }
+
+  /* CONFIRM DIALOG   animated drop-down panel */
+  .confirm-overlay {
+    position: fixed; inset: 0; background: rgba(0,0,0,0);
+    backdrop-filter: blur(0px); -webkit-backdrop-filter: blur(0px);
+    z-index: 8000; display: flex; align-items: flex-start; justify-content: center;
+    padding-top: 0; pointer-events: none;
+    transition: background 0.25s ease, backdrop-filter 0.25s ease;
+  }
+  .confirm-overlay.open { pointer-events: all; background: rgba(0,0,0,0.45); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); }
+  .confirm-box {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 0 0 20px 20px; border-top: none;
+    padding: 20px 24px 22px; width: 100%; max-width: 420px;
+    box-shadow: 0 12px 40px rgba(0,0,0,0.5);
+    transform: translateY(-100%);
+    transition: transform 0.35s cubic-bezier(0.34,1.3,0.64,1);
+  }
+  .confirm-overlay.open .confirm-box { transform: translateY(0); }
+  .confirm-box .cb-msg { font-size: 0.93rem; color: var(--text); line-height: 1.55; margin-bottom: 16px; }
+  .confirm-box .cb-btns { display: flex; gap: 8px; justify-content: flex-end; }
+
+  /* PERMISSION CHECKBOXES   custom rounded toggle style */
+  .perm-row { display: flex; align-items: center; gap: 10px; font-size: 0.82rem; color: var(--muted); font-weight: 500; cursor: pointer; user-select: none; padding: 9px 12px; border-radius: 10px; background: var(--surface2); border: 1px solid var(--border); transition: border-color 0.15s, color 0.15s, background 0.15s; }
+  .perm-row:hover:not([style*="not-allowed"]) { border-color: rgba(62,207,142,0.35); color: var(--text); background: rgba(62,207,142,0.05); }
+  .perm-row input[type="checkbox"] { display: none; }
+  .perm-check-box {
+    width: 18px; height: 18px; border-radius: 6px; border: 1.5px solid var(--border);
+    background: var(--surface); flex-shrink: 0; display: flex; align-items: center; justify-content: center;
+    transition: all 0.15s ease; color: transparent; font-size: 11px; font-weight: 800;
+  }
+  .perm-row input:checked ~ .perm-check-box {
+    background: var(--green); border-color: var(--green); color: #0d0e14;
+  }
+  .perm-row input:checked ~ .perm-check-box::after { content: '\2713'; }
+
+  /* CUSTOM SELECT DROPDOWN */
+  .custom-select-wrap { position: relative; }
+  .custom-select-btn {
+    width: 100%; background: var(--surface2); border: 1px solid var(--border); border-radius: 10px;
+    padding: 10px 36px 10px 14px; color: var(--text); font-family: 'DM Sans', sans-serif; font-size: 0.92rem;
+    cursor: pointer; text-align: left; transition: border-color 0.18s; display: flex; align-items: center;
+    justify-content: space-between; font-weight: 400; user-select: none;
+  }
+  .custom-select-btn:focus, .custom-select-btn.open { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(224,123,57,0.15); outline: none; }
+  .custom-select-btn .cs-arrow { width: 16px; height: 16px; flex-shrink: 0; opacity: 0.5; transition: transform 0.2s; }
+  .custom-select-btn.open .cs-arrow { transform: rotate(180deg); }
+  .custom-select-btn .cs-val { flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .custom-select-dropdown {
+    position: absolute; top: calc(100% + 6px); left: 0; right: 0; z-index: 500;
+    background: var(--surface); border: 1px solid var(--border); border-radius: 12px;
+    padding: 5px; box-shadow: 0 8px 32px rgba(0,0,0,0.45);
+    opacity: 0; transform: translateY(-8px) scale(0.98); pointer-events: none;
+    transition: opacity 0.18s ease, transform 0.18s ease; max-height: 240px; overflow-y: auto;
+  }
+  .custom-select-dropdown.open { opacity: 1; transform: translateY(0) scale(1); pointer-events: all; }
+  .cs-option {
+    padding: 8px 12px; border-radius: 8px; cursor: pointer; font-family: 'DM Sans', sans-serif;
+    font-size: 0.88rem; color: var(--muted); transition: background 0.12s, color 0.12s;
+  }
+  .cs-option:hover { background: var(--surface2); color: var(--text); }
+  .cs-option.selected { color: var(--accent); font-weight: 600; background: rgba(224,123,57,0.08); }
+
+  /* HIGH SCORE STRIP on card */
+  .card-hs {
+    display: flex; align-items: center; gap: 8px; font-size: 0.78rem; font-weight: 600;
+    color: var(--muted); padding: 7px 10px; background: var(--surface2); border-radius: 8px;
+    border: 1px solid var(--border);
+  }
+  .card-hs .hs-score { color: var(--green); font-weight: 700; font-family: 'DM Serif Display', serif; font-size: 0.9rem; }
+  .card-hs .hs-label { flex: 1; }
+  .btn-disabled { opacity: 0.45; cursor: not-allowed; pointer-events: none; }
+
+  /* MOBILE */
+  @media (max-width: 640px) {
+    header { padding: 12px 16px; }
+    .logo { font-size: 1.2rem; }
+    .header-actions { gap: 6px; }
+    .btn { padding: 7px 13px; font-size: 0.82rem; }
+    .btn-sm { padding: 6px 10px; font-size: 0.76rem; }
+    main { padding: 20px 14px; }
+    .home-header h1 { font-size: 1.9rem; }
+    .trivia-grid { grid-template-columns: 1fr; }
+    .search-row { flex-direction: column; gap: 8px; }
+    .search-row #catFilter, .search-row .custom-select-wrap { width: 100%; }
+    .quiz-container { padding: 16px; }
+    .modal { padding: 20px 18px; border-radius: 0 0 18px 18px; max-height: 100vh; border-left: none; border-right: none; }
+    .modal-overlay { align-items: flex-start; padding: 0; }
+    .two-col, .three-col { grid-template-columns: 1fr; }
+    .perm-grid { grid-template-columns: 1fr; }
+    .review-stats { grid-template-columns: 1fr 1fr; }
+    .card-actions { flex-wrap: wrap; }
+    .entry-page { margin: 30px auto; }
+    .version-btn { bottom: 14px; right: 14px; }
+  }
 
   /* EDIT IMPORTED MODAL */
   .edit-q-card { background: var(--surface2); border: 1.5px solid var(--border); border-radius: 10px; padding: 14px; margin-bottom: 10px; }
@@ -387,7 +496,7 @@
     <div id="staffBadge" class="staff-badge" style="display:none"><span class="sb-dot"></span><span id="staffRankText">Staff</span></div>
     <button class="btn btn-primary" id="addTriviaBtn" style="display:none" onclick="openCreateModal()">New quiz</button>
     <button class="btn btn-ghost" id="loginBtn" onclick="openLoginModal()">Log in</button>
-    <button class="btn btn-ghost btn-sm" id="staffAccountsBtn" style="display:none" onclick="openStaffAccounts()">Team</button>
+    <button class="btn btn-ghost btn-sm" id="staffAccountsBtn" style="display:none" onclick="openStaffAccounts()">Accounts</button>
     <button class="btn btn-ghost" id="logoutBtn" style="display:none" onclick="logout()">Log out</button>
   </div>
 </header>
@@ -401,9 +510,14 @@
     </div>
     <div class="search-row">
       <input type="text" id="searchInput" placeholder="Search by name or category..." oninput="renderHome()" autocomplete="off" />
-      <select id="catFilter" onchange="renderHome()">
-        <option value="">All categories</option>
-      </select>
+      <div class="custom-select-wrap" id="catSelectWrap" style="width:175px">
+        <button type="button" class="custom-select-btn" id="catSelectBtn" onclick="toggleCatDropdown()">
+          <span class="cs-val" id="catSelectVal">All categories</span>
+          <svg class="cs-arrow" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <div class="custom-select-dropdown" id="catDropdown"></div>
+      </div>
+      <select id="catFilter" style="display:none"></select>
     </div>
     <div class="trivia-grid" id="triviaGrid">
       <div class="loading-state" style="grid-column:1/-1"><div class="spinner"></div><p>Loading trivia...</p></div>
@@ -684,8 +798,19 @@
 
 <div class="toast" id="toast"></div>
 
+<!-- CONFIRM DIALOG -->
+<div class="confirm-overlay" id="confirmOverlay">
+  <div class="confirm-box">
+    <div class="cb-msg" id="confirmMsg">Are you sure?</div>
+    <div class="cb-btns">
+      <button type="button" class="btn btn-ghost btn-sm" id="confirmCancel" onclick="resolveConfirm(false)">Cancel</button>
+      <button type="button" class="btn btn-danger btn-sm" id="confirmOk" onclick="resolveConfirm(true)">Confirm</button>
+    </div>
+  </div>
+</div>
+
 <!-- VERSION BUTTON -->
-<button class="version-btn" type="button" onclick="openChangelog()">v1.7.0</button>
+<button class="version-btn" type="button" onclick="openChangelog()">v1.8.0</button>
 
 <!-- CHANGELOG MODAL -->
 <div class="modal-overlay" id="changelogModal">
@@ -694,14 +819,27 @@
     <div class="changelog-list">
 
       <div class="changelog-entry">
-        <div class="changelog-ver">v1.7.0 <span class="changelog-date">Today</span></div>
+        <div class="changelog-ver">v1.8.0 <span class="changelog-date">Today</span></div>
         <ul class="changelog-items">
-          <li class="new">Renamed to Blaizery | Quizzes &amp; Tests</li>
+          <li class="new">Custom animated drop-down notification for errors and confirmations</li>
+          <li class="new">High score shown on each quiz card (stored locally per device)</li>
+          <li class="new">Start button greyed out when you reach the attempt limit</li>
+          <li class="new">Custom themed category dropdown replacing the native browser one</li>
+          <li class="new">Permission checkboxes redesigned with custom rounded style</li>
+          <li class="new">Mobile layout improvements across all screens</li>
+          <li class="change">All confirm dialogs now use the custom drop-down instead of browser popups</li>
+          <li class="change">Accounts button renamed back to Accounts</li>
+        </ul>
+      </div>
+
+      <div class="changelog-entry">
+        <div class="changelog-ver">v1.7.0 <span class="changelog-date">Earlier</span></div>
+        <ul class="changelog-items">
+          <li class="new">Renamed to Blaizery | Quizzes and Tests</li>
           <li class="new">New font: DM Sans and DM Serif Display</li>
           <li class="change">Improved UI across login, accounts, create, and changelog screens</li>
           <li class="change">You cannot grant permissions you do not have yourself</li>
           <li class="change">Staff rank capped at 12 characters to fit the badge</li>
-          <li class="fix">Changelog shows just "Initial release" for v1.0.0</li>
         </ul>
       </div>
 
@@ -715,6 +853,7 @@
           <li class="new">Cannot remove the account you are logged in as</li>
           <li class="new">Animated modal open and close with background blur</li>
           <li class="change">Colour theme changed from purple to amber and teal</li>
+          
         </ul>
       </div>
 
@@ -819,11 +958,11 @@
       </div>
       <p style="font-family:'DM Sans',sans-serif;font-weight:600;font-size:0.76rem;color:var(--muted);letter-spacing:0.05em;margin-bottom:8px">Permissions</p>
       <div class="perm-grid" style="margin-bottom:12px">
-        <label class="perm-row"><input type="checkbox" id="np_create" checked /> Create trivia</label>
-        <label class="perm-row"><input type="checkbox" id="np_edit" checked /> Edit trivia</label>
-        <label class="perm-row"><input type="checkbox" id="np_delete" /> Delete trivia</label>
-        <label class="perm-row"><input type="checkbox" id="np_review" checked /> View responses</label>
-        <label class="perm-row"><input type="checkbox" id="np_accounts" /> Manage accounts</label>
+        <label class="perm-row"><input type="checkbox" id="np_create" checked /><span class="perm-check-box"></span> Create trivia</label>
+        <label class="perm-row"><input type="checkbox" id="np_edit" checked /><span class="perm-check-box"></span> Edit trivia</label>
+        <label class="perm-row"><input type="checkbox" id="np_delete" /><span class="perm-check-box"></span> Delete trivia</label>
+        <label class="perm-row"><input type="checkbox" id="np_review" checked /><span class="perm-check-box"></span> View responses</label>
+        <label class="perm-row"><input type="checkbox" id="np_accounts" /><span class="perm-check-box"></span> Manage accounts</label>
       </div>
       <div class="error-msg" id="newStaffError">Username already exists or required fields are empty.</div>
       <div style="display:flex;justify-content:flex-end;margin-top:10px">
@@ -856,11 +995,11 @@
     </div>
     <p style="font-family:'DM Sans',sans-serif;font-weight:600;font-size:0.76rem;color:var(--muted);letter-spacing:0.05em;margin-bottom:8px">Permissions</p>
     <div class="perm-grid" style="margin-bottom:12px">
-      <label class="perm-row"><input type="checkbox" id="ep_create" /> Create trivia</label>
-      <label class="perm-row"><input type="checkbox" id="ep_edit" /> Edit trivia</label>
-      <label class="perm-row"><input type="checkbox" id="ep_delete" /> Delete trivia</label>
-      <label class="perm-row"><input type="checkbox" id="ep_review" /> View responses</label>
-      <label class="perm-row"><input type="checkbox" id="ep_accounts" /> Manage accounts</label>
+      <label class="perm-row"><input type="checkbox" id="ep_create" /><span class="perm-check-box"></span> Create trivia</label>
+      <label class="perm-row"><input type="checkbox" id="ep_edit" /><span class="perm-check-box"></span> Edit trivia</label>
+      <label class="perm-row"><input type="checkbox" id="ep_delete" /><span class="perm-check-box"></span> Delete trivia</label>
+      <label class="perm-row"><input type="checkbox" id="ep_review" /><span class="perm-check-box"></span> View responses</label>
+      <label class="perm-row"><input type="checkbox" id="ep_accounts" /><span class="perm-check-box"></span> Manage accounts</label>
     </div>
     <div class="error-msg" id="editStaffError">Username is required or already taken.</div>
     <div class="modal-footer" style="margin-top:0;padding-top:16px">
@@ -967,6 +1106,7 @@
     const sel = g('catFilter'); const cur = sel.value;
     sel.innerHTML = '<option value="">All categories</option>' + cats.map(c=>`<option value="${esc(c)}">${esc(c)}</option>`).join('');
     if (cur) sel.value = cur;
+    buildCatDropdown(cats);
   }
 
   window.renderHome = () => {
@@ -992,22 +1132,34 @@
         t.shuffle ? `<span class="badge badge-red">Shuffled</span>` : '',
         t.maxAttempts ? `<span class="badge badge-blue">Max ${t.maxAttempts} attempt${t.maxAttempts>1?'s':''}</span>` : '',
       ].join('');
-      let actions = `<button class="btn btn-green btn-sm" onclick="beginQuiz('${t.id}')">Start</button>`;
+      const hsKey = 'hs_' + t.id;
+      const attKey = 'att_' + t.id;
+      const myHsPct = parseInt(localStorage.getItem(hsKey) || '-1');
+      const myAttempts = parseInt(localStorage.getItem(attKey) || '0');
+      const maxed = t.maxAttempts && myAttempts >= t.maxAttempts;
+
+      const hsStrip = myHsPct >= 0 ? `<div class="card-hs"><span class="hs-label">Your best</span><span class="hs-score">${myHsPct}%</span></div>` : '';
+
+      const startBtn = maxed
+        ? `<button class="btn btn-ghost btn-sm btn-disabled" onclick="showToast('You have reached the maximum number of attempts for this quiz.','error')">Start</button>`
+        : `<button class="btn btn-green btn-sm" onclick="${maxed?'':"beginQuiz('" + t.id + "')"}">Start</button>`;
+
+      let actions = startBtn;
       if (isStaff) {
         const p = getPerms();
-        actions = `<button class="btn btn-green btn-sm" onclick="beginQuiz('${t.id}')">Start</button>
-        ${p.review!==false?`<button class="btn btn-ghost btn-sm" onclick="openReview('${t.id}')">Review</button>`:''}
-        ${p.edit!==false?`<button class="btn btn-ghost btn-sm" onclick="openEditTrivia('${t.id}')">Edit</button>`:''}
-        ${p.delete?`<button class="btn btn-danger btn-sm" onclick="deleteTrivia('${t.id}')">Delete</button>`:''}`;
+        actions = startBtn +
+          (p.review!==false?` <button class="btn btn-ghost btn-sm" onclick="openReview('${t.id}')">Review</button>`:'') +
+          (p.edit!==false?` <button class="btn btn-ghost btn-sm" onclick="openEditTrivia('${t.id}')">Edit</button>`:'') +
+          (p.delete?` <button class="btn btn-danger btn-sm" onclick="deleteTrivia('${t.id}')">Delete</button>`:'');
       }
       const card = document.createElement('div'); card.className='trivia-card';
-      card.innerHTML = `<h3>${esc(t.title)}</h3><div class="desc">${t.description?esc(t.description):'<span style="opacity:0.4;font-style:italic">No description</span>'}</div><div class="meta"><span>${qc} question${qc!==1?'s':''}</span>${badges}</div><div class="card-actions">${actions}</div>`;
+      card.innerHTML = `<h3>${esc(t.title)}</h3><div class="desc">${t.description?esc(t.description):'<span style="opacity:0.4;font-style:italic">No description</span>'}</div><div class="meta"><span>${qc} question${qc!==1?'s':''}</span>${badges}</div>${hsStrip}<div class="card-actions">${actions}</div>`;
       grid.appendChild(card);
     });
   };
 
   window.deleteTrivia = async id => {
-    if (!confirm('Delete this trivia and all its responses?')) return;
+    if (!await showConfirm('Delete this quiz and all its responses? This cannot be undone.', 'Delete', 'btn-danger')) return;
     try {
       const rs = await getDocs(query(collection(db,'responses'), where('triviaId','==',id)));
       await Promise.all(rs.docs.map(d => deleteDoc(doc(db,'responses',d.id))));
@@ -1358,6 +1510,12 @@ image:https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/Simple_arithmeti
 
   window.beginQuiz = id => {
     currentTrivia = triviaCache.find(t=>t.id===id); if (!currentTrivia) return;
+    const attKey = 'att_' + id;
+    const myAttempts = parseInt(localStorage.getItem(attKey) || '0');
+    if (currentTrivia.maxAttempts && myAttempts >= currentTrivia.maxAttempts) {
+      showToast('You have reached the maximum number of attempts for this quiz.', 'error');
+      return;
+    }
     if (currentTrivia.pin) { g('pinInput').value=''; g('pinError').classList.remove('show'); showPage('pinPage'); setTimeout(()=>g('pinInput').focus(),100); }
     else goToNamePage();
   };
@@ -1524,6 +1682,14 @@ image:https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/Simple_arithmeti
     try {
       await addDoc(collection(db,'responses'),{triviaId:currentTrivia.id,triviaTitle:currentTrivia.title,playerName,answersMap,score,maxScore,total:currentTrivia.questions.length,submittedAt:serverTimestamp()});
     } catch(e){console.error(e);}
+    // Store high score locally
+    const hsKey = 'hs_' + currentTrivia.id;
+    const prev = parseInt(localStorage.getItem(hsKey) || '-1');
+    const pct = Math.round(score/maxScore*100);
+    if (pct > prev) localStorage.setItem(hsKey, pct);
+    // Track attempt count
+    const attKey = 'att_' + currentTrivia.id;
+    localStorage.setItem(attKey, (parseInt(localStorage.getItem(attKey)||'0') + 1).toString());
     showPage('submittedPage');
   }
 
@@ -1610,7 +1776,7 @@ image:https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/Simple_arithmeti
   }
 
   window.deleteResponse = async (responseId,triviaId) => {
-    if (!confirm('Delete this response?')) return;
+    if (!await showConfirm('Delete this response?', 'Delete', 'btn-danger')) return;
     try{await deleteDoc(doc(db,'responses',responseId));showToast('Response deleted.','success');openReview(triviaId);}
     catch(e){showToast('Error.','error');}
   };
@@ -1781,7 +1947,7 @@ image:https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/Simple_arithmeti
     const snap = await getDocs(collection(db,'staffAccounts'));
     const acct = snap.docs.map(d=>({id:d.id,...d.data()})).find(a=>a.id===id);
     if (acct && acct.username === currentUser) { showToast('Cannot remove your own account.','error'); return; }
-    if (!confirm('Remove this staff account?')) return;
+    if (!await showConfirm('Remove this staff account?', 'Remove', 'btn-danger')) return;
     try {
       await deleteDoc(doc(db,'staffAccounts',id));
       showToast('Account removed.','success');
@@ -1812,12 +1978,73 @@ image:https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/Simple_arithmeti
   // ── UTILS ──────────────────────────────────────────────────────────────────
   function g(id){return document.getElementById(id);}
   function cap(s){return s.charAt(0).toUpperCase()+s.slice(1);}
-  function showToast(msg,type=''){const t=g('toast');t.textContent=msg;t.className='toast '+type;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),3000);}
   function esc(str){if(!str)return'';return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+
+  // Toast: drops from top
+  let toastTimer;
+  function showToast(msg, type='') {
+    const t = g('toast');
+    clearTimeout(toastTimer);
+    t.textContent = msg;
+    t.className = 'toast ' + type;
+    t.classList.add('show');
+    toastTimer = setTimeout(() => t.classList.remove('show'), 3200);
+  }
+
+  // Confirm dialog (async, replaces confirm())
+  let confirmResolve = null;
+  function showConfirm(msg, okLabel='Confirm', okClass='btn-danger') {
+    return new Promise(resolve => {
+      confirmResolve = resolve;
+      g('confirmMsg').textContent = msg;
+      g('confirmOk').textContent = okLabel;
+      g('confirmOk').className = 'btn ' + okClass + ' btn-sm';
+      g('confirmOverlay').classList.add('open');
+    });
+  }
+  window.resolveConfirm = yes => {
+    g('confirmOverlay').classList.remove('open');
+    if (confirmResolve) { confirmResolve(yes); confirmResolve = null; }
+  };
+  // Close confirm on overlay click
+  g('confirmOverlay').addEventListener('click', e => { if (e.target === g('confirmOverlay')) resolveConfirm(false); });
+
+  // Custom category dropdown
+  let catOptions = [''];
+  window.toggleCatDropdown = () => {
+    const btn = g('catSelectBtn'), dd = g('catDropdown');
+    const open = dd.classList.contains('open');
+    if (open) { dd.classList.remove('open'); btn.classList.remove('open'); }
+    else { dd.classList.add('open'); btn.classList.add('open'); }
+  };
+  function buildCatDropdown(cats) {
+    const dd = g('catDropdown');
+    const cur = g('catFilter').value;
+    const all = ['', ...cats];
+    dd.innerHTML = all.map(c => `<div class="cs-option ${c===cur?'selected':''}" onclick="selectCat(${JSON.stringify(c)})">${c||'All categories'}</div>`).join('');
+  }
+  window.selectCat = val => {
+    g('catFilter').value = val;
+    g('catSelectVal').textContent = val || 'All categories';
+    // Update selected class
+    document.querySelectorAll('#catDropdown .cs-option').forEach(el => {
+      el.classList.toggle('selected', el.textContent === (val || 'All categories'));
+    });
+    g('catDropdown').classList.remove('open');
+    g('catSelectBtn').classList.remove('open');
+    renderHome();
+  };
+  // Close dropdown on outside click
+  document.addEventListener('click', e => {
+    const wrap = g('catSelectWrap');
+    if (wrap && !wrap.contains(e.target)) {
+      g('catDropdown').classList.remove('open');
+      g('catSelectBtn').classList.remove('open');
+    }
+  });
 
   updateAuthUI();
   listenTrivia();
 </script>
 </body>
 </html>
-
