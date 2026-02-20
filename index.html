@@ -3,22 +3,22 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Trivia</title>
-<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<title>Blaizery | Quizzes &amp; Tests</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg: #0f1117; --surface: #1a1d27; --surface2: #22263a; --border: #2a2d3a;
-    --accent: #e07b39; --accent-hover: #c96a2a; --green: #43d9a0; --green-hover: #35c48e;
-    --red: #ff6584; --yellow: #ffd166; --text: #e8eaf6; --muted: #8a8fa8;
-    --radius: 16px; --shadow: 0 8px 32px rgba(0,0,0,0.4);
+    --bg: #0d0e14; --surface: #14161f; --surface2: #1c1f2e; --border: #252836;
+    --accent: #e07b39; --accent-hover: #c96a2a; --green: #3ecf8e; --green-hover: #34b87c;
+    --red: #f0647e; --yellow: #f5c842; --text: #dde1f5; --muted: #7b82a0;
+    --radius: 14px; --shadow: 0 12px 40px rgba(0,0,0,0.5);
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { font-family: 'Nunito Sans', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh;
+  body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh;
     background-image: radial-gradient(ellipse at 15% 10%, rgba(224,123,57,0.12) 0%, transparent 55%), radial-gradient(ellipse at 85% 85%, rgba(67,217,160,0.08) 0%, transparent 50%); }
-  header { display: flex; align-items: center; justify-content: space-between; padding: 18px 32px; border-bottom: 1px solid var(--border); background: rgba(15,17,23,0.85); backdrop-filter: blur(12px); position: sticky; top: 0; z-index: 100; }
-  .logo { font-family: 'Nunito', sans-serif; font-weight: 900; font-size: 1.5rem; background: linear-gradient(135deg, #e07b39, #43d9a0); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+  header { display: flex; align-items: center; justify-content: space-between; padding: 14px 28px; border-bottom: 1px solid var(--border); background: rgba(13,14,20,0.9); backdrop-filter: blur(16px); position: sticky; top: 0; z-index: 100; }
+  .logo { font-family: 'DM Serif Display', serif; font-size: 1.4rem; letter-spacing: -0.02em; background: linear-gradient(120deg, #e07b39 0%, #f0c070 60%, #3ecf8e 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
   .header-actions { display: flex; gap: 10px; align-items: center; }
-  .btn { font-family: 'Nunito', sans-serif; font-weight: 700; font-size: 0.9rem; padding: 10px 20px; border-radius: 50px; border: none; cursor: pointer; transition: all 0.2s ease; display: inline-flex; align-items: center; gap: 7px; }
+  .btn { font-family: 'DM Sans', sans-serif; font-weight: 600; font-size: 0.88rem; padding: 9px 18px; border-radius: 10px; border: none; cursor: pointer; transition: all 0.18s ease; display: inline-flex; align-items: center; gap: 6px; letter-spacing: -0.01em; }
   .btn:active { transform: scale(0.97); }
   .btn-primary { background: var(--accent); color: #fff; }
   .btn-primary:hover { background: var(--accent-hover); transform: translateY(-1px); box-shadow: 0 4px 16px rgba(224,123,57,0.4); }
@@ -33,7 +33,7 @@
   .staff-badge {
     background: linear-gradient(135deg, rgba(224,123,57,0.15), rgba(67,217,160,0.12));
     border: 1.5px solid rgba(224,123,57,0.35); color: var(--accent);
-    padding: 5px 12px; border-radius: 50px; font-family: 'Nunito', sans-serif;
+    padding: 5px 12px; border-radius: 50px; font-family: 'DM Serif Display', serif;
     font-weight: 700; font-size: 0.78rem; white-space: nowrap; max-width: 160px;
     overflow: hidden; text-overflow: ellipsis; display: inline-flex; align-items: center; gap: 5px;
   }
@@ -45,7 +45,7 @@
 
   /* HOME */
   .home-header { text-align: center; margin-bottom: 32px; }
-  .home-header h1 { font-family: 'Nunito', sans-serif; font-weight: 900; font-size: 2.8rem; margin-bottom: 10px; background: linear-gradient(135deg, #f0f2ff, #8a8fa8); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+  .home-header h1 { font-family: 'DM Serif Display', serif; font-size: 2.6rem; letter-spacing: -0.03em; margin-bottom: 10px; background: linear-gradient(120deg, #dde1f5 0%, #7b82a0 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
   .home-header p { color: var(--muted); font-size: 1rem; }
 
   /* SEARCH ROW */
@@ -57,7 +57,7 @@
     border: 2px solid var(--border);
     border-radius: 14px;
     padding: 0 18px;
-    font-family: 'Nunito Sans', sans-serif;
+    font-family: 'DM Sans', sans-serif;
     font-weight: 600;
     font-size: 0.97rem;
     color: var(--text);
@@ -72,13 +72,13 @@
   .search-row #catFilter:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(224,123,57,0.12); }
 
   .trivia-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; }
-  .trivia-card { background: var(--surface); border: 1.5px solid var(--border); border-radius: var(--radius); padding: 24px; transition: all 0.25s ease; display: flex; flex-direction: column; gap: 12px; }
+  .trivia-card { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 22px; transition: all 0.2s ease; display: flex; flex-direction: column; gap: 11px; }
   .trivia-card:hover { border-color: rgba(224,123,57,0.35); transform: translateY(-3px); box-shadow: var(--shadow); }
-  .trivia-card h3 { font-family: 'Nunito', sans-serif; font-weight: 800; font-size: 1.15rem; }
+  .trivia-card h3 { font-family: 'DM Serif Display', serif; font-weight: 800; font-size: 1.15rem; }
   .trivia-card .desc { color: var(--muted); font-size: 0.88rem; line-height: 1.5; flex: 1; }
   .trivia-card .meta { font-size: 0.8rem; color: var(--muted); display: flex; gap: 6px; flex-wrap: wrap; align-items: center; }
   .trivia-card .card-actions { display: flex; gap: 8px; flex-wrap: wrap; }
-  .badge { font-size: 0.72rem; border-radius: 20px; padding: 3px 9px; font-weight: 700; font-family: 'Nunito', sans-serif; border: 1px solid; }
+  .badge { font-size: 0.72rem; border-radius: 20px; padding: 3px 9px; font-weight: 700; font-family: 'DM Serif Display', serif; border: 1px solid; }
   .badge-yellow { background: rgba(255,209,102,0.1); color: var(--yellow); border-color: rgba(255,209,102,0.25); }
   .badge-purple { background: rgba(224,123,57,0.1); color: var(--accent); border-color: rgba(224,123,57,0.25); }
   .badge-green { background: rgba(67,217,160,0.1); color: var(--green); border-color: rgba(67,217,160,0.25); }
@@ -86,7 +86,7 @@
   .badge-blue { background: rgba(56,189,248,0.1); color: #38bdf8; border-color: rgba(56,189,248,0.25); }
 
   .empty-state { text-align: center; padding: 80px 20px; color: var(--muted); grid-column: 1 / -1; }
-  .empty-state h3 { font-family: 'Nunito', sans-serif; font-weight: 800; margin-bottom: 8px; color: var(--text); font-size: 1.2rem; }
+  .empty-state h3 { font-family: 'DM Serif Display', serif; font-weight: 800; margin-bottom: 8px; color: var(--text); font-size: 1.2rem; }
   .loading-state { text-align: center; padding: 80px 20px; color: var(--muted); grid-column: 1 / -1; }
   .spinner { width: 36px; height: 36px; border: 3px solid var(--border); border-top-color: var(--accent); border-radius: 50%; animation: spin 0.7s linear infinite; margin: 0 auto 16px; }
   @keyframes spin { to { transform: rotate(360deg); } }
@@ -104,27 +104,27 @@
   .modal-overlay.anim-in { background: rgba(0,0,0,0.72); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); }
   .modal-overlay.anim-out { background: rgba(0,0,0,0); backdrop-filter: blur(0px); -webkit-backdrop-filter: blur(0px); }
   .modal {
-    background: var(--surface); border: 1.5px solid var(--border); border-radius: var(--radius);
-    width: 100%; max-width: 540px; max-height: 90vh; overflow-y: auto; padding: 32px;
-    box-shadow: var(--shadow);
-    transform: translateY(28px) scale(0.97); opacity: 0;
-    transition: transform 0.32s cubic-bezier(0.34,1.48,0.64,1), opacity 0.25s ease;
+    background: var(--surface); border: 1px solid var(--border); border-radius: 18px;
+    width: 100%; max-width: 540px; max-height: 90vh; overflow-y: auto; padding: 28px 30px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,255,255,0.04);
+    transform: translateY(24px) scale(0.975); opacity: 0;
+    transition: transform 0.3s cubic-bezier(0.34,1.42,0.64,1), opacity 0.22s ease;
   }
   .modal-overlay.anim-in .modal { transform: translateY(0) scale(1); opacity: 1; }
   .modal-overlay.anim-out .modal { transform: translateY(16px) scale(0.97); opacity: 0; }
   .modal-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 24px; }
-  .modal-header h2 { font-family: 'Nunito', sans-serif; font-weight: 800; font-size: 1.3rem; }
+  .modal-header h2 { font-family: 'DM Serif Display', serif; font-size: 1.25rem; letter-spacing: -0.02em; }
   .close-btn { background: var(--surface2); border: none; color: var(--muted); width: 32px; height: 32px; border-radius: 50%; cursor: pointer; font-size: 1rem; display: flex; align-items: center; justify-content: center; transition: all 0.2s; }
   .close-btn:hover { color: var(--text); background: var(--border); }
 
   /* FORM INPUTS */
   .form-group { margin-bottom: 16px; }
-  .form-group label { display: block; font-weight: 700; font-size: 0.82rem; color: var(--muted); margin-bottom: 7px; text-transform: uppercase; letter-spacing: 0.5px; }
+  .form-group label { display: block; font-weight: 600; font-size: 0.8rem; color: var(--muted); margin-bottom: 6px; letter-spacing: 0.01em; }
   .form-group label span.req { color: var(--red); margin-left: 3px; }
   input[type="text"], input[type="password"], input[type="number"], textarea, select {
-    width: 100%; background: var(--surface2); border: 1.5px solid var(--border); border-radius: 12px;
-    padding: 12px 16px; color: var(--text); font-family: 'Nunito Sans', sans-serif; font-size: 0.95rem;
-    transition: border-color 0.2s; outline: none;
+    width: 100%; background: var(--surface2); border: 1px solid var(--border); border-radius: 10px;
+    padding: 10px 14px; color: var(--text); font-family: 'DM Sans', sans-serif; font-size: 0.92rem;
+    transition: border-color 0.18s, box-shadow 0.18s; outline: none;
   }
   select { appearance: none; cursor: pointer; }
   input:focus, textarea:focus, select:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(224,123,57,0.12); }
@@ -140,7 +140,7 @@
     padding: 16px 20px !important;
     color: var(--text) !important;
     -webkit-text-fill-color: var(--text) !important;
-    font-family: 'Nunito', sans-serif !important;
+    font-family: 'DM Sans', sans-serif !important;
     font-weight: 700 !important;
     font-size: 1.2rem !important;
     text-align: center !important;
@@ -172,21 +172,21 @@
   .error-msg { color: var(--red); font-size: 0.82rem; margin-top: 6px; display: none; }
   .error-msg.show { display: block; }
   .hint-text { font-size: 0.78rem; color: var(--muted); margin-top: 6px; line-height: 1.4; }
-  .section-label { font-family: 'Nunito', sans-serif; font-weight: 800; font-size: 0.78rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.6px; margin-bottom: 10px; display: block; }
+  .section-label { font-family: 'DM Sans', sans-serif; font-weight: 600; font-size: 0.75rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 10px; display: block; }
 
   /* TABS */
   .tab-row { display: flex; gap: 4px; margin-bottom: 24px; background: var(--surface2); border-radius: 10px; padding: 4px; }
-  .tab-btn { flex: 1; padding: 9px; border: none; border-radius: 7px; cursor: pointer; font-family: 'Nunito', sans-serif; font-weight: 700; font-size: 0.85rem; background: transparent; color: var(--muted); transition: all 0.2s; }
-  .tab-btn.active { background: var(--surface); color: var(--text); box-shadow: 0 2px 8px rgba(0,0,0,0.25); }
+  .tab-btn { flex: 1; padding: 8px; border: none; border-radius: 6px; cursor: pointer; font-family: 'DM Sans', sans-serif; font-weight: 500; font-size: 0.84rem; background: transparent; color: var(--muted); transition: all 0.18s; letter-spacing: -0.01em; }
+  .tab-btn.active { background: var(--bg); color: var(--text); box-shadow: 0 2px 10px rgba(0,0,0,0.3); font-weight: 600; }
   .tab-content { display: none; }
   .tab-content.active { display: block; }
 
   /* QUESTION BUILDER */
   .questions-section > .qs-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; }
-  .questions-section > .qs-header h3 { font-family: 'Nunito', sans-serif; font-weight: 800; font-size: 0.85rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.5px; }
+  .questions-section > .qs-header h3 { font-family: 'DM Serif Display', serif; font-weight: 800; font-size: 0.85rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.5px; }
   .question-card { background: var(--surface2); border: 1.5px solid var(--border); border-radius: 12px; padding: 18px; margin-bottom: 12px; }
   .question-card .q-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
-  .question-card .q-num { font-family: 'Nunito', sans-serif; font-weight: 800; font-size: 0.82rem; color: var(--accent); text-transform: uppercase; letter-spacing: 0.5px; }
+  .question-card .q-num { font-family: 'DM Serif Display', serif; font-weight: 800; font-size: 0.82rem; color: var(--accent); text-transform: uppercase; letter-spacing: 0.5px; }
   .q-points-row { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; }
   .q-points-row label { font-size: 0.78rem; color: var(--muted); font-weight: 700; white-space: nowrap; }
   .q-points-row input { width: 70px; padding: 7px 10px; font-size: 0.85rem; }
@@ -205,7 +205,7 @@
   .import-zone { border: 2px dashed var(--border); border-radius: 12px; padding: 28px 20px; text-align: center; cursor: pointer; transition: all 0.2s; position: relative; }
   .import-zone:hover, .import-zone.drag-over { border-color: var(--accent); background: rgba(224,123,57,0.06); }
   .import-zone input[type="file"] { position: absolute; inset: 0; opacity: 0; cursor: pointer; width: 100%; height: 100%; }
-  .import-zone h4 { font-family: 'Nunito', sans-serif; font-weight: 800; margin-bottom: 6px; font-size: 1rem; }
+  .import-zone h4 { font-family: 'DM Serif Display', serif; font-weight: 800; margin-bottom: 6px; font-size: 1rem; }
   .import-zone p { font-size: 0.82rem; color: var(--muted); }
   .import-preview { background: var(--surface2); border: 1.5px solid var(--border); border-radius: 12px; padding: 14px; margin-top: 12px; font-size: 0.85rem; max-height: 180px; overflow-y: auto; }
   .preview-item { padding: 5px 0; border-bottom: 1px solid var(--border); color: var(--muted); }
@@ -219,7 +219,7 @@
   /* NAME / PIN PAGE */
   .entry-page { max-width: 420px; margin: 60px auto; }
   .entry-page .card { background: var(--surface); border: 1.5px solid var(--border); border-radius: var(--radius); padding: 40px 36px; box-shadow: var(--shadow); text-align: center; }
-  .entry-page h2 { font-family: 'Nunito', sans-serif; font-weight: 900; font-size: 1.8rem; margin-bottom: 8px; }
+  .entry-page h2 { font-family: 'DM Serif Display', serif; font-weight: 900; font-size: 1.8rem; margin-bottom: 8px; }
   .entry-page .subtitle { color: var(--muted); margin-bottom: 28px; font-size: 0.95rem; display: block; }
   .entry-page .action-btn { width: 100%; justify-content: center; margin-top: 14px; padding: 14px 20px; font-size: 1rem; }
   .entry-page .back-btn { width: 100%; justify-content: center; margin-top: 8px; }
@@ -228,7 +228,7 @@
   /* QUIZ */
   .quiz-container { max-width: 660px; margin: 0 auto; }
   .quiz-top-bar { margin-bottom: 16px; }
-  .quiz-top-bar h2 { font-family: 'Nunito', sans-serif; font-weight: 900; font-size: 1.9rem; margin-bottom: 4px; }
+  .quiz-top-bar h2 { font-family: 'DM Serif Display', serif; font-weight: 900; font-size: 1.9rem; margin-bottom: 4px; }
   .quiz-top-bar p { color: var(--muted); font-size: 0.9rem; }
   .quiz-meta-row { display: flex; align-items: center; justify-content: space-between; margin-bottom: 4px; }
   .question-num { font-size: 0.85rem; color: var(--muted); font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; }
@@ -238,15 +238,15 @@
   .timer-fill { fill: none; stroke: var(--green); stroke-width: 4; stroke-linecap: round; transition: stroke-dashoffset 0.95s linear, stroke 0.3s; }
   .timer-fill.warn { stroke: var(--yellow); }
   .timer-fill.danger { stroke: var(--red); }
-  .timer-num { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-family: 'Nunito', sans-serif; font-weight: 900; font-size: 0.85rem; }
+  .timer-num { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-family: 'DM Serif Display', serif; font-weight: 900; font-size: 0.85rem; }
   .progress-bar-wrap { background: var(--surface2); border-radius: 50px; height: 6px; margin: 12px 0 22px; overflow: hidden; }
   .progress-bar { background: linear-gradient(90deg, var(--accent), var(--green)); height: 100%; border-radius: 50px; transition: width 0.4s ease; }
-  .question-text { font-family: 'Nunito', sans-serif; font-weight: 800; font-size: 1.4rem; line-height: 1.4; margin-bottom: 8px; }
+  .question-text { font-family: 'DM Serif Display', serif; font-weight: 800; font-size: 1.4rem; line-height: 1.4; margin-bottom: 8px; }
   .question-points { font-size: 0.8rem; color: var(--yellow); font-weight: 700; margin-bottom: 18px; }
   .question-image { width: 100%; max-height: 280px; object-fit: cover; border-radius: 12px; margin-bottom: 16px; border: 1.5px solid var(--border); display: none; }
   .multi-hint { font-size: 0.82rem; color: var(--yellow); margin-bottom: 16px; font-weight: 600; }
   .options-list { display: flex; flex-direction: column; gap: 12px; }
-  .option-btn { background: var(--surface); border: 1.5px solid var(--border); border-radius: 14px; padding: 16px 20px; color: var(--text); font-family: 'Nunito', sans-serif; font-weight: 700; font-size: 1rem; cursor: pointer; text-align: left; transition: all 0.2s; display: flex; align-items: center; gap: 14px; width: 100%; }
+  .option-btn { background: var(--surface); border: 1.5px solid var(--border); border-radius: 14px; padding: 16px 20px; color: var(--text); font-family: 'DM Serif Display', serif; font-weight: 700; font-size: 1rem; cursor: pointer; text-align: left; transition: all 0.2s; display: flex; align-items: center; gap: 14px; width: 100%; }
   .option-btn:hover:not(:disabled) { border-color: var(--accent); background: rgba(224,123,57,0.07); transform: translateX(4px); }
   .option-btn.selected { border-color: var(--accent); background: rgba(224,123,57,0.12); }
   .option-btn:disabled { opacity: 0.45; cursor: not-allowed; transform: none; pointer-events: none; }
@@ -258,20 +258,20 @@
   .submitted-state { text-align: center; padding: 80px 20px; max-width: 440px; margin: 0 auto; }
   .submitted-state .check-icon { width: 72px; height: 72px; background: rgba(67,217,160,0.15); border: 2px solid var(--green); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 24px; font-size: 1.8rem; color: var(--green); animation: pop 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
   @keyframes pop { from { transform: scale(0.5); opacity: 0; } to { transform: scale(1); opacity: 1; } }
-  .submitted-state h2 { font-family: 'Nunito', sans-serif; font-weight: 900; font-size: 2rem; margin-bottom: 12px; }
+  .submitted-state h2 { font-family: 'DM Serif Display', serif; font-weight: 900; font-size: 2rem; margin-bottom: 12px; }
   .submitted-state p { color: var(--muted); line-height: 1.6; }
 
   /* REVIEW */
   .review-modal-inner { max-width: 740px; }
   .review-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 20px; }
   .stat-box { background: var(--surface2); border: 1.5px solid var(--border); border-radius: 12px; padding: 14px; text-align: center; }
-  .stat-box .stat-val { font-family: 'Nunito', sans-serif; font-weight: 900; font-size: 1.5rem; color: var(--text); }
+  .stat-box .stat-val { font-family: 'DM Serif Display', serif; font-weight: 900; font-size: 1.5rem; color: var(--text); }
   .stat-box .stat-label { font-size: 0.7rem; color: var(--muted); margin-top: 2px; text-transform: uppercase; letter-spacing: 0.5px; }
   .response-card { background: var(--surface2); border: 1.5px solid var(--border); border-radius: 12px; padding: 16px; margin-bottom: 10px; }
   .r-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 12px; }
-  .r-name { font-family: 'Nunito', sans-serif; font-weight: 800; font-size: 1rem; }
+  .r-name { font-family: 'DM Serif Display', serif; font-weight: 800; font-size: 1rem; }
   .r-time { font-size: 0.76rem; color: var(--muted); margin-top: 3px; }
-  .score-badge { background: rgba(67,217,160,0.15); border: 1.5px solid rgba(67,217,160,0.3); color: var(--green); padding: 5px 12px; border-radius: 50px; font-family: 'Nunito', sans-serif; font-weight: 800; font-size: 0.85rem; white-space: nowrap; }
+  .score-badge { background: rgba(67,217,160,0.15); border: 1.5px solid rgba(67,217,160,0.3); color: var(--green); padding: 5px 12px; border-radius: 50px; font-family: 'DM Serif Display', serif; font-weight: 800; font-size: 0.85rem; white-space: nowrap; }
   .response-details { display: flex; flex-direction: column; gap: 7px; }
   .answer-row { display: flex; align-items: flex-start; gap: 10px; font-size: 0.83rem; }
   .answer-row .mark { font-weight: 800; flex-shrink: 0; width: 16px; }
@@ -283,13 +283,13 @@
   .no-responses { text-align: center; color: var(--muted); padding: 40px; font-size: 0.9rem; }
   .leaderboard-row { display: flex; align-items: center; gap: 12px; padding: 12px 0; border-bottom: 1px solid var(--border); }
   .leaderboard-row:last-child { border-bottom: none; }
-  .lb-rank { font-family: 'Nunito', sans-serif; font-weight: 900; font-size: 1rem; width: 28px; text-align: center; color: var(--muted); }
+  .lb-rank { font-family: 'DM Serif Display', serif; font-weight: 900; font-size: 1rem; width: 28px; text-align: center; color: var(--muted); }
   .lb-rank.gold { color: #ffd700; } .lb-rank.silver { color: #c0c0c0; } .lb-rank.bronze { color: #cd7f32; }
-  .lb-name { flex: 1; font-weight: 700; font-family: 'Nunito', sans-serif; }
+  .lb-name { flex: 1; font-weight: 700; font-family: 'DM Serif Display', serif; }
   .lb-bar-wrap { width: 80px; background: var(--border); border-radius: 4px; height: 6px; }
   .lb-bar { background: linear-gradient(90deg, var(--accent), var(--green)); height: 100%; border-radius: 4px; }
   .lb-score { font-size: 0.85rem; color: var(--muted); font-weight: 600; }
-  .lb-pct { font-family: 'Nunito', sans-serif; font-weight: 800; font-size: 0.9rem; color: var(--green); }
+  .lb-pct { font-family: 'DM Serif Display', serif; font-weight: 800; font-size: 0.9rem; color: var(--green); }
   .breakdown-q { background: var(--surface2); border: 1.5px solid var(--border); border-radius: 10px; padding: 14px; margin-bottom: 10px; }
   .bq-text { font-weight: 700; font-size: 0.9rem; margin-bottom: 10px; }
   .bq-bar-row { display: flex; align-items: center; gap: 8px; margin-bottom: 5px; font-size: 0.82rem; }
@@ -313,7 +313,7 @@
     -webkit-backdrop-filter: blur(20px) saturate(180%);
     box-shadow: 0 4px 24px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.15), inset 0 -1px 0 rgba(0,0,0,0.2);
     color: rgba(232,234,246,0.75);
-    font-family: 'Nunito', sans-serif;
+    font-family: 'DM Serif Display', serif;
     font-weight: 700;
     font-size: 0.75rem;
     letter-spacing: 0.3px;
@@ -330,13 +330,18 @@
   .version-btn:active { transform: scale(0.97); }
 
   /* CHANGELOG MODAL */
-  .changelog-entry { margin-bottom: 22px; }
+  .changelog-list { position: relative; }
+  .changelog-list::before { content: ''; position: absolute; left: 7px; top: 8px; bottom: 8px; width: 1px; background: var(--border); }
+  .changelog-entry { margin-bottom: 24px; padding-left: 26px; position: relative; }
+  .changelog-entry::before { content: ''; position: absolute; left: 0; top: 7px; width: 15px; height: 15px; border-radius: 50%; background: var(--surface2); border: 2px solid var(--border); }
+  .changelog-entry:first-child::before { border-color: var(--accent); background: rgba(224,123,57,0.15); }
   .changelog-entry:last-child { margin-bottom: 0; }
-  .changelog-ver { font-family: 'Nunito', sans-serif; font-weight: 900; font-size: 0.95rem; color: var(--accent); margin-bottom: 2px; display: flex; align-items: center; gap: 8px; }
-  .changelog-date { font-size: 0.72rem; color: var(--muted); font-weight: 600; }
-  .changelog-items { list-style: none; margin-top: 8px; display: flex; flex-direction: column; gap: 5px; }
-  .changelog-items li { font-size: 0.85rem; color: var(--muted); padding-left: 16px; position: relative; line-height: 1.5; }
-  .changelog-items li::before { content: ''; position: absolute; left: 0; top: 8px; width: 5px; height: 5px; border-radius: 50%; background: var(--border); }
+  .changelog-ver { font-family: 'DM Serif Display', serif; font-size: 0.98rem; letter-spacing: -0.01em; color: var(--text); margin-bottom: 1px; display: flex; align-items: center; gap: 8px; }
+  .changelog-date { font-size: 0.7rem; color: var(--muted); font-weight: 500; background: var(--surface2); padding: 1px 7px; border-radius: 20px; border: 1px solid var(--border); }
+  .changelog-items { list-style: none; margin-top: 8px; display: flex; flex-direction: column; gap: 4px; }
+  .changelog-items li { font-size: 0.83rem; color: var(--muted); padding-left: 14px; position: relative; line-height: 1.55; }
+  .changelog-items li::before { content: ''; position: absolute; left: 0; top: 8px; width: 4px; height: 4px; border-radius: 50%; background: var(--border); }
+  .changelog-items li.new { color: var(--text); }
   .changelog-items li.new::before { background: var(--green); }
   .changelog-items li.fix::before { background: var(--yellow); }
   .changelog-items li.change::before { background: var(--accent); }
@@ -346,14 +351,14 @@
   .staff-account-row:hover { border-color: rgba(224,123,57,0.3); }
   .sa-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 10px; }
   .sa-info { flex: 1; min-width: 0; }
-  .sa-name { font-family: 'Nunito', sans-serif; font-weight: 800; font-size: 0.92rem; }
+  .sa-name { font-family: 'DM Serif Display', serif; font-weight: 800; font-size: 0.92rem; }
   .sa-rank-label { font-size: 0.72rem; color: var(--accent); font-weight: 700; margin-top: 2px; }
   .sa-actions { display: flex; gap: 6px; flex-shrink: 0; }
   .sa-perms { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 10px; }
-  .sa-perm { font-size: 0.67rem; border-radius: 20px; padding: 2px 9px; font-weight: 700; font-family: 'Nunito', sans-serif; border: 1px solid var(--border); background: var(--surface); color: var(--muted); }
+  .sa-perm { font-size: 0.67rem; border-radius: 20px; padding: 2px 9px; font-weight: 700; font-family: 'DM Serif Display', serif; border: 1px solid var(--border); background: var(--surface); color: var(--muted); }
   .sa-perm.granted { background: rgba(67,217,160,0.1); color: var(--green); border-color: rgba(67,217,160,0.3); }
-  .sa-owner-badge { font-size: 0.68rem; background: rgba(224,123,57,0.12); color: var(--accent); border: 1px solid rgba(224,123,57,0.3); border-radius: 20px; padding: 3px 10px; font-weight: 700; font-family: 'Nunito', sans-serif; white-space: nowrap; flex-shrink: 0; }
-  .sa-you-badge { font-size: 0.68rem; background: rgba(67,217,160,0.1); color: var(--green); border: 1px solid rgba(67,217,160,0.3); border-radius: 20px; padding: 3px 10px; font-weight: 700; font-family: 'Nunito', sans-serif; white-space: nowrap; flex-shrink: 0; }
+  .sa-owner-badge { font-size: 0.68rem; background: rgba(224,123,57,0.12); color: var(--accent); border: 1px solid rgba(224,123,57,0.3); border-radius: 20px; padding: 3px 10px; font-weight: 700; font-family: 'DM Serif Display', serif; white-space: nowrap; flex-shrink: 0; }
+  .sa-you-badge { font-size: 0.68rem; background: rgba(67,217,160,0.1); color: var(--green); border: 1px solid rgba(67,217,160,0.3); border-radius: 20px; padding: 3px 10px; font-weight: 700; font-family: 'DM Serif Display', serif; white-space: nowrap; flex-shrink: 0; }
   .perm-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-top: 8px; }
   .perm-row { display: flex; align-items: center; gap: 7px; font-size: 0.82rem; color: var(--muted); font-weight: 600; cursor: pointer; user-select: none; padding: 6px 10px; border-radius: 8px; background: var(--surface2); border: 1.5px solid var(--border); transition: border-color 0.15s, color 0.15s; }
   .perm-row:hover { border-color: rgba(224,123,57,0.3); color: var(--text); }
@@ -363,7 +368,7 @@
   ::-webkit-scrollbar-track { background: var(--bg); }
   ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
   @keyframes shake { 0%,100%{transform:translateX(0)} 25%{transform:translateX(-8px)} 75%{transform:translateX(8px)} }
-  .toast { position: fixed; bottom: 28px; left: 50%; transform: translateX(-50%) translateY(80px); background: var(--surface); border: 1.5px solid var(--border); border-radius: 50px; padding: 12px 24px; font-family: 'Nunito', sans-serif; font-weight: 700; font-size: 0.9rem; box-shadow: var(--shadow); z-index: 999; transition: transform 0.3s ease; pointer-events: none; }
+  .toast { position: fixed; bottom: 28px; left: 50%; transform: translateX(-50%) translateY(80px); background: var(--surface); border: 1.5px solid var(--border); border-radius: 50px; padding: 12px 24px; font-family: 'DM Serif Display', serif; font-weight: 700; font-size: 0.9rem; box-shadow: var(--shadow); z-index: 999; transition: transform 0.3s ease; pointer-events: none; }
   .toast.show { transform: translateX(-50%) translateY(0); }
   .toast.success { border-color: rgba(67,217,160,0.4); color: var(--green); }
   .toast.error { border-color: rgba(255,101,132,0.4); color: var(--red); }
@@ -371,19 +376,19 @@
   /* EDIT IMPORTED MODAL */
   .edit-q-card { background: var(--surface2); border: 1.5px solid var(--border); border-radius: 10px; padding: 14px; margin-bottom: 10px; }
   .edit-q-card .eq-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
-  .edit-q-card .eq-num { font-family: 'Nunito', sans-serif; font-weight: 800; font-size: 0.8rem; color: var(--accent); text-transform: uppercase; letter-spacing: 0.5px; }
+  .edit-q-card .eq-num { font-family: 'DM Serif Display', serif; font-weight: 800; font-size: 0.8rem; color: var(--accent); text-transform: uppercase; letter-spacing: 0.5px; }
 </style>
 </head>
 <body>
 
 <header>
-  <div class="logo">Trivia</div>
+  <div class="logo">Blaizery</div>
   <div class="header-actions">
     <div id="staffBadge" class="staff-badge" style="display:none"><span class="sb-dot"></span><span id="staffRankText">Staff</span></div>
-    <button class="btn btn-primary" id="addTriviaBtn" style="display:none" onclick="openCreateModal()">+ Add Trivia</button>
-    <button class="btn btn-ghost" id="loginBtn" onclick="openLoginModal()">Staff Login</button>
-    <button class="btn btn-ghost btn-sm" id="staffAccountsBtn" style="display:none" onclick="openStaffAccounts()">Accounts</button>
-    <button class="btn btn-ghost" id="logoutBtn" style="display:none" onclick="logout()">Log Out</button>
+    <button class="btn btn-primary" id="addTriviaBtn" style="display:none" onclick="openCreateModal()">New quiz</button>
+    <button class="btn btn-ghost" id="loginBtn" onclick="openLoginModal()">Log in</button>
+    <button class="btn btn-ghost btn-sm" id="staffAccountsBtn" style="display:none" onclick="openStaffAccounts()">Team</button>
+    <button class="btn btn-ghost" id="logoutBtn" style="display:none" onclick="logout()">Log out</button>
   </div>
 </header>
 
@@ -391,11 +396,11 @@
   <!-- HOME -->
   <div id="homePage" class="page active">
     <div class="home-header">
-      <h1>Trivia Challenges</h1>
-      <p>Pick a quiz and test your knowledge</p>
+      <h1>Quizzes &amp; Tests</h1>
+      <p>Pick something and see how you do.</p>
     </div>
     <div class="search-row">
-      <input type="text" id="searchInput" placeholder="Search trivia by name, category..." oninput="renderHome()" autocomplete="off" />
+      <input type="text" id="searchInput" placeholder="Search by name or category..." oninput="renderHome()" autocomplete="off" />
       <select id="catFilter" onchange="renderHome()">
         <option value="">All categories</option>
       </select>
@@ -478,14 +483,17 @@
 
 <!-- LOGIN MODAL -->
 <div class="modal-overlay" id="loginModal">
-  <div class="modal" style="max-width:400px">
-    <div class="modal-header"><h2>Staff Login</h2><button class="close-btn" onclick="closeModal('loginModal')">&#10005;</button></div>
-    <div class="form-group"><label>Username</label><input type="text" id="loginUser" placeholder="Username" autocomplete="off" /></div>
-    <div class="form-group"><label>Password</label><input type="password" id="loginPass" placeholder="Password" /></div>
-    <div class="error-msg" id="loginError">Incorrect username or password.</div>
-    <div class="modal-footer">
-      <button class="btn btn-ghost" onclick="closeModal('loginModal')">Cancel</button>
-      <button class="btn btn-primary" onclick="doLogin()">Login</button>
+  <div class="modal" style="max-width:360px">
+    <div style="text-align:center;margin-bottom:24px">
+      <div style="font-family:'DM Serif Display',serif;font-size:1.4rem;letter-spacing:-0.02em;background:linear-gradient(120deg,#e07b39,#f0c070,#3ecf8e);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:4px">Blaizery</div>
+      <div style="font-size:0.82rem;color:var(--muted)">Staff access only</div>
+    </div>
+    <div class="form-group"><label>Username</label><input type="text" id="loginUser" placeholder="Your username" autocomplete="off" /></div>
+    <div class="form-group"><label>Password</label><input type="password" id="loginPass" placeholder="Your password" /></div>
+    <div class="error-msg" id="loginError">Wrong username or password.</div>
+    <div style="margin-top:16px;display:flex;flex-direction:column;gap:8px">
+      <button class="btn btn-primary" style="width:100%;justify-content:center;padding:11px" onclick="doLogin()">Sign in</button>
+      <button class="btn btn-ghost" style="width:100%;justify-content:center" onclick="closeModal('loginModal')">Cancel</button>
     </div>
   </div>
 </div>
@@ -493,10 +501,10 @@
 <!-- CREATE MODAL -->
 <div class="modal-overlay" id="createModal">
   <div class="modal" style="max-width:680px">
-    <div class="modal-header"><h2>New Trivia</h2><button class="close-btn" onclick="closeModal('createModal')">&#10005;</button></div>
+    <div class="modal-header"><h2>New quiz or test</h2><button class="close-btn" type="button" onclick="closeModal('createModal')">&#10005;</button></div>
     <div class="tab-row">
-      <button class="tab-btn active" id="tabBtnManual" onclick="switchTab('manual')">Build Manually</button>
-      <button class="tab-btn" id="tabBtnImport" onclick="switchTab('import')">Import from File</button>
+      <button class="tab-btn active" id="tabBtnManual" onclick="switchTab('manual')">Build it myself</button>
+      <button class="tab-btn" id="tabBtnImport" onclick="switchTab('import')">Import a file</button>
     </div>
 
     <!-- MANUAL TAB -->
@@ -677,20 +685,32 @@
 <div class="toast" id="toast"></div>
 
 <!-- VERSION BUTTON -->
-<button class="version-btn" type="button" onclick="openChangelog()">v1.6.0</button>
+<button class="version-btn" type="button" onclick="openChangelog()">v1.7.0</button>
 
 <!-- CHANGELOG MODAL -->
 <div class="modal-overlay" id="changelogModal">
   <div class="modal" style="max-width:480px">
-    <div class="modal-header"><h2>Update Log</h2><button class="close-btn" onclick="closeModal('changelogModal')">&#10005;</button></div>
-    <div>
+    <div class="modal-header" style="margin-bottom:20px"><h2>Update Log</h2><button class="close-btn" onclick="closeModal('changelogModal')">&#10005;</button></div>
+    <div class="changelog-list">
 
       <div class="changelog-entry">
-        <div class="changelog-ver">v1.6.0 <span class="changelog-date">Today</span></div>
+        <div class="changelog-ver">v1.7.0 <span class="changelog-date">Today</span></div>
+        <ul class="changelog-items">
+          <li class="new">Renamed to Blaizery | Quizzes &amp; Tests</li>
+          <li class="new">New font: DM Sans and DM Serif Display</li>
+          <li class="change">Improved UI across login, accounts, create, and changelog screens</li>
+          <li class="change">You cannot grant permissions you do not have yourself</li>
+          <li class="change">Staff rank capped at 12 characters to fit the badge</li>
+          <li class="fix">Changelog shows just "Initial release" for v1.0.0</li>
+        </ul>
+      </div>
+
+      <div class="changelog-entry">
+        <div class="changelog-ver">v1.6.0 <span class="changelog-date">Earlier</span></div>
         <ul class="changelog-items">
           <li class="new">Staff badge now shows your rank and resizes to fit</li>
           <li class="new">Custom rank per staff account</li>
-          <li class="new">Permissions per account (create, edit, delete, review, manage accounts)</li>
+          <li class="new">Permissions per account: create, edit, delete, review, manage team</li>
           <li class="new">Edit button on staff accounts</li>
           <li class="new">Cannot remove the account you are logged in as</li>
           <li class="new">Animated modal open and close with background blur</li>
@@ -778,11 +798,11 @@
       <h2>Staff Accounts</h2>
       <button class="close-btn" type="button" onclick="closeModal('staffAccountsModal')">&#10005;</button>
     </div>
-    <p style="font-size:0.84rem;color:var(--muted);margin-bottom:16px">Manage who can log in as staff. Each account can have a custom rank and specific permissions.</p>
+    <p style="font-size:0.83rem;color:var(--muted);margin-bottom:16px;line-height:1.6">Manage who can log in as staff. Each account can have a custom title and its own set of permissions.</p>
     <div id="staffAccountsList"></div>
     <div class="divider"></div>
     <div id="addAccountForm">
-      <p style="font-family:'Nunito',sans-serif;font-weight:800;font-size:0.78rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:12px">Add New Account</p>
+      <p style="font-family:'DM Sans',sans-serif;font-weight:600;font-size:0.78rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:12px">Add account</p>
       <div class="two-col" style="margin-bottom:10px">
         <div class="form-group" style="margin-bottom:0">
           <label>Username</label>
@@ -795,9 +815,10 @@
       </div>
       <div class="form-group" style="margin-bottom:10px">
         <label>Rank (optional)</label>
-        <input type="text" id="newStaffRank" placeholder="e.g. Moderator, Editor..." autocomplete="off" />
+        <input type="text" id="newStaffRank" placeholder="e.g. Mod, Editor..." maxlength="12" autocomplete="off" />
+        <div class="hint-text">Max 12 characters. Shown in the header when logged in.</div>
       </div>
-      <p style="font-family:'Nunito',sans-serif;font-weight:700;font-size:0.76rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:8px">Permissions</p>
+      <p style="font-family:'DM Sans',sans-serif;font-weight:600;font-size:0.76rem;color:var(--muted);letter-spacing:0.05em;margin-bottom:8px">Permissions</p>
       <div class="perm-grid" style="margin-bottom:12px">
         <label class="perm-row"><input type="checkbox" id="np_create" checked /> Create trivia</label>
         <label class="perm-row"><input type="checkbox" id="np_edit" checked /> Edit trivia</label>
@@ -831,9 +852,10 @@
     </div>
     <div class="form-group">
       <label>Rank</label>
-      <input type="text" id="editStaffRank" placeholder="e.g. Moderator, Editor..." autocomplete="off" />
+      <input type="text" id="editStaffRank" placeholder="e.g. Mod, Editor..." maxlength="12" autocomplete="off" />
+        <div class="hint-text">Max 12 characters. Shown in the header when logged in.</div>
     </div>
-    <p style="font-family:'Nunito',sans-serif;font-weight:700;font-size:0.76rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:8px">Permissions</p>
+    <p style="font-family:'DM Sans',sans-serif;font-weight:600;font-size:0.76rem;color:var(--muted);letter-spacing:0.05em;margin-bottom:8px">Permissions</p>
     <div class="perm-grid" style="margin-bottom:12px">
       <label class="perm-row"><input type="checkbox" id="ep_create" /> Create trivia</label>
       <label class="perm-row"><input type="checkbox" id="ep_edit" /> Edit trivia</label>
@@ -904,7 +926,8 @@
     const perms = getPerms();
     g('staffBadge').style.display = isStaff ? 'flex' : 'none';
     if (isStaff) {
-      const rank = sessionStorage.getItem('staffRank') || 'Staff';
+      const rankRaw = sessionStorage.getItem('staffRank') || 'Staff';
+      const rank = rankRaw.length > 12 ? rankRaw.slice(0,12) : rankRaw;
       g('staffRankText').textContent = rank;
     }
     g('addTriviaBtn').style.display = (isStaff && perms.create !== false) ? 'flex' : 'none';
@@ -1607,9 +1630,21 @@ image:https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/Simple_arithmeti
 
   window.openStaffAccounts = async () => {
     g('newStaffUser').value = ''; g('newStaffPass').value = ''; g('newStaffRank').value = '';
-    g('np_create').checked = true; g('np_edit').checked = true;
-    g('np_delete').checked = false; g('np_review').checked = true; g('np_accounts').checked = false;
     g('newStaffError').classList.remove('show');
+    const myPerms = getPerms();
+    // Set defaults and disable perms the current user doesn't hold
+    PERMS_LIST.forEach(p => {
+      const el = g('np_' + p.key);
+      const haveIt = myPerms[p.key] !== false;
+      el.checked = haveIt; // default to checked if you have it
+      el.disabled = !haveIt;
+      el.closest('.perm-row').style.opacity = haveIt ? '1' : '0.4';
+      el.closest('.perm-row').style.cursor = haveIt ? 'pointer' : 'not-allowed';
+      el.closest('.perm-row').title = haveIt ? '' : 'You do not have this permission';
+    });
+    // Delete defaults to off
+    if (myPerms.delete !== false) { g('np_delete').checked = false; }
+    if (myPerms.accounts !== false) { g('np_accounts').checked = false; }
     openModal('staffAccountsModal');
     await renderStaffAccounts();
   };
@@ -1670,7 +1705,7 @@ image:https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/Simple_arithmeti
   window.addStaffAccount = async () => {
     const username = g('newStaffUser').value.trim();
     const password = g('newStaffPass').value;
-    const rank = g('newStaffRank').value.trim() || 'Staff';
+    const rank = (g('newStaffRank').value.trim() || 'Staff').slice(0, 12);
     if (!username || !password) { g('newStaffError').classList.add('show'); return; }
     if (username === STAFF_USER) { g('newStaffError').classList.add('show'); return; }
     const perms = {
@@ -1700,9 +1735,16 @@ image:https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/Simple_arithmeti
     g('editStaffUser').value = acct.username;
     g('editStaffPass').value = '';
     g('editStaffRank').value = acct.rank || '';
-    g('ep_create').checked = !!perms.create; g('ep_edit').checked = !!perms.edit;
-    g('ep_delete').checked = !!perms.delete; g('ep_review').checked = !!perms.review;
-    g('ep_accounts').checked = !!perms.accounts;
+    const myPerms2 = getPerms();
+    PERMS_LIST.forEach(p => {
+      const el = g('ep_' + p.key);
+      const haveIt = myPerms2[p.key] !== false;
+      el.checked = !!perms[p.key];
+      el.disabled = !haveIt;
+      el.closest('.perm-row').style.opacity = haveIt ? '1' : '0.4';
+      el.closest('.perm-row').style.cursor = haveIt ? 'pointer' : 'not-allowed';
+      el.closest('.perm-row').title = haveIt ? '' : 'You do not have this permission';
+    });
     g('editStaffError').classList.remove('show');
     closeModal('staffAccountsModal');
     openModal('editStaffModal');
@@ -1712,7 +1754,7 @@ image:https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/Simple_arithmeti
     const id = g('editStaffId').value;
     const username = g('editStaffUser').value.trim();
     const password = g('editStaffPass').value;
-    const rank = g('editStaffRank').value.trim() || 'Staff';
+    const rank = (g('editStaffRank').value.trim() || 'Staff').slice(0, 12);
     if (!username) { g('editStaffError').classList.add('show'); return; }
     const perms = {
       create:   g('ep_create').checked,
@@ -1779,4 +1821,3 @@ image:https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/Simple_arithmeti
 </script>
 </body>
 </html>
-
