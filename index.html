@@ -330,8 +330,8 @@
         <div id="nameWelcome"></div>
         <input type="text" id="playerNameInput" placeholder="Your name" maxlength="40" autocomplete="off" />
         <div class="error-msg" id="nameError">Please enter your name.</div>
-        <button class="btn btn-green action-btn" onclick="startQuizWithName()">Start Quiz</button>
-        <button class="btn btn-ghost back-btn" onclick="showPage('homePage')">Back</button>
+        <button type="button" class="btn btn-green action-btn" onclick="startQuizWithName()">Start Quiz</button>
+        <button class="btn btn-ghost back-btn" type="button" onclick="showPage('homePage')">Back</button>
       </div>
     </div>
   </div>
@@ -344,8 +344,8 @@
         <span class="subtitle">Enter the PIN to access.</span>
         <input type="text" id="pinInput" placeholder="••••" maxlength="8" autocomplete="off" />
         <div class="error-msg" id="pinError">Incorrect PIN. Try again.</div>
-        <button class="btn btn-green action-btn" onclick="submitPin()">Unlock</button>
-        <button class="btn btn-ghost back-btn" onclick="showPage('homePage')">Back</button>
+        <button type="button" class="btn btn-green action-btn" onclick="submitPin()">Unlock</button>
+        <button class="btn btn-ghost back-btn" type="button" onclick="showPage('homePage')">Back</button>
       </div>
     </div>
   </div>
@@ -1076,16 +1076,27 @@ image:https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/Simple_arithmeti
     const name = g('playerNameInput').value.trim();
     if (!name) { g('nameError').classList.add('show'); return; }
     g('nameError').classList.remove('show');
-    playerName = name; currentQuestion = 0;
-    questionOrder = currentTrivia.questions.map((_,i)=>i);
-    if (currentTrivia.shuffle) shuffleArr(questionOrder);
-    optionOrders = currentTrivia.questions.map(q => {
-      const order = q.options.map((_,i)=>i);
-      if (currentTrivia.shuffleOpts) shuffleArr(order);
-      return order;
-    });
-    answers = currentTrivia.questions.map(()=>[]);
-    renderQuestion(); showPage('quizPage');
+    try {
+      playerName = name; currentQuestion = 0;
+      // Normalize q.correct to always be an array (handles legacy number format in Firestore)
+      currentTrivia.questions = currentTrivia.questions.map(q => ({
+        ...q,
+        correct: Array.isArray(q.correct) ? q.correct : (q.correct != null ? [q.correct] : [0])
+      }));
+      questionOrder = currentTrivia.questions.map((_,i)=>i);
+      if (currentTrivia.shuffle) shuffleArr(questionOrder);
+      optionOrders = currentTrivia.questions.map(q => {
+        const order = q.options.map((_,i)=>i);
+        if (currentTrivia.shuffleOpts) shuffleArr(order);
+        return order;
+      });
+      answers = currentTrivia.questions.map(()=>[]);
+      renderQuestion();
+      showPage('quizPage');
+    } catch(err) {
+      console.error('Quiz start error:', err);
+      alert('Could not start quiz: ' + err.message);
+    }
   };
 
   function shuffleArr(arr) { for (let i=arr.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[arr[i],arr[j]]=[arr[j],arr[i]];} }
