@@ -276,6 +276,54 @@
   .bq-bar-inner.correct-opt { background: var(--green); }
   .bq-count { color: var(--muted); font-size: 0.76rem; width: 30px; text-align: right; flex-shrink: 0; }
 
+  /* VERSION BUTTON — liquid glass */
+  .version-btn {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    z-index: 300;
+    padding: 8px 16px;
+    border-radius: 50px;
+    border: 1px solid rgba(255,255,255,0.18);
+    background: rgba(255,255,255,0.07);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    box-shadow: 0 4px 24px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.15), inset 0 -1px 0 rgba(0,0,0,0.2);
+    color: rgba(232,234,246,0.75);
+    font-family: 'Nunito', sans-serif;
+    font-weight: 700;
+    font-size: 0.75rem;
+    letter-spacing: 0.3px;
+    cursor: pointer;
+    transition: all 0.25s ease;
+  }
+  .version-btn:hover {
+    background: rgba(255,255,255,0.12);
+    border-color: rgba(255,255,255,0.28);
+    color: rgba(232,234,246,1);
+    box-shadow: 0 6px 32px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.22), inset 0 -1px 0 rgba(0,0,0,0.2);
+    transform: translateY(-1px);
+  }
+  .version-btn:active { transform: scale(0.97); }
+
+  /* CHANGELOG MODAL */
+  .changelog-entry { margin-bottom: 22px; }
+  .changelog-entry:last-child { margin-bottom: 0; }
+  .changelog-ver { font-family: 'Nunito', sans-serif; font-weight: 900; font-size: 0.95rem; color: var(--accent); margin-bottom: 2px; display: flex; align-items: center; gap: 8px; }
+  .changelog-date { font-size: 0.72rem; color: var(--muted); font-weight: 600; }
+  .changelog-items { list-style: none; margin-top: 8px; display: flex; flex-direction: column; gap: 5px; }
+  .changelog-items li { font-size: 0.85rem; color: var(--muted); padding-left: 16px; position: relative; line-height: 1.5; }
+  .changelog-items li::before { content: ''; position: absolute; left: 0; top: 8px; width: 5px; height: 5px; border-radius: 50%; background: var(--border); }
+  .changelog-items li.new::before { background: var(--green); }
+  .changelog-items li.fix::before { background: var(--yellow); }
+  .changelog-items li.change::before { background: var(--accent); }
+
+  /* STAFF ACCOUNTS MODAL */
+  .staff-account-row { display: flex; align-items: center; justify-content: space-between; background: var(--surface2); border: 1.5px solid var(--border); border-radius: 10px; padding: 11px 14px; margin-bottom: 8px; }
+  .staff-account-row .sa-name { font-family: 'Nunito', sans-serif; font-weight: 800; font-size: 0.9rem; }
+  .staff-account-row .sa-meta { font-size: 0.75rem; color: var(--muted); margin-top: 2px; }
+  .sa-owner-badge { font-size: 0.68rem; background: rgba(108,99,255,0.15); color: var(--accent); border: 1px solid rgba(108,99,255,0.3); border-radius: 20px; padding: 2px 8px; font-weight: 700; font-family: 'Nunito', sans-serif; }
+
   ::-webkit-scrollbar { width: 6px; }
   ::-webkit-scrollbar-track { background: var(--bg); }
   ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
@@ -299,6 +347,7 @@
     <div id="staffBadge" class="staff-badge" style="display:none">Staff</div>
     <button class="btn btn-primary" id="addTriviaBtn" style="display:none" onclick="openCreateModal()">+ Add Trivia</button>
     <button class="btn btn-ghost" id="loginBtn" onclick="openLoginModal()">Staff Login</button>
+    <button class="btn btn-ghost btn-sm" id="staffAccountsBtn" style="display:none" onclick="openStaffAccounts()">&#128100; Accounts</button>
     <button class="btn btn-ghost" id="logoutBtn" style="display:none" onclick="logout()">Log Out</button>
   </div>
 </header>
@@ -592,6 +641,109 @@
 
 <div class="toast" id="toast"></div>
 
+<!-- VERSION BUTTON -->
+<button class="version-btn" type="button" onclick="openChangelog()">v1.5.0</button>
+
+<!-- CHANGELOG MODAL -->
+<div class="modal-overlay" id="changelogModal">
+  <div class="modal" style="max-width:480px">
+    <div class="modal-header"><h2>&#128197; Update Log</h2><button class="close-btn" onclick="closeModal('changelogModal')">&#10005;</button></div>
+    <div>
+
+      <div class="changelog-entry">
+        <div class="changelog-ver">v1.5.0 <span class="changelog-date">Today</span></div>
+        <ul class="changelog-items">
+          <li class="new">Staff accounts — add &amp; remove extra staff logins from the app</li>
+          <li class="new">Version button with liquid glass style + this update log</li>
+          <li class="fix">Fixed quiz start crash (SVG className setter bug)</li>
+          <li class="fix">Fixed name input not responding on Start Quiz press</li>
+        </ul>
+      </div>
+
+      <div class="changelog-entry">
+        <div class="changelog-ver">v1.4.0 <span class="changelog-date">Earlier</span></div>
+        <ul class="changelog-items">
+          <li class="new">Image support per question (URL field in builder + import)</li>
+          <li class="new">Edit button on trivia cards for staff</li>
+          <li class="new">Edit imported questions before saving</li>
+          <li class="new">Download example .txt file button</li>
+          <li class="change">Search bar redesigned to match category dropdown style</li>
+          <li class="fix">File import now supports image: and explanation: fields</li>
+        </ul>
+      </div>
+
+      <div class="changelog-entry">
+        <div class="changelog-ver">v1.3.0 <span class="changelog-date">Earlier</span></div>
+        <ul class="changelog-items">
+          <li class="new">File import (.txt, .csv, .json)</li>
+          <li class="new">Import tab in create modal</li>
+          <li class="new">Drag and drop file upload</li>
+        </ul>
+      </div>
+
+      <div class="changelog-entry">
+        <div class="changelog-ver">v1.2.0 <span class="changelog-date">Earlier</span></div>
+        <ul class="changelog-items">
+          <li class="new">Question timer with animated ring</li>
+          <li class="new">Shuffle questions &amp; options toggles</li>
+          <li class="new">Difficulty badges (Easy / Medium / Hard / Expert)</li>
+          <li class="new">Passing score threshold with pass/fail on finish</li>
+          <li class="new">Multiple correct answers per question</li>
+          <li class="new">Points per question + custom scoring</li>
+          <li class="new">Explanations shown after answering</li>
+          <li class="new">Welcome message before quiz starts</li>
+          <li class="new">Max attempts per player limit</li>
+          <li class="new">Category filter on home page</li>
+        </ul>
+      </div>
+
+      <div class="changelog-entry">
+        <div class="changelog-ver">v1.1.0 <span class="changelog-date">Earlier</span></div>
+        <ul class="changelog-items">
+          <li class="new">Review modal with leaderboard &amp; breakdown tabs</li>
+          <li class="new">Delete individual responses</li>
+          <li class="new">PIN lock per trivia</li>
+          <li class="new">Score shown on finish screen</li>
+        </ul>
+      </div>
+
+      <div class="changelog-entry">
+        <div class="changelog-ver">v1.0.0 <span class="changelog-date">Launch</span></div>
+        <ul class="changelog-items">
+          <li class="new">Initial release — Firebase trivia app</li>
+          <li class="new">Staff login / logout</li>
+          <li class="new">Create &amp; delete trivia</li>
+          <li class="new">Player name entry + quiz flow</li>
+          <li class="new">Response collection &amp; review</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- STAFF ACCOUNTS MODAL -->
+<div class="modal-overlay" id="staffAccountsModal">
+  <div class="modal" style="max-width:460px">
+    <div class="modal-header"><h2>&#128100; Staff Accounts</h2><button class="close-btn" onclick="closeModal('staffAccountsModal')">&#10005;</button></div>
+    <p style="font-size:0.84rem;color:var(--muted);margin-bottom:16px">Staff can log in, create trivia, review responses, and edit/delete.</p>
+    <div id="staffAccountsList"></div>
+    <div class="divider"></div>
+    <div style="display:flex;flex-direction:column;gap:10px">
+      <div class="form-group" style="margin-bottom:0">
+        <label>Username</label>
+        <input type="text" id="newStaffUser" placeholder="e.g. alice" autocomplete="off" />
+      </div>
+      <div class="form-group" style="margin-bottom:0">
+        <label>Password</label>
+        <input type="password" id="newStaffPass" placeholder="Choose a strong password" />
+      </div>
+      <div class="error-msg" id="newStaffError">Username already exists or fields are empty.</div>
+      <button type="button" class="btn btn-primary" onclick="addStaffAccount()" style="align-self:flex-end">+ Add Account</button>
+    </div>
+  </div>
+</div>
+
 <script type="module">
   import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
   import { getFirestore, collection, getDocs, addDoc, updateDoc, deleteDoc, doc, onSnapshot, query, orderBy, serverTimestamp, where } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
@@ -613,12 +765,22 @@
   const STAFF_USER = 'blaize', STAFF_PASS = 'blazesmpstafftrivia';
   let isStaff = sessionStorage.getItem('staffLoggedIn') === '1';
 
-  window.doLogin = () => {
+  window.doLogin = async () => {
     const u = g('loginUser').value.trim(), p = g('loginPass').value;
+    // Check hardcoded owner account
     if (u === STAFF_USER && p === STAFF_PASS) {
       isStaff = true; sessionStorage.setItem('staffLoggedIn','1');
-      closeModal('loginModal'); updateAuthUI(); renderHome();
-    } else g('loginError').classList.add('show');
+      closeModal('loginModal'); updateAuthUI(); renderHome(); return;
+    }
+    // Check Firestore staff accounts
+    try {
+      const snap = await getDocs(query(collection(db,'staffAccounts'), where('username','==',u)));
+      if (!snap.empty && snap.docs[0].data().password === p) {
+        isStaff = true; sessionStorage.setItem('staffLoggedIn','1');
+        closeModal('loginModal'); updateAuthUI(); renderHome(); return;
+      }
+    } catch(e) { console.error(e); }
+    g('loginError').classList.add('show');
   };
   window.logout = () => { isStaff = false; sessionStorage.removeItem('staffLoggedIn'); updateAuthUI(); renderHome(); };
   function updateAuthUI() {
@@ -626,6 +788,7 @@
     g('addTriviaBtn').style.display = isStaff ? 'flex' : 'none';
     g('loginBtn').style.display = isStaff ? 'none' : 'flex';
     g('logoutBtn').style.display = isStaff ? 'flex' : 'none';
+    g('staffAccountsBtn').style.display = isStaff ? 'flex' : 'none';
   }
 
   // ── PAGE NAV ───────────────────────────────────────────────────────────────
@@ -1304,6 +1467,68 @@ image:https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/Simple_arithmeti
     if (!confirm('Delete this response?')) return;
     try{await deleteDoc(doc(db,'responses',responseId));showToast('Response deleted.','success');openReview(triviaId);}
     catch(e){showToast('Error.','error');}
+  };
+
+  // ── CHANGELOG ─────────────────────────────────────────────────────────────
+  window.openChangelog = () => g('changelogModal').classList.add('open');
+
+  // ── STAFF ACCOUNTS ─────────────────────────────────────────────────────────
+  window.openStaffAccounts = async () => {
+    g('newStaffUser').value = ''; g('newStaffPass').value = '';
+    g('newStaffError').classList.remove('show');
+    g('staffAccountsModal').classList.add('open');
+    await renderStaffAccounts();
+  };
+
+  async function renderStaffAccounts() {
+    const list = g('staffAccountsList');
+    list.innerHTML = '<div style="color:var(--muted);font-size:0.85rem;padding:8px 0">Loading...</div>';
+    try {
+      const snap = await getDocs(collection(db,'staffAccounts'));
+      const accounts = snap.docs.map(d => ({id:d.id,...d.data()}));
+      // Always show the owner account first
+      let html = `<div class="staff-account-row">
+        <div><div class="sa-name">${esc(STAFF_USER)}</div><div class="sa-meta">Owner account</div></div>
+        <span class="sa-owner-badge">Owner</span>
+      </div>`;
+      if (!accounts.length) {
+        html += '<div style="color:var(--muted);font-size:0.82rem;padding:10px 0 4px">No extra accounts yet.</div>';
+      } else {
+        html += accounts.map(a => `
+          <div class="staff-account-row">
+            <div><div class="sa-name">${esc(a.username)}</div><div class="sa-meta">Added by staff</div></div>
+            <button type="button" class="btn btn-danger btn-sm" onclick="deleteStaffAccount('${a.id}')">Remove</button>
+          </div>`).join('');
+      }
+      list.innerHTML = html;
+    } catch(e) { list.innerHTML = '<div style="color:var(--red);font-size:0.85rem">Error loading accounts.</div>'; }
+  }
+
+  window.addStaffAccount = async () => {
+    const username = g('newStaffUser').value.trim();
+    const password = g('newStaffPass').value;
+    if (!username || !password) { g('newStaffError').classList.add('show'); return; }
+    // Check not duplicate of owner
+    if (username === STAFF_USER) { g('newStaffError').classList.add('show'); return; }
+    try {
+      // Check duplicate in Firestore
+      const existing = await getDocs(query(collection(db,'staffAccounts'), where('username','==',username)));
+      if (!existing.empty) { g('newStaffError').classList.add('show'); return; }
+      await addDoc(collection(db,'staffAccounts'), {username, password});
+      g('newStaffUser').value = ''; g('newStaffPass').value = '';
+      g('newStaffError').classList.remove('show');
+      showToast('Account added!','success');
+      await renderStaffAccounts();
+    } catch(e) { console.error(e); showToast('Error adding account.','error'); }
+  };
+
+  window.deleteStaffAccount = async id => {
+    if (!confirm('Remove this staff account?')) return;
+    try {
+      await deleteDoc(doc(db,'staffAccounts',id));
+      showToast('Account removed.','success');
+      await renderStaffAccounts();
+    } catch(e) { showToast('Error.','error'); }
   };
 
   // ── MODALS ─────────────────────────────────────────────────────────────────
